@@ -1,0 +1,19 @@
+.card {
+  border-radius: 12px;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+}
