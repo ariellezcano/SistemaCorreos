@@ -15,28 +15,15 @@ export class UsuarioService {
     this.api = environment.URL + 'Usuario';
   }
 
-//  getList(pagina: number, cantidad: number, busqueda?: string): Observable<Results<Usuarios>> {
-//   return this.http.get<Results<Usuarios>>(this.api, {
-//     params: {
-//       pagina: pagina.toString(),
-//       tamanoPagina: cantidad.toString(),
-//       nombre: busqueda ?? ''
-//     },
-//     responseType: 'json' // asegurate de que esto esté
-//   });
-// }
+  getList(pagina: number, cantidad: number, busqueda?: string) {
+    const params = {
+      pagina: pagina.toString(),
+      tamanoPagina: cantidad.toString(),
+      nombre: busqueda ?? '',
+    };
 
- getList(pagina: number, cantidad: number, busqueda?: string) {
-  let ruta = `${this.api}?pagina=${pagina}&tamanoPagina=${cantidad}`;
-  
-  if (busqueda && busqueda.trim() !== '') {
-    ruta += `&nombre=${encodeURIComponent(busqueda)}`;
+    return this.http.get<Results<Usuarios>>(`${this.api}/Listar`, { params });
   }
-
-  return this.http.get<Results<Usuarios>>(ruta);
-}
-
-
 
   getId(id: number) {
     return this.http.get(this.api + '/' + id);
@@ -50,12 +37,9 @@ export class UsuarioService {
     return this.http.put(this.api + '/' + id, evento);
   }
 
-  delete(id: number) {
-    return this.http.delete(this.api + '/' + id);
+  delete(id: number, usuarioBaja: number) {
+    console.log("servicio:", id, usuarioBaja)
+    return this.http.delete(`${this.api}/${id}/${usuarioBaja}`);
   }
-
-  // filter(criterio?: number) {
-  //   const ruta = `${this.api}/filterVehiculoColision/${criterio}`;
-  //   return this.http.get(ruta);
-  // }
+  
 }

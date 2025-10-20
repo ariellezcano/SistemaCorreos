@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { UsuarioRol } from 'src/app/modelos/componentes/relacionModelos/usuarioRol';
 import { Usuarios } from 'src/app/modelos/index.models';
 import { UsuarioService } from 'src/app/services/index.service';
 
@@ -9,10 +10,10 @@ import { UsuarioService } from 'src/app/services/index.service';
   styleUrls: ['./fil-usuarios.component.scss'],
 })
 export class FilUsuariosComponent implements OnInit {
-  @Output() emmit: EventEmitter<Usuarios[]> = new EventEmitter();
+  @Output() emmit: EventEmitter<UsuarioRol[]> = new EventEmitter();
 
   busqueda: any;
-  items: Usuarios[];
+  items: UsuarioRol[];
 
   paginaAnterior!: number;
   anterior: boolean;
@@ -96,13 +97,15 @@ export class FilUsuariosComponent implements OnInit {
 
       // Espera a que el Observable emita
       const result = await lastValueFrom(data$);
-      console.log('Resultado real:', result); // ✅ Aquí vas a ver code, data, etc.
+      const Json = JSON.parse(JSON.stringify(result));
 
-      if (result.code === '200') {
-        console.log('aca estoysssss');
-        this.items = result.data ?? [];
-        this.totalRegistros = result.totalRegistros;
-        this.totalPaginas = result.totalPaginas;
+      console.log('Resultado real:', Json); // Aquí vas a ver code, data, etc.
+
+      if (Json.code === '200') {
+        this.items = Json.data ?? [];
+        console.log("items:", this.items)
+        this.totalRegistros = Json.totalRegistros;
+        this.totalPaginas = Json.totalPaginas;
       } else if (result.code === '204') {
         console.log('aca estoyss');
         this.items = [];
@@ -110,7 +113,7 @@ export class FilUsuariosComponent implements OnInit {
         this.totalPaginas = 1;
       }
 
-      //this.emmit.emit(this.items);
+      this.emmit.emit(this.items);
     } catch (error) {
       console.error('Error en filter():', error);
     }

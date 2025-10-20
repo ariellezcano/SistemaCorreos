@@ -4,6 +4,8 @@ import { Usuarios } from 'src/app/modelos/index.models';
 import { UsuarioService } from 'src/app/services/componentes/usuario.service';
 import Swal from 'sweetalert2';
 import { FilUsuariosComponent } from '../../filtros/fil-usuarios/fil-usuarios.component';
+import { firstValueFrom } from 'rxjs';
+import { UsuarioRol } from 'src/app/modelos/componentes/relacionModelos/usuarioRol';
 
 @Component({
   selector: 'app-lst-usuarios',
@@ -14,11 +16,11 @@ export class LstUsuariosComponent implements OnInit {
   @ViewChild(FilUsuariosComponent, { static: false })
   fil!: FilUsuariosComponent;
 
-  item: Usuarios;
-  items: Usuarios[];
+  item: UsuarioRol;
+  items: UsuarioRol[];
   rol: string;
   constructor(private wsdl: UsuarioService, private router: Router) {
-    this.item = new Usuarios();
+    this.item = new UsuarioRol();
     this.items = [];
     this.rol = '';
   }
@@ -48,28 +50,46 @@ export class LstUsuariosComponent implements OnInit {
       })
       .then(async (result) => {
         if (result.isConfirmed) {
-          let data = await this.wsdl.delete(id);
-          const result = JSON.parse(JSON.stringify(data));
-          if (result.code == 200) {
-            this.fil.filter();
+          try {
+            const res: any = await firstValueFrom(this.wsdl.delete(id, 1));
+            const Json = JSON.parse(JSON.stringify(res));
+
+            if (Json.code === '200') {
+              this.fil.filter();
+
+              swalWithBootstrapButtons.fire(
+                'Eliminado exitosamente!',
+                'Tu registro ya no existe.',
+                'success'
+              );
+            }
+          } catch (err) {
+            console.error('Error al eliminar:', err);
             swalWithBootstrapButtons.fire(
-              'Eliminado exitosamente!',
-              'Tu registro ya no existe.',
-              'success'
+              'Error',
+              'No se pudo eliminar el registro.',
+              'error'
             );
           }
-        // } else if (result.dismiss === Swal.DismissReason.cancel) {
-        //   swalWithBootstrapButtons.fire(
-        //     'Cancelado',
-        //     'Su registro está seguro :)',
-        //     'error'
-        //   );
         }
       });
   }
 
-  doFound(event: Usuarios[]) {
-    console.log("llegue")
+  async editar(id: number, item: any) {
+    try {
+      let data = await firstValueFrom(this.wsdl.update(id, item));
+      const result = JSON.parse(JSON.stringify(data));
+
+      if(result.code === '200'){
+        
+      }
+
+
+    } catch (error) {}
+  }
+
+  doFound(event: UsuarioRol[]) {
+    console.log('llegue');
     this.items = event;
   }
 

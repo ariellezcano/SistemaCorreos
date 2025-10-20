@@ -7,11 +7,17 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LstUsuariosComponent } from "./lst/lst-usuarios/lst-usuarios.component";
 import { FilUsuariosComponent } from './filtros/fil-usuarios/fil-usuarios.component';
 import { CommonModule } from "@angular/common";
+import { PanelHabilitacionComponent } from './componentes/panel-habilitacion/panel-habilitacion.component';
+import { BusquedaPersonaComponent } from './componentes/busqueda-persona/busqueda-persona.component';
+import { ComboRolComponent } from './componentes/combo-rol/combo-rol.component';
 
 @NgModule({
   declarations: [
     LstUsuariosComponent,
     FilUsuariosComponent,
+    PanelHabilitacionComponent,
+    BusquedaPersonaComponent,
+    ComboRolComponent,
 
   ],
   imports: [
