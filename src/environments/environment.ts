@@ -6,8 +6,10 @@ export const environment = {
   production: false,
 
   URL: 'http://10.125.29.15:7117/api/',
-  //URLOci: 'http://10.125.31.23/api_mesaEntrada/',
+  URLPersona: 'http://10.125.31.23/api_sistemas/policia',
+  URLUnidad: 'http://10.125.31.23/api_sistemas/getUnidades/?nombre=',
   URLRegBus: 'https://policiadigital.chaco.gob.ar:9090/api_registroUsuario/',
+  PolDigitalUrl:'https://policiadigital.chaco.gob.ar:9090/api_registroUsuario/usuario/find/',
 };
 
 /*

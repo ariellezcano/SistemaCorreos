@@ -83,34 +83,49 @@ export class PanelHabilitacionComponent implements OnInit {
     });
   }
 
-  doFound(event: Usuario_repo) {
-    //console.log('Event', event);
+  doFound(event: Usuarios) {
+    console.log('Event', event);
     this.proceso = true;
     ////console.log('event', event);
-    if (event.civil != null) {
+    if (event != null) {
+
+      idUsuario!: number;
+  userCreaRepo!: any; //usuario que crea el usuario
+  usuarioRepo: any; //el usuario creado
+  fechaAlta: any;
+  persona!: number;
+  civil!: number;
+  norDni: any;
+  nombre: string | undefined;
+  apellido: string | undefined;
+  tipoPersona!: boolean; /*TRUE POLICIA   FALSE CIVIL*/
+  fechaBaja: any;
+  usuarioBaja: any;
+  baja: boolean; /**baja de usuario del sistema por defecto false */
+  activo: boolean; /**para que el usuario desactive temporalmente su usuario desde el repo */
+  rol!: number;
       ////console.log('Personal civil', event);
-        this.dtUsuario.tipoPersona = false;
-        this.dtUsuario.civil = event.civil.id;
-        this.dtUsuario.nombre = event.civil.nombre;
-        this.dtUsuario.apellido = event.civil.apellido;
-        this.dtUsuario.norDni = event.civil.norDni;
+        this.dtUsuario.tipoPersona = true;
+        this.dtUsuario.nombre = event.nombre;
+        this.dtUsuario.apellido = event.apellido;
+        this.dtUsuario.norDni = event.data.norDni;
         this.dtUsuario.usuarioRepo = event.id;
         this.dtUsuario.rol = event.rol.idRol;
         //this.dtUsuario.rolNombre = event.rol.nombre;
         //this.dtSued.usuarioRepo = event.id;
     }
 
-    if (event.persona != null) {
-        this.dtUsuario.tipoPersona = true;
-        this.dtUsuario.persona = event.persona.id;
-        this.dtUsuario.nombre = event.persona.nombre;
-        this.dtUsuario.apellido = event.persona.apellido;
-        this.dtUsuario.norDni = event.persona.norDni;
-        this.dtUsuario.usuarioRepo = event.id;
-        this.dtUsuario.rol = event.rol.idRol;
-        //this.dtUsuario.rolNombre = event.rol.nombre;
-        //this.dtSued.userCreaRepo = event.id;
-    }
+    // if (event.persona != null) {
+    //     this.dtUsuario.tipoPersona = true;
+    //     this.dtUsuario.persona = event.persona.id;
+    //     this.dtUsuario.nombre = event.persona.nombre;
+    //     this.dtUsuario.apellido = event.persona.apellido;
+    //     this.dtUsuario.norDni = event.persona.norDni;
+    //     this.dtUsuario.usuarioRepo = event.id;
+    //     this.dtUsuario.rol = event.rol.idRol;
+    //     //this.dtUsuario.rolNombre = event.rol.nombre;
+    //     //this.dtSued.userCreaRepo = event.id;
+    // }
   }
 
   seleccionRol(event: Roles) {

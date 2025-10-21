@@ -10,9 +10,11 @@ export class RegistroUsuarioService {
 
  other_header: any;
   api;
+  busquedaPersona: any;
 
   constructor(private http: HttpClient) {
     this.api = environment.URLRegBus + 'usuario/';
+    this.busquedaPersona = environment.URLPersona;
     //this.api = "http://10.125.31.241:3000/unidad/";
   }
   /* particularidad de la entidad */
@@ -38,6 +40,22 @@ export class RegistroUsuarioService {
     this.other_header = Utils.getHeader();
     return this.http
       .post(this.api + 'find/usuarioSistema/' + dni, {
+        headers: this.other_header,
+      })
+      .toPromise()
+      .catch((err: any) => {
+        return {
+          code: 500,
+          data: err.message,
+          msg: 'Error en el servicio',
+        };
+      });
+  }
+
+   BusquedaPorDni(dni: any) {
+    this.other_header = Utils.getHeader();
+    return this.http
+      .get(this.busquedaPersona + '/getDni_policia/' + dni, {
         headers: this.other_header,
       })
       .toPromise()
