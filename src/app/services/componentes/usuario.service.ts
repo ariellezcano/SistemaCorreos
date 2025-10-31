@@ -26,6 +26,7 @@ export class UsuarioService {
   }
 
   getId(id: number) {
+    console.log("servicio", id);
     return this.http.get(this.api + '/' + id);
   }
 
@@ -35,6 +36,10 @@ export class UsuarioService {
 
   update(id: number, evento: any) {
     return this.http.put(this.api + '/' + id, evento);
+  }
+
+  patch(id: number, evento: any) {
+  return this.http.patch(this.api + '/' + id, evento);
   }
 
   delete(id: number, usuarioBaja: number) {

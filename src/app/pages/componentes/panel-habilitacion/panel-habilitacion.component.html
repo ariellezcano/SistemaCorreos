@@ -23,10 +23,10 @@
           Dni n°: <b>{{ dtUsuario.norDni }}</b>
         </h4>
         <br />
-        <!-- <ng-container
-          *ngIf="dtUsuario.rolNombre != 'MANAGER'; then thenTemplate; else elseTemplate"
-        ></ng-container> -->
-        <!-- <ng-template #thenTemplate>
+        <ng-container
+          *ngIf="dtUsuario.rol !== 4; then thenTemplate; else elseTemplate"
+        ></ng-container>
+        <ng-template #thenTemplate>
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -37,24 +37,24 @@
             </div>
             <div class="col-md-4"></div>
           </div>
-        </ng-template> -->
-        <!-- <ng-template #elseTemplate>
+        </ng-template>
+        <ng-template #elseTemplate>
           <h4>
-            Rol del Personal: <b>{{ dtUsuario.rolNombre }}</b>
+            Rol seleccionado: <b>{{dtUsuario.rolSeleccionado}}</b>
           </h4>
-        </ng-template> -->
+        </ng-template>
       </div>
     </div>
     <hr />
-    <!-- <div class="row">
-      <div *ngIf="dtUsuario.rolNombre != 'MANAGER'" class="col-md-12">
+    <div class="row">
+      <div *ngIf="dtUsuario.rol !== 4" class="col-md-12">
         <button type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto">
           <i class="fa fa-thumbs-up" aria-hidden="true"
             >&nbsp;Guardar Usuario</i
           >
         </button>
       </div>
-    </div> -->
+    </div>
     &nbsp;
   </form>
   <div class="row">

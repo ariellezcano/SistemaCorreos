@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class BusquedaPersonaComponent implements OnInit {
   @Output()
-  filter: EventEmitter<Usuario_repo> = new EventEmitter<Usuario_repo>();
+  filter: EventEmitter<Usuarios> = new EventEmitter<Usuarios>();
 
   cargando: Boolean = false;
   procesando: Boolean;
@@ -56,7 +56,9 @@ export class BusquedaPersonaComponent implements OnInit {
       let data = await this.wsdl.BusquedaPorDni(this.crit).then();
       this.result = JSON.parse(JSON.stringify(data));
       if (this.result.code === '200') {
+        
         this.id = this.result.data.id_persona;
+        
         this.verificarUsuario();
       } else if (this.result.code == 204) {
         Swal.fire({
@@ -98,8 +100,9 @@ export class BusquedaPersonaComponent implements OnInit {
 
   async verificarUsuario() {
     try {
+      console.log("persona", this.id);
       let data1 = await firstValueFrom(this.wsdlUsuario.getId(this.id));
-      alert('alert');
+      //alert(data1);
       const result1 = JSON.parse(JSON.stringify(data1));
       if (result1.code === '200') {
         this.item = result1.dato;
@@ -149,13 +152,14 @@ export class BusquedaPersonaComponent implements OnInit {
 
   async editBaja() {
     //fecha y id de quien da de baja
-    this.item.usuarioRepo = Number(Utils.getSession('user'));
+    //this.item.usuarioRepo = Number(Utils.getSession('user'));
+    
     this.item.baja = false;
     let data2 = await firstValueFrom(
-      this.wsdlUsuario.delete(this.item.idUsuario, this.itemBaja)
+      this.wsdlUsuario.patch(this.item.idUsuario, this.item)
     );
     const result2 = JSON.parse(JSON.stringify(data2));
-    if (result2.code == 200) {
+    if (result2.code === "200") {
       try {
         let data = await this.wsdl
           .patchSistemaHabilitados(

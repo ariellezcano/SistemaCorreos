@@ -6,7 +6,7 @@
       <h4 class="m-0">
         <i class="bi bi-people-fill me-2"></i> Lista de Usuarios
       </h4>
-      <button
+      <button type="button" (click)="habilitarUsuario()"
         class="btn btn-light text-primary fw-semibold"
       >
         <i class="fa fa-plus me-2"></i> Habilitar Nuevo usuario
@@ -39,7 +39,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of items; index as i">
-              <td>{{ item.usuario + 1 }}</td>
+              <td>{{ item.IdUsuario }}</td>
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>
               <td>{{ item.dni }}</td>
@@ -48,14 +48,14 @@
                 <button
                   class="btn btn-sm btn-outline-primary me-2"
                   title="Editar"
-                  (click)="editar(item.usuario, item)"
+                  (click)="editar(item.IdUsuario, item)"
                 >
                   <i class="bi bi-pencil-square"></i>
                 </button>
                 <button
                   class="btn btn-sm btn-outline-danger"
                   title="Eliminar"
-                  (click)="eliminar(item.usuario)"
+                  (click)="eliminar(item.IdUsuario)"
                 >
                   <i class="bi bi-trash"></i>
                 </button>

@@ -1,10 +1,10 @@
 export class Usuarios {
   idUsuario!: number;
   userCreaRepo!: any; //usuario que crea el usuario
-  usuarioRepo: any; //el usuario creado
+  usuarioRepo: any; //el usuario seleccionado del repo creado
   fechaAlta: any;
   persona!: number;
-  civil!: number;
+  //civil!: number;
   norDni: any;
   nombre: string | undefined;
   apellido: string | undefined;
@@ -17,6 +17,7 @@ export class Usuarios {
   //cifrado: any; /*PARA INGRESAR DESDE EL REPO*/
   //fechaVinculacion: any; /*fecha de control para el ingreso*/
   rol!: number;
+  rolSeleccionado!: string;
 
   constructor() {
     this.baja = false;

@@ -1,5 +1,5 @@
 export class Roles {
-    idRol!: number;
+    id_rol!: number;
     nombre!: string;
     activo: boolean;
 

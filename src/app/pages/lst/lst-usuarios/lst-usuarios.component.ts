@@ -19,7 +19,7 @@ export class LstUsuariosComponent implements OnInit {
   item: UsuarioRol;
   items: UsuarioRol[];
   rol: string;
-  constructor(private wsdl: UsuarioService, private router: Router) {
+  constructor(private wsdl: UsuarioService, private route: Router) {
     this.item = new UsuarioRol();
     this.items = [];
     this.rol = '';
@@ -75,6 +75,8 @@ export class LstUsuariosComponent implements OnInit {
       });
   }
 
+  
+
   async editar(id: number, item: any) {
     try {
       let data = await firstValueFrom(this.wsdl.update(id, item));
@@ -94,10 +96,14 @@ export class LstUsuariosComponent implements OnInit {
   }
 
   linkear(id?: Number) {
-    this.router.navigateByUrl('lst-marcas/abm/' + id);
+    this.route.navigateByUrl('lst-marcas/abm/' + id);
   }
 
   back() {
-    this.router.navigate(['principal']);
+    this.route.navigate(['principal']);
+  }
+
+  habilitarUsuario() {
+    this.route.navigate(['/pages/habilitar_usuario']);
   }
 }

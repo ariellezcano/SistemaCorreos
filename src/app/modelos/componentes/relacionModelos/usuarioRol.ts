@@ -1,6 +1,6 @@
 
 export class UsuarioRol {
-    usuario!: number;
+    IdUsuario!: number;
     nombre!: string;
     apellido!: string;
     dni!: number;

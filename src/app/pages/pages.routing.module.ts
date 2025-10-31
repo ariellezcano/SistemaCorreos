@@ -9,7 +9,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: 'usuario', component: LstUsuariosComponent },
+      { path: 'lst_usuario', component: LstUsuariosComponent },
       { path: 'habilitar_usuario', component: PanelHabilitacionComponent },
     ],
   },
