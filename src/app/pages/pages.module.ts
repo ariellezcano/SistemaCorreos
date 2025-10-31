@@ -11,6 +11,8 @@ import { PanelHabilitacionComponent } from './componentes/panel-habilitacion/pan
 import { BusquedaPersonaComponent } from './componentes/busqueda-persona/busqueda-persona.component';
 import { ComboRolComponent } from './componentes/combo-rol/combo-rol.component';
 import { NavbarComponent } from './compartido/navbar/navbar.component';
+import { LstUsuarioSolicitanteComponent } from './lst/lst-usuario-solicitante/lst-usuario-solicitante.component';
+import { FilUsuarioSolicitanteComponent } from './filtros/fil-usuario-solicitante/fil-usuario-solicitante.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { NavbarComponent } from './compartido/navbar/navbar.component';
     PanelHabilitacionComponent,
     BusquedaPersonaComponent,
     ComboRolComponent,
+    LstUsuarioSolicitanteComponent,
+    FilUsuarioSolicitanteComponent,
 
   ],
   imports: [
