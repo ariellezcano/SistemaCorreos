@@ -10,6 +10,7 @@ import { CommonModule } from "@angular/common";
 import { PanelHabilitacionComponent } from './componentes/panel-habilitacion/panel-habilitacion.component';
 import { BusquedaPersonaComponent } from './componentes/busqueda-persona/busqueda-persona.component';
 import { ComboRolComponent } from './componentes/combo-rol/combo-rol.component';
+import { NavbarComponent } from './compartido/navbar/navbar.component';
 
 @NgModule({
   declarations: [

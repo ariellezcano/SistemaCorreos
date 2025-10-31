@@ -46,7 +46,7 @@ export class PanelHabilitacionComponent implements OnInit {
   public async insert() {
     //this.dtUsuario.sistema = 1;
     this.dtUsuario.userCreaRepo = 1;
-    console.log("usuario a insertar", this.dtUsuario);
+    //console.log('usuario a insertar', this.dtUsuario);
     //this.dtSued.userCreaRepo = UturuncoUtils.getSession('user');
 
     // this.dtUsuario.fechaAlta = moment(this.dtUsuario.fechaAlta).format(
@@ -54,12 +54,11 @@ export class PanelHabilitacionComponent implements OnInit {
     // );
     try {
       let data = await lastValueFrom(this.wsdl.insert(this.dtUsuario));
-      //console.log("data", data)
       let res = JSON.parse(JSON.stringify(data));
-      //console.log("res", res)
+      
       if (res.code === '201') {
         //alert("usuario insertado")
-        
+
         try {
           let data = await this.wsdlRegistro
             .patchSistemaHabilitados(
@@ -77,6 +76,7 @@ export class PanelHabilitacionComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500,
         });
+
         this.back();
       } else {
       }
@@ -140,7 +140,7 @@ export class PanelHabilitacionComponent implements OnInit {
     if (event != undefined) {
       //console.log("evento seleccionado", event);
       this.dtUsuario.rol = event.id_rol;
-      console.log('Rol seleccionado', event);
+      //console.log('Rol seleccionado', event);
       this.dtUsuario.rolSeleccionado = event.nombre;
     }
   }

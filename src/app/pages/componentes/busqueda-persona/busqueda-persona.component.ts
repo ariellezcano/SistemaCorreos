@@ -100,13 +100,13 @@ export class BusquedaPersonaComponent implements OnInit {
 
   async verificarUsuario() {
     try {
-      console.log("persona", this.id);
+      //console.log("persona", this.id);
       let data1 = await firstValueFrom(this.wsdlUsuario.getId(this.id));
       //alert(data1);
       const result1 = JSON.parse(JSON.stringify(data1));
       if (result1.code === '200') {
         this.item = result1.dato;
-        console.log('this.item', this.item);
+        //console.log('this.item', this.item);
         if (this.item.baja) {
           Swal.fire({
             title: 'El usuario se encuentra dado de baja',
@@ -140,7 +140,6 @@ export class BusquedaPersonaComponent implements OnInit {
       if (error.status === 404) {
        // const result1 = error.error; // tu objeto JSON del backend
         //alert('AQUI ESTOY'); //ahora sí se va a mostrar
-        console.log('404', this.result);
         this.filter.emit(this.result.data);
         this.cargando = false;
         this.procesando = false;
@@ -187,6 +186,6 @@ export class BusquedaPersonaComponent implements OnInit {
   }
 
   back() {
-    this.route.navigate(['/lst-usuarios']);
+    this.route.navigate(['pages/lst-usuarios']);
   }
 }
