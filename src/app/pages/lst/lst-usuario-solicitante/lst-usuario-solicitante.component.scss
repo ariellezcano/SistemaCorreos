@@ -1,0 +1,27 @@
+.table-hover tbody tr:hover {
+  background-color: #e8f0fe !important;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.card-header {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+
+.table thead th {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.btn-outline-primary:hover {
+  color: #fff !important;
+}
+
+.btn-outline-danger:hover {
+  color: #fff !important;
+}

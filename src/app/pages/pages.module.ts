@@ -13,6 +13,7 @@ import { ComboRolComponent } from './componentes/combo-rol/combo-rol.component';
 import { NavbarComponent } from './compartido/navbar/navbar.component';
 import { LstUsuarioSolicitanteComponent } from './lst/lst-usuario-solicitante/lst-usuario-solicitante.component';
 import { FilUsuarioSolicitanteComponent } from './filtros/fil-usuario-solicitante/fil-usuario-solicitante.component';
+import { AbmUsuarioSolicitanteComponent } from './frm-abm/abm-usuario-solicitante/abm-usuario-solicitante.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FilUsuarioSolicitanteComponent } from './filtros/fil-usuario-solicitant
     ComboRolComponent,
     LstUsuarioSolicitanteComponent,
     FilUsuarioSolicitanteComponent,
+    AbmUsuarioSolicitanteComponent,
 
   ],
   imports: [
