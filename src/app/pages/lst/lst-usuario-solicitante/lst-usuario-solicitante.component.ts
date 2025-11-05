@@ -18,6 +18,8 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
   item: UsuarioSolicitante;
   items: UsuarioSolicitante[];
 
+  jerarquiaNueva!: string;
+
   constructor(private wsdl: UsuarioSolicitanteService, private route: Router) {
     this.item = new UsuarioSolicitante();
     this.items = [];
@@ -73,15 +75,49 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
       });
   }
 
-  async editar(id: number, item: any) {
+  async editar(item: any) {
     try {
-      let data = await firstValueFrom(this.wsdl.update(id, item));
+      let data = await firstValueFrom(this.wsdl.update(item));
       const result = JSON.parse(JSON.stringify(data));
 
       if (result.code === '200') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Actualizado correctamente',
+          timer: 1500,
+          showConfirmButton: false,
+        });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error('Error al editar:', error);
+      Swal.fire('Error', 'No se pudo actualizar el registro', 'error');
+    }
   }
+
+  async actualizarJerarquia(id: number, nuevaJerarquia: string) {
+    try {
+      let data = await firstValueFrom(
+        this.wsdl.patchJerarquia(id, nuevaJerarquia)
+      );
+      const result = JSON.parse(JSON.stringify(data));
+
+      if (result.code === '200') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Jerarquía actualizada correctamente',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire('Atención', result.message, 'warning');
+      }
+    } catch (error) {
+      console.error('Error al actualizar jerarquía:', error);
+      Swal.fire('Error', 'No se pudo actualizar la jerarquía', 'error');
+    }
+  }
+
+ 
 
   doFound(event: UsuarioSolicitante[]) {
     //console.log('llegue');
@@ -97,12 +133,14 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
   }
 
   abmAgregarNuevo(id: number) {
-  if (id > 0) {
-    // Navega al modo editar
-    this.route.navigate(['/pages/agregar_solicitante', id]);
-  } else {
-    // Navega al modo agregar
-    this.route.navigate(['/pages/agregar_solicitante']);
+    if (id > 0) {
+      // Navega al modo editar
+      this.route.navigate(['/pages/agregar_solicitante', id]);
+    } else {
+      // Navega al modo agregar
+      this.route.navigate(['/pages/agregar_solicitante']);
+    }
   }
-}
+
+  async confirmarJerarquia() {}
 }

@@ -43,18 +43,18 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of items; index as i">
-              <td>{{ item.id}}</td>
+              <td>{{ item.id }}</td>
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>
               <td>{{ item.dni }}</td>
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.nombreUnidad }}</td>
-              <td>{{ item.fechaSolEcom | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.fechaSolEcom | date : "dd/MM/yyyy" }}</td>
               <td class="text-center">
                 <button
                   class="btn btn-sm btn-outline-primary me-2"
-                  title="Editar"
-                  (click)="editar(item.id, item)"
+                  title="Editar jerarquía"
+                  data-bs-toggle="modal" data-bs-target="#exampleModal"
                 >
                   <i class="bi bi-pencil-square"></i>
                 </button>
@@ -86,3 +86,32 @@
     </div>
   </div>
 </div>
+
+<!-- modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+

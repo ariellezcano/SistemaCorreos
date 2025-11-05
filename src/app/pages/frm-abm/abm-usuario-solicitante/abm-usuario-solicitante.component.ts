@@ -33,32 +33,33 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
 
   async guardar() {
     try {
-      this.item.usuarioCrea = 1;
+      this.item.usuarioCrea = 9;
       this.item.unidadDpte = 1;
       this.item.nombreUnidad = 'Div. Tecnologias de la Información';
-      
+
       let data = await firstValueFrom(this.wsdl.insert(this.item));
       const result = JSON.parse(JSON.stringify(data));
-      if (result.code === '200') {
-
+      console.log('resultado al guardar', result);
+      if (result.code === '201') {
         Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Registro creado correctamente",
-        showConfirmButton: false,
-        timer: 1500
-      });
+          position: 'top-end',
+          icon: 'success',
+          title: 'Registro creado correctamente',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.back();
       }
     } catch (error) {
       Swal.fire({
-        title: "Error al crear registro, verifique!",
-        icon: "error",
-        draggable: true
+        title: 'Error al crear registro, verifique!',
+        icon: 'error',
+        draggable: true,
       });
     }
   }
 
-  cancelar() {
+  back() {
     this.route.navigate(['pages/lst_usuario_solicitante']);
   }
 
