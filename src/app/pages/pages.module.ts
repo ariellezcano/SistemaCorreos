@@ -14,6 +14,7 @@ import { NavbarComponent } from './compartido/navbar/navbar.component';
 import { LstUsuarioSolicitanteComponent } from './lst/lst-usuario-solicitante/lst-usuario-solicitante.component';
 import { FilUsuarioSolicitanteComponent } from './filtros/fil-usuario-solicitante/fil-usuario-solicitante.component';
 import { AbmUsuarioSolicitanteComponent } from './frm-abm/abm-usuario-solicitante/abm-usuario-solicitante.component';
+import { FilBusquedaSolicitanteComponent } from './componentes/fil-busqueda-solicitante/fil-busqueda-solicitante.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AbmUsuarioSolicitanteComponent } from './frm-abm/abm-usuario-solicitant
     LstUsuarioSolicitanteComponent,
     FilUsuarioSolicitanteComponent,
     AbmUsuarioSolicitanteComponent,
+    FilBusquedaSolicitanteComponent,
 
   ],
   imports: [

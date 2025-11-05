@@ -4,7 +4,7 @@
       class="card-header bg-primary text-white d-flex justify-content-between align-items-center rounded-top"
     >
       <h4 class="m-0">
-        <i class="bi bi-person-lines-fill me-2"></i> ABM de Personas
+        <i class="bi bi-person-lines-fill me-2"></i> ABM Solicitante
       </h4>
       <!-- <button
         type="button"
@@ -14,13 +14,20 @@
         <i class="bi bi-person-plus-fill me-2"></i> Nueva Persona
       </button> -->
     </div>
-
+    <hr>
+    <div class="row">
+    <div class="col-md-12">
+      <app-fil-busqueda-solicitante (filter)="doFound($event)"></app-fil-busqueda-solicitante>
+    </div>
+  </div>
+<hr>
     <!-- FORMULARIO -->
     <div class="card-body bg-light">
       <form (ngSubmit)="guardar()" #formPersona="ngForm" class="row g-3">
         <div class="col-md-6">
           <label class="form-label fw-semibold">Nombre</label>
           <input
+            readonly
             type="text"
             class="form-control"
             [(ngModel)]="item.nombre"
@@ -32,6 +39,7 @@
         <div class="col-md-6">
           <label class="form-label fw-semibold">Apellido</label>
           <input
+            readonly
             type="text"
             class="form-control"
             [(ngModel)]="item.apellido"
@@ -43,6 +51,7 @@
         <div class="col-md-4">
           <label class="form-label fw-semibold">DNI</label>
           <input
+            readonly
             type="number"
             class="form-control"
             [(ngModel)]="item.dni"
@@ -54,6 +63,7 @@
         <div class="col-md-4">
           <label class="form-label fw-semibold">Jerarquía</label>
           <input
+            readonly  
             type="text"
             class="form-control"
             [(ngModel)]="item.jerarquia"
@@ -74,6 +84,7 @@
         <div class="col-md-6">
           <label class="form-label fw-semibold">Unidad</label>
           <input
+            readonly
             type="text"
             class="form-control"
             [(ngModel)]="item.nombreUnidad"
@@ -82,7 +93,7 @@
         </div>
 
         <div class="col-md-6">
-          <label class="form-label fw-semibold">Fecha Solicitud Económica</label>
+          <label class="form-label fw-semibold">Fecha Solicitud Correo</label>
           <input
             type="date"
             class="form-control"

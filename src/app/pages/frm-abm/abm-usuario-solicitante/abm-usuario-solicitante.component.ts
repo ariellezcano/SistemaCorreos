@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { UsuarioSolicitante } from 'src/app/modelos/index.models';
+import { firstValueFrom } from 'rxjs';
+import { Persona, UsuarioSolicitante } from 'src/app/modelos/index.models';
 import { UsuarioSolicitanteService } from 'src/app/services/index.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-abm-usuario-solicitante',
@@ -29,12 +31,46 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
     this.modoEditar = !!this.id;
   }
 
-  guardar() {
+  async guardar() {
     try {
-    } catch (error) {}
+      this.item.usuarioCrea = 1;
+      this.item.unidadDpte = 1;
+      this.item.nombreUnidad = 'Div. Tecnologias de la Información';
+      
+      let data = await firstValueFrom(this.wsdl.insert(this.item));
+      const result = JSON.parse(JSON.stringify(data));
+      if (result.code === '200') {
+
+        Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Registro creado correctamente",
+        showConfirmButton: false,
+        timer: 1500
+      });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Error al crear registro, verifique!",
+        icon: "error",
+        draggable: true
+      });
+    }
   }
 
   cancelar() {
-    this.route.navigate(['principal']);
+    this.route.navigate(['pages/lst_usuario_solicitante']);
+  }
+
+  doFound(data: any) {
+    //console.log("data", data)
+    if (data.code === '200') {
+      this.item.persona = data.data.id_persona;
+      this.item.apellido = data.data.apellido;
+      this.item.nombre = data.data.nombre;
+      this.item.dni = data.data.DNI;
+      this.item.jerarquia = data.data.jerarquia;
+      //console.log('resultado emitido:', this.item);
+    }
   }
 }
