@@ -54,7 +54,9 @@
                 <button
                   class="btn btn-sm btn-outline-primary me-2"
                   title="Editar jerarquía"
-                  data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalJerarquia"
+                  (click)="setUsuarioSeleccionado(item)"
                 >
                   <i class="bi bi-pencil-square"></i>
                 </button>
@@ -87,29 +89,74 @@
   </div>
 </div>
 
-<!-- modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modalJerarquia"
+  tabindex="-1"
+  aria-labelledby="modalJerarquiaLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="modalJerarquiaLabel">
+          Actualizar Jerarquía
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Cerrar"
+        ></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
+        <div class="mb-3">
+          <label for="selectJerarquia" class="col-form-label">Seleccionar:</label>
+          <select
+            id="selectJerarquia"
+            class="form-select"
+            [(ngModel)]="usuarioSeleccionado.jerarquia"
+          >
+            <option [ngValue]="null" disabled selected>
+              Seleccione una jerarquía
+            </option>
+            <option value="COMISARIO GENERAL">COMISARIO GENERAL</option>
+            <option value="COMISARIO MAYOR">COMISARIO MAYOR</option>
+            <option value="COMISARIO INSPECTOR">COMISARIO INSPECTOR</option>
+            <option value="COMISARIO PRINCIPAL">COMISARIO PRINCIPAL</option>
+            <option value="COMISARIO">COMISARIO</option>
+            <option value="SUBCOMISARIO">SUBCOMISARIO</option>
+            <option value="OFICIAL PRINCIPAL">OFICIAL PRINCIPAL</option>
+            <option value="OFICIAL AUXILIAR">OFICIAL AUXILIAR</option>
+            <option value="OFICIAL AYUDANTE">OFICIAL AYUDANTE</option>
+            <option value="OFICIAL SUBAYUDANTE">OFICIAL SUBAYUDANTE</option>
+            <option value="SUBOFICIAL MAYOR">SUBOFICIAL MAYOR</option>
+            <option value="SUBOFICIAL PRINCIPAL">SUBOFICIAL PRINCIPAL</option>
+            <option value="SARGENTO AYUDANTE">SARGENTO AYUDANTE</option>
+            <option value="SARGENTO PRIMERO">SARGENTO PRIMERO</option>
+            <option value="SARGENTO">SARGENTO</option>
+            <option value="CABO PRIMERO">CABO PRIMERO</option>
+            <option value="CABO">CABO</option>
+            <option value="AGENTE">AGENTE</option>
+          </select>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="actualizarJerarquia()"
+        >
+          Guardar cambios
+        </button>
       </div>
     </div>
   </div>

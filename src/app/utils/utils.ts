@@ -53,7 +53,7 @@ export class Utils {
     return header;
   }
 
-  public static showToas(msg: String, type: SweetAlertIcon) {
+  public static showToas(msg: string, type: SweetAlertIcon) {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',

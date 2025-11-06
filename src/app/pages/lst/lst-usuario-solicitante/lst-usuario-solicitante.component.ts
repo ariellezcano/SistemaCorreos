@@ -5,6 +5,8 @@ import { UsuarioSolicitanteService } from 'src/app/services/index.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { firstValueFrom } from 'rxjs';
+import { Modal } from 'bootstrap';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-lst-usuario-solicitante',
@@ -17,8 +19,8 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
 
   item: UsuarioSolicitante;
   items: UsuarioSolicitante[];
-
-  jerarquiaNueva!: string;
+  usuarioSeleccionado: any = {};
+  idSeleccionado!: number;
 
   constructor(private wsdl: UsuarioSolicitanteService, private route: Router) {
     this.item = new UsuarioSolicitante();
@@ -27,6 +29,16 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
 
   ngOnInit(): void {
     //this.rol = JSON.parse(''+ Utils.getSession('personal')).rol;
+  }
+
+  abmAgregarNuevo(id: number) {
+    if (id > 0) {
+      // Navega al modo editar
+      this.route.navigate(['/pages/agregar_solicitante', id]);
+    } else {
+      // Navega al modo agregar
+      this.route.navigate(['/pages/agregar_solicitante']);
+    }
   }
 
   async eliminar(id: any) {
@@ -94,30 +106,28 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
     }
   }
 
-  async actualizarJerarquia(id: number, nuevaJerarquia: string) {
-    try {
-      let data = await firstValueFrom(
-        this.wsdl.patchJerarquia(id, nuevaJerarquia)
-      );
-      const result = JSON.parse(JSON.stringify(data));
+  // async actualizarJerarquia(id: number, nuevaJerarquia: string) {
+  //   try {
+  //     let data = await firstValueFrom(
+  //       this.wsdl.patchJerarquia(id, nuevaJerarquia)
+  //     );
+  //     const result = JSON.parse(JSON.stringify(data));
 
-      if (result.code === '200') {
-        Swal.fire({
-          icon: 'success',
-          title: 'Jerarquía actualizada correctamente',
-          timer: 1500,
-          showConfirmButton: false,
-        });
-      } else {
-        Swal.fire('Atención', result.message, 'warning');
-      }
-    } catch (error) {
-      console.error('Error al actualizar jerarquía:', error);
-      Swal.fire('Error', 'No se pudo actualizar la jerarquía', 'error');
-    }
-  }
-
- 
+  //     if (result.code === '200') {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Jerarquía actualizada correctamente',
+  //         timer: 1500,
+  //         showConfirmButton: false,
+  //       });
+  //     } else {
+  //       Swal.fire('Atención', result.message, 'warning');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error al actualizar jerarquía:', error);
+  //     Swal.fire('Error', 'No se pudo actualizar la jerarquía', 'error');
+  //   }
+  // }
 
   doFound(event: UsuarioSolicitante[]) {
     //console.log('llegue');
@@ -132,15 +142,64 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
     this.route.navigate(['principal']);
   }
 
-  abmAgregarNuevo(id: number) {
-    if (id > 0) {
-      // Navega al modo editar
-      this.route.navigate(['/pages/agregar_solicitante', id]);
-    } else {
-      // Navega al modo agregar
-      this.route.navigate(['/pages/agregar_solicitante']);
+  setUsuarioSeleccionado(item: any) {
+    this.usuarioSeleccionado = { ...item }; // Clonamos el usuario seleccionado
+  }
+
+  async actualizarJerarquia() {
+    const id = this.usuarioSeleccionado?.id;
+    const nuevaJerarquia = this.usuarioSeleccionado?.jerarquia;
+
+    if (!id || !nuevaJerarquia) {
+      Swal.fire('Atención', 'Debe seleccionar una jerarquía válida', 'warning');
+      return;
+    }
+
+    try {
+      const data = await firstValueFrom(
+        this.wsdl.patchJerarquia(id, nuevaJerarquia)
+      );
+      const result = JSON.parse(JSON.stringify(data));
+
+      if (result.code === '200') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Jerarquía actualizada correctamente',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+
+        this.cerrarModalJerarquia();
+
+        // Si querés refrescar lista después
+
+        this.fil.filter();
+      } else {
+        Swal.fire('Atención', result.message, 'warning');
+      }
+    } catch (error) {
+      console.error('Error al actualizar jerarquía:', error);
+      Swal.fire('Error', 'No se pudo actualizar la jerarquía', 'error');
     }
   }
 
-  async confirmarJerarquia() {}
+  cerrarModalJerarquia() {
+    const modalElement = document.getElementById('modalJerarquia');
+
+    if (modalElement) {
+      const modal =
+        bootstrap.Modal.getInstance(modalElement) ||
+        new bootstrap.Modal(modalElement);
+      modal.hide();
+
+      // 🔧 Esperar un poco y limpiar el backdrop manualmente si quedó alguno
+      setTimeout(() => {
+        const backdrops = document.querySelectorAll('.modal-backdrop');
+        backdrops.forEach((b) => b.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style.removeProperty('overflow');
+        document.body.style.removeProperty('padding-right');
+      }, 300);
+    }
+  }
 }

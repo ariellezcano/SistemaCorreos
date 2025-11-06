@@ -39,9 +39,17 @@ export class UsuarioSolicitanteService {
     return this.http.put(`${this.api}`, item);
   }
 
+
+//   patchJerarquia(id: number, jerarquia: string) {
+//   return this.http.patch(`${this.api}/UsuarioSolicitante/jerarquia`, {
+//     id,
+//     jerarquia,
+//   });
+// }
+
   patchJerarquia(id: number, jerarquia: string) {
-  return this.http.patch(`${this.api}/${id}`, { jerarquia });
-}
+    return this.http.patch(`${this.api}/${id}`, { jerarquia });
+  }
 
   // patch(id: number, evento: any) {
   //   return this.http.patch(this.api + '/' + id, evento);

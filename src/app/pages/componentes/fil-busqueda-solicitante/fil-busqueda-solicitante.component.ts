@@ -47,9 +47,9 @@ export class FilBusquedaSolicitanteComponent implements OnInit {
           this.crit = this.search;
         }
         let data = await this.wsdl.BusquedaPorDni(this.crit).then();
-        console.log("data", data)
+        //console.log("data", data)
         let result = JSON.parse(JSON.stringify(data));
-        console.log("result", data)
+        //console.log("result", data)
         if (result.code === '200') {
           
           // let data = result.data.id_persona;
