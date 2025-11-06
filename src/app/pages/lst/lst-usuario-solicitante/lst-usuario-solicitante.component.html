@@ -97,11 +97,11 @@
   aria-labelledby="modalJerarquiaLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modalJerarquiaLabel">
-          Actualizar Jerarquía
+          Actualizar datos
         </h5>
         <button
           type="button"
@@ -112,7 +112,9 @@
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <label for="selectJerarquia" class="col-form-label">Seleccionar:</label>
+          <label for="selectJerarquia" class="col-form-label"
+            >Seleccionar:</label
+          >
           <select
             id="selectJerarquia"
             class="form-select"
@@ -140,14 +142,18 @@
             <option value="CABO">CABO</option>
             <option value="AGENTE">AGENTE</option>
           </select>
+          <hr />
+          <label for="selectJerarquia" class="col-form-label">Unidad:</label>
+          <app-fil-autocompletado-unidad
+            (unidadSeleccionada)="unidadSeleccionada($event)"
+          ></app-fil-autocompletado-unidad>
         </div>
+        <label for="selectJerarquia" class="col-form-label"
+          >Unidad Seleccionada: {{ item.nombreUnidad }}</label
+        >
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cancelar
         </button>
         <button
@@ -161,4 +167,3 @@
     </div>
   </div>
 </div>
-

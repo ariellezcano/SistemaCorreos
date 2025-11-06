@@ -15,7 +15,6 @@ const routes: Routes = [
       { path: 'habilitar_usuario', component: PanelHabilitacionComponent },
       { path: 'lst_usuario_solicitante', component: LstUsuarioSolicitanteComponent },
       { path: 'agregar_solicitante', component: AbmUsuarioSolicitanteComponent },
-      { path: 'agregar_solicitante', component: AbmUsuarioSolicitanteComponent },
       { path: 'agregar_solicitante/:id', component: AbmUsuarioSolicitanteComponent }
     ],
   },

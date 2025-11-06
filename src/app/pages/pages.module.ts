@@ -15,6 +15,8 @@ import { LstUsuarioSolicitanteComponent } from './lst/lst-usuario-solicitante/ls
 import { FilUsuarioSolicitanteComponent } from './filtros/fil-usuario-solicitante/fil-usuario-solicitante.component';
 import { AbmUsuarioSolicitanteComponent } from './frm-abm/abm-usuario-solicitante/abm-usuario-solicitante.component';
 import { FilBusquedaSolicitanteComponent } from './componentes/fil-busqueda-solicitante/fil-busqueda-solicitante.component';
+import { FilAutocompletadoUnidadComponent } from './componentes/fil-autocompletado-unidad/fil-autocompletado-unidad.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { FilBusquedaSolicitanteComponent } from './componentes/fil-busqueda-soli
     FilUsuarioSolicitanteComponent,
     AbmUsuarioSolicitanteComponent,
     FilBusquedaSolicitanteComponent,
+    FilAutocompletadoUnidadComponent,
 
   ],
   imports: [
@@ -34,7 +37,8 @@ import { FilBusquedaSolicitanteComponent } from './componentes/fil-busqueda-soli
     PagesRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AutocompleteLibModule // 👈 acá
   ],
   providers: [],
   bootstrap: [PagesComponent]

@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import * as bootstrap from 'bootstrap';
 import { firstValueFrom } from 'rxjs';
-import { Persona, UsuarioSolicitante } from 'src/app/modelos/index.models';
+import {
+  Persona,
+  Unidad,
+  UsuarioSolicitante,
+} from 'src/app/modelos/index.models';
 import { UsuarioSolicitanteService } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
 
@@ -11,9 +16,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./abm-usuario-solicitante.component.scss'],
 })
 export class AbmUsuarioSolicitanteComponent implements OnInit {
+  @ViewChild('closeUnidad') cerrarUnidad!: ElementRef;
+
   id?: number;
   modoEditar = false;
-
+  private modalUnidad: bootstrap.Modal | null = null;
   editando: boolean = false;
 
   item: UsuarioSolicitante;
@@ -33,22 +40,26 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
 
   async guardar() {
     try {
-      this.item.usuarioCrea = 9;
-      this.item.unidadDpte = 1;
-      this.item.nombreUnidad = 'Div. Tecnologias de la Información';
-
-      let data = await firstValueFrom(this.wsdl.insert(this.item));
-      const result = JSON.parse(JSON.stringify(data));
-      console.log('resultado al guardar', result);
-      if (result.code === '201') {
+      if (this.item.unidadDpte > 0) {
         Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Registro creado correctamente',
-          showConfirmButton: false,
-          timer: 1500,
+          title: 'El personal pertenece a esa unidad?',
+          text: 'Controle!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, pertenece',
+          cancelButtonText: 'No, modificar',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.procesarGuardado();
+          } else {
+            this.abrirModalUnidad(); // 👈 Abrimos modal si NO pertenece
+          }
         });
-        this.back();
+      } else {
+        // Si no hay unidad, también pedimos ingresarla
+        this.abrirModalUnidad();
       }
     } catch (error) {
       Swal.fire({
@@ -59,19 +70,84 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
     }
   }
 
+  // ✅ Abrir modal Bootstrap 5.1.3
+  abrirModalUnidad() {
+    const modalEl = document.getElementById('modalUnidad');
+    if (modalEl) {
+      this.modalUnidad =
+        bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+      this.modalUnidad.show();
+    }
+  }
+
+  // ✅ Confirmar cambios desde el modal
+  confirmarUnidad() {
+    this.modalUnidad?.hide();
+    this.modalUnidad = null;
+
+    // Limpieza del backdrop (fondo negro)
+    setTimeout(() => {
+      document.querySelectorAll('.modal-backdrop').forEach((b) => b.remove());
+      document.body.classList.remove('modal-open');
+      document.body.style.removeProperty('overflow');
+      document.body.style.removeProperty('padding-right');
+    }, 300);
+
+    this.procesarGuardado();
+  }
+
+  private async procesarGuardado() {
+    try {
+      this.item.usuarioCrea = 9;
+      const data = await firstValueFrom(this.wsdl.insert(this.item));
+      const result = JSON.parse(JSON.stringify(data));
+
+      if (result.code === '201') {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Registro creado correctamente',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.back();
+      } else {
+        Swal.fire('Atención', result.message, 'warning');
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Error al crear registro, verifique!',
+        icon: 'error',
+      });
+    }
+  }
+
   back() {
     this.route.navigate(['pages/lst_usuario_solicitante']);
   }
 
   doFound(data: any) {
-    //console.log("data", data)
+    console.log('data', data);
     if (data.code === '200') {
       this.item.persona = data.data.id_persona;
       this.item.apellido = data.data.apellido;
       this.item.nombre = data.data.nombre;
       this.item.dni = data.data.DNI;
       this.item.jerarquia = data.data.jerarquia;
+      this.item.unidadDpte = data.data.unidad_id;
+      this.item.nombreUnidad = data.data.unidad;
       //console.log('resultado emitido:', this.item);
     }
+  }
+
+  unidadSeleccionada(event: Unidad) {
+    if (event != undefined) {
+      this.item.unidadDpte = event.id;
+      this.item.nombreUnidad = event.nombre;
+
+      //UturuncoUtils.setSession('unidad', JSON.stringify(event.id));
+      //UturuncoUtils.setSession('nombreUnidad', JSON.stringify(event.nombre));
+    }
+    this.cerrarUnidad.nativeElement.click();
   }
 }

@@ -21,7 +21,7 @@ import { FooterComponent } from './pages/compartido/footer/footer.component';
     FormsModule,
     PagesModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

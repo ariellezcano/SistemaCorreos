@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FilUsuarioSolicitanteComponent } from '../../filtros/fil-usuario-solicitante/fil-usuario-solicitante.component';
-import { UsuarioSolicitante } from 'src/app/modelos/index.models';
+import { Unidad, UsuarioSolicitante } from 'src/app/modelos/index.models';
 import { UsuarioSolicitanteService } from 'src/app/services/index.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -14,6 +14,9 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./lst-usuario-solicitante.component.scss'],
 })
 export class LstUsuarioSolicitanteComponent implements OnInit {
+
+ @ViewChild('closeUnidad') cerrarUnidad!: ElementRef;
+
   @ViewChild(FilUsuarioSolicitanteComponent, { static: false })
   fil!: FilUsuarioSolicitanteComponent;
 
@@ -144,11 +147,15 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
 
   setUsuarioSeleccionado(item: any) {
     this.usuarioSeleccionado = { ...item }; // Clonamos el usuario seleccionado
+    this.item.nombreUnidad = item.nombreUnidad;
+    //console.log(this.usuarioSeleccionado);
   }
 
   async actualizarJerarquia() {
     const id = this.usuarioSeleccionado?.id;
     const nuevaJerarquia = this.usuarioSeleccionado?.jerarquia;
+    //const unidad = this.usuarioSeleccionado?.unidadDpte;
+    //const nombreUnidad = this.usuarioSeleccionado?.nombreUnidad;
 
     if (!id || !nuevaJerarquia) {
       Swal.fire('Atención', 'Debe seleccionar una jerarquía válida', 'warning');
@@ -157,14 +164,14 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
 
     try {
       const data = await firstValueFrom(
-        this.wsdl.patchJerarquia(id, nuevaJerarquia)
+        this.wsdl.patchJerarquia(id, nuevaJerarquia, this.item.unidadDpte, this.item.nombreUnidad)
       );
       const result = JSON.parse(JSON.stringify(data));
 
       if (result.code === '200') {
         Swal.fire({
           icon: 'success',
-          title: 'Jerarquía actualizada correctamente',
+          title: 'Datos actualizados correctamente',
           timer: 1500,
           showConfirmButton: false,
         });
@@ -178,8 +185,8 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
         Swal.fire('Atención', result.message, 'warning');
       }
     } catch (error) {
-      console.error('Error al actualizar jerarquía:', error);
-      Swal.fire('Error', 'No se pudo actualizar la jerarquía', 'error');
+      console.error('Error al actualizar datos:', error);
+      Swal.fire('Error', 'No se pudo actualizar los datos', 'error');
     }
   }
 
@@ -202,4 +209,17 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
       }, 300);
     }
   }
+
+unidadSeleccionada(event: Unidad) {
+    if (event != undefined) {
+      console.log(event);
+      this.item.unidadDpte = event.id;
+      this.item.nombreUnidad = event.nombre;
+
+      //UturuncoUtils.setSession('unidad', JSON.stringify(event.id));
+      //UturuncoUtils.setSession('nombreUnidad', JSON.stringify(event.nombre));
+    }
+    this.cerrarUnidad.nativeElement.click();
+  }
+
 }

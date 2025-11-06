@@ -14,13 +14,15 @@
         <i class="bi bi-person-plus-fill me-2"></i> Nueva Persona
       </button> -->
     </div>
-    <hr>
+    <hr />
     <div class="row">
-    <div class="col-md-12">
-      <app-fil-busqueda-solicitante (filter)="doFound($event)"></app-fil-busqueda-solicitante>
+      <div class="col-md-12">
+        <app-fil-busqueda-solicitante
+          (filter)="doFound($event)"
+        ></app-fil-busqueda-solicitante>
+      </div>
     </div>
-  </div>
-<hr>
+    <hr />
     <!-- FORMULARIO -->
     <div class="card-body bg-light">
       <form (ngSubmit)="guardar()" #formPersona="ngForm" class="row g-3">
@@ -63,23 +65,13 @@
         <div class="col-md-4">
           <label class="form-label fw-semibold">Jerarquía</label>
           <input
-            readonly  
+            readonly
             type="text"
             class="form-control"
             [(ngModel)]="item.jerarquia"
             name="jerarquia"
           />
         </div>
-
-        <!-- <div class="col-md-4">
-          <label class="form-label fw-semibold">Unidad Dpto</label>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="item.unidadDpte"
-            name="unidadDpte"
-          />
-        </div> -->
 
         <div class="col-md-6">
           <label class="form-label fw-semibold">Unidad</label>
@@ -108,15 +100,67 @@
             class="btn btn-success me-2"
             [disabled]="!formPersona.valid"
           >
-            <i class="bi bi-save me-2"></i> {{ editando ? 'Actualizar' : 'Guardar' }}
+            <i class="bi bi-save me-2"></i>
+            {{ editando ? "Actualizar" : "Guardar" }}
           </button>
-          <button
-            type="button"
-            class="btn btn-secondary"
-            (click)="back()"
-          >
+          <button type="button" class="btn btn-secondary" (click)="back()">
             <i class="bi bi-x-circle me-2"></i> Cancelar
           </button>
         </div>
       </form>
     </div>
+
+    <!-- Modal para editar unidad -->
+    <div
+      class="modal fade"
+      id="modalUnidad"
+      tabindex="-1"
+      aria-labelledby="modalUnidadLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="modalUnidadLabel">Actualizar Unidad</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label"><b>Seleccione Unidad</b></label>
+
+              <app-fil-autocompletado-unidad
+                (unidadSeleccionada)="unidadSeleccionada($event)"
+              ></app-fil-autocompletado-unidad>
+            </div>
+            <div class="mb-3">
+              <label class="form-label"
+                ><b>Unidad seleccionada: {{ item.nombreUnidad }}</b></label
+              >
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="confirmarUnidad()"
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

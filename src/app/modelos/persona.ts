@@ -6,7 +6,7 @@ export class Persona {
     nombre!: string;
     plaza!: number;
     policia!: string;
-    id_unidad!: number;
+    unidad_id!: number;
     unidad!: string;
 
     constructor(){

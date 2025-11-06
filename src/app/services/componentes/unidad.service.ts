@@ -6,25 +6,22 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class RegistroUsuarioService {
+export class UnidadService {
 
- other_header: any;
+  other_header: any;
   api;
-  busquedaPersona: any;
 
   constructor(private http: HttpClient) {
-    this.api = environment.URLRegBus + 'usuario/';
-    this.busquedaPersona = environment.URLPersona;
-    
+    this.api = environment.URLOci + 'unidad';
     //this.api = "http://10.125.31.241:3000/unidad/";
   }
   /* particularidad de la entidad */
 
-  getLogin(usuario: string | null, password: string | null) {
+  getList(page: number, limit: number) {
     this.other_header = Utils.getHeader();
-    let body = { usuario: usuario, clave: password };
+
     return this.http
-      .post(this.api + 'find/loginSistemas', body, {
+      .get(this.api + '?page=' + page + '&limit=' + limit, {
         headers: this.other_header,
       })
       .toPromise()
@@ -37,12 +34,13 @@ export class RegistroUsuarioService {
       });
   }
 
-  doFindDni(dni: any) {
+  getCriteria(criteria: string, page: number, limit: number) {
     this.other_header = Utils.getHeader();
     return this.http
-      .post(this.api + 'find/usuarioSistema/' + dni, {
-        headers: this.other_header,
-      })
+      .get(
+        this.api + '/find/' + criteria + '?page=' + page + '&limit=' + limit,
+        { headers: this.other_header }
+      )
       .toPromise()
       .catch((err: any) => {
         return {
@@ -53,12 +51,11 @@ export class RegistroUsuarioService {
       });
   }
 
-   BusquedaPorDni(dni: any) {
+  doFind(id: number) {
     this.other_header = Utils.getHeader();
+
     return this.http
-      .get(this.busquedaPersona + '/getDni_policia/' + dni, {
-        headers: this.other_header,
-      })
+      .get(this.api + '/' + id, { headers: this.other_header })
       .toPromise()
       .catch((err: any) => {
         return {
@@ -69,12 +66,14 @@ export class RegistroUsuarioService {
       });
   }
 
-  doLoginId(cifrado: any) {
+  doInsert(evento: object) {
     this.other_header = Utils.getHeader();
+
     return this.http
-      .post(this.api + 'find/idLogin/' + cifrado, { headers: this.other_header })
+      .post(this.api + '/', evento, { headers: this.other_header })
       .toPromise()
       .catch((err: any) => {
+        //console.log(err);
         return {
           code: 500,
           data: err.message,
@@ -83,24 +82,29 @@ export class RegistroUsuarioService {
       });
   }
 
-  patchSistemaHabilitados(id: any, nombre: any, url: any, activo: any) {
+  doUpdate(evento: object, id: number) {
     this.other_header = Utils.getHeader();
-    let body = {
-      id: id,
-      sistemaHabilitados: {
-        nombre: nombre,
-        url: url,
-        activo: activo,
-      },
-    };
-    //console.log('body e', body);
+
     return this.http
-      .patch(this.api + 'find/sistemaHabilitados/', body, {
-        headers: this.other_header,
-      })
+      .put(this.api + '/' + id, evento, { headers: this.other_header })
       .toPromise()
       .catch((err: any) => {
-        //console.log('body', this.api);
+        //console.log(err);
+        return {
+          code: 500,
+          data: err.message,
+          msg: 'Error en el servicio',
+        };
+      });
+  }
+
+  doDelete(id: number) {
+    this.other_header = Utils.getHeader();
+
+    return this.http
+      .delete(this.api + '/' + id, { headers: this.other_header })
+      .toPromise()
+      .catch((err: any) => {
         return {
           code: 500,
           data: err.message,
