@@ -66,7 +66,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
       .then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const res: any = await firstValueFrom(this.wsdl.delete(id, 1));
+            const res: any = await firstValueFrom(this.wsdl.delete(id, 7));
             const Json = JSON.parse(JSON.stringify(res));
 
             if (Json.code === '200') {

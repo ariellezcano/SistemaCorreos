@@ -57,6 +57,6 @@ export class UsuarioSolicitanteService {
 
   delete(id: number, usuarioBaja: number) {
     console.log('servicio:', id, usuarioBaja);
-    return this.http.delete(`${this.api}/${id}/${usuarioBaja}`);
+    return this.http.delete(`${this.api}/${id},${usuarioBaja}`);
   }
 }
