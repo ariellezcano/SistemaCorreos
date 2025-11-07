@@ -1,7 +1,7 @@
 export class Correo {
   id!: number;
   usuarioSolicitante!: number;
-  correoInstitucional!: number;
+  correoInstitucional!: string;
   contrasenia!: string;
   tipoCorreo!: string; //institucional personal o institucional unidad
   fechaHabilitacion: any;

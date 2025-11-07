@@ -1,0 +1,101 @@
+/* ==== ESTILO GENERAL DEL CARD ==== */
+.card {
+  border-radius: 1rem !important;
+  overflow: hidden;
+}
+
+.card-header {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #0d6efd 0%, #0b5ed7 100%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  background-color: #f8f9fa !important;
+  border-radius: 0 0 1rem 1rem;
+}
+
+/* ==== FORMULARIO ==== */
+form label {
+  color: #0d47a1;
+  font-size: 0.95rem;
+}
+
+form input,
+form select {
+  border-radius: 0.5rem !important;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease-in-out;
+}
+
+form input:focus,
+form select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+input[readonly] {
+  background-color: #e9ecef !important;
+  color: #6c757d;
+}
+
+/* ==== BOTONES ==== */
+.btn-success {
+  background-color: #198754 !important;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  padding: 0.45rem 1.2rem;
+}
+
+.btn-success:hover {
+  background-color: #157347 !important;
+}
+
+.btn-secondary {
+  background-color: #6c757d !important;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  padding: 0.45rem 1.2rem;
+}
+
+.btn-secondary:hover {
+  background-color: #5c636a !important;
+}
+
+.btn-light {
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+}
+
+/* ==== ICONOS ==== */
+.bi {
+  vertical-align: middle;
+}
+
+/* ==== EFECTOS VISUALES ==== */
+input::placeholder {
+  color: #adb5bd;
+  font-style: italic;
+}
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .card-header h4 {
+    font-size: 1.1rem;
+  }
+  .btn {
+    font-size: 0.9rem;
+  }
+}

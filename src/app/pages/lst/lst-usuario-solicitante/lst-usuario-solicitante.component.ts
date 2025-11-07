@@ -222,4 +222,8 @@ unidadSeleccionada(event: Unidad) {
     this.cerrarUnidad.nativeElement.click();
   }
 
+  abmCorreo(id: number){
+    this.route.navigate(['pages/agregar_correo/'+ id]);
+  }
+
 }

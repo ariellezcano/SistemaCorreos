@@ -17,6 +17,7 @@ import { AbmUsuarioSolicitanteComponent } from './frm-abm/abm-usuario-solicitant
 import { FilBusquedaSolicitanteComponent } from './componentes/fil-busqueda-solicitante/fil-busqueda-solicitante.component';
 import { FilAutocompletadoUnidadComponent } from './componentes/fil-autocompletado-unidad/fil-autocompletado-unidad.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { AbmCorreoInstitucionalComponent } from './frm-abm/abm-correo-institucional/abm-correo-institucional.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     AbmUsuarioSolicitanteComponent,
     FilBusquedaSolicitanteComponent,
     FilAutocompletadoUnidadComponent,
+    AbmCorreoInstitucionalComponent,
 
   ],
   imports: [
