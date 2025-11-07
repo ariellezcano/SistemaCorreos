@@ -18,6 +18,8 @@ import { FilBusquedaSolicitanteComponent } from './componentes/fil-busqueda-soli
 import { FilAutocompletadoUnidadComponent } from './componentes/fil-autocompletado-unidad/fil-autocompletado-unidad.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { AbmCorreoInstitucionalComponent } from './frm-abm/abm-correo-institucional/abm-correo-institucional.component';
+import { LstCorreoInstitucionalComponent } from './lst/lst-correo-institucional/lst-correo-institucional.component';
+import { FilCorreosInstitucionalesComponent } from './filtros/fil-correos-institucionales/fil-correos-institucionales.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { AbmCorreoInstitucionalComponent } from './frm-abm/abm-correo-institucio
     FilBusquedaSolicitanteComponent,
     FilAutocompletadoUnidadComponent,
     AbmCorreoInstitucionalComponent,
+    LstCorreoInstitucionalComponent,
+    FilCorreosInstitucionalesComponent,
 
   ],
   imports: [

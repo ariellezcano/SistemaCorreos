@@ -5,6 +5,7 @@ export class Correo {
   contrasenia!: string;
   tipoCorreo!: string; //institucional personal o institucional unidad
   fechaHabilitacion: any;
+  fechaNotificacion: any;
   usuarioCrea!: number;
   fechaCreacion: any;
   usuarioBaja!: number;

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UsuarioCorreoDto } from 'src/app/modelos/componentes/relacionModelos/usuarioCorreoDto';
 import { Correo } from 'src/app/modelos/index.models';
 import { Results } from 'src/app/modelos/results';
 import { environment } from 'src/environments/environment';
@@ -22,7 +23,7 @@ export class CorreoInstitucionalService {
         nombre: busqueda ?? '',
       };
   
-      return this.http.get<Results<Correo>>(`${this.api}/Listar`, {
+      return this.http.get<Results<UsuarioCorreoDto>>(`${this.api}/Listar`, {
         params,
       });
     }

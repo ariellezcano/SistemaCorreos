@@ -1,0 +1,20 @@
+.card {
+  border-radius: 1rem;
+}
+
+.card-header {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+
+.table thead th {
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: #eef5ff !important;
+}
+
+.btn {
+  border-radius: 0.5rem;
+}

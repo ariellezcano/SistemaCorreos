@@ -7,13 +7,6 @@
       <h4 class="m-0">
         <i class="bi bi-envelope-at-fill me-2"></i> ABM Correo Institucional
       </h4>
-      <!-- <button
-        type="button"
-        class="btn btn-light text-primary fw-semibold"
-        (click)="nuevoCorreo()"
-      >
-        <i class="bi bi-plus-circle-fill me-2"></i> Nuevo Correo
-      </button> -->
     </div>
 
     <hr class="m-0" />
@@ -88,6 +81,16 @@
             required
           />
         </div>
+        <!-- FECHA NOTIFICACION -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Fecha Notificación</label>
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="item.fechaNotificacion"
+            name="fechaNotificacion"
+          />
+        </div>
 
         <!-- BOTONES -->
         <div class="col-12 text-end mt-4">
@@ -100,7 +103,7 @@
             {{ editando ? "Actualizar" : "Guardar" }}
           </button>
 
-          <button type="button" class="btn btn-secondary" (click)="cancelar()">
+          <button type="button" class="btn btn-secondary" (click)="back()">
             <i class="bi bi-x-circle me-2"></i> Cancelar
           </button>
         </div>

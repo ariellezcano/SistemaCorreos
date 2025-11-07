@@ -7,6 +7,7 @@ import { PanelHabilitacionComponent } from './componentes/panel-habilitacion/pan
 import { LstUsuarioSolicitanteComponent } from './lst/lst-usuario-solicitante/lst-usuario-solicitante.component';
 import { AbmUsuarioSolicitanteComponent } from './frm-abm/abm-usuario-solicitante/abm-usuario-solicitante.component';
 import { AbmCorreoInstitucionalComponent } from './frm-abm/abm-correo-institucional/abm-correo-institucional.component';
+import { LstCorreoInstitucionalComponent } from './lst/lst-correo-institucional/lst-correo-institucional.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,9 @@ const routes: Routes = [
       { path: 'lst_usuario_solicitante', component: LstUsuarioSolicitanteComponent },
       { path: 'agregar_solicitante', component: AbmUsuarioSolicitanteComponent },
       { path: 'agregar_solicitante/:id', component: AbmUsuarioSolicitanteComponent },
-      { path: 'agregar_correo/:id', component: AbmCorreoInstitucionalComponent }
+      { path: 'agregar_correo/:id', component: AbmCorreoInstitucionalComponent },
+      { path: 'lst_correos_institucionales', component: LstCorreoInstitucionalComponent },
+  
     ],
   },
 ];
