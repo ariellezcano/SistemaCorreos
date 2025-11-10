@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { UsuarioCorreoDto } from 'src/app/modelos/componentes/relacionModelos/usuarioCorreoDto';
 import { CorreoInstitucionalService } from 'src/app/services/componentes/correo-institucional.service';
 
 @Component({
@@ -9,10 +10,10 @@ import { CorreoInstitucionalService } from 'src/app/services/componentes/correo-
 })
 export class FilCorreosInstitucionalesComponent implements OnInit {
 
-   @Output() emmit: EventEmitter<UsuarioSolicitante[]> = new EventEmitter();
+   @Output() emmit: EventEmitter<UsuarioCorreoDto[]> = new EventEmitter();
     
       busqueda: any;
-      items: UsuarioSolicitante[];
+      items: UsuarioCorreoDto[];
     
       paginaAnterior!: number;
       anterior: boolean;
@@ -96,9 +97,10 @@ export class FilCorreosInstitucionalesComponent implements OnInit {
     
           // Espera a que el Observable emita
           const result = await lastValueFrom(data$);
+          console.log("filtro", result)
           const Json = JSON.parse(JSON.stringify(result));
     
-          console.log('Resultado real:', Json); // Aquí vas a ver code, data, etc.
+          // console.log('Resultado real:', Json); // Aquí vas a ver code, data, etc.
     
           if (Json.code === '200') {
             this.items = Json.data ?? [];
@@ -106,7 +108,7 @@ export class FilCorreosInstitucionalesComponent implements OnInit {
             this.totalRegistros = Json.totalRegistros;
             this.totalPaginas = Json.totalPaginas;
           } else if (result.code === '204') {
-            console.log('aca estoyss');
+            //console.log('aca estoyss');
             this.items = [];
             this.totalRegistros = 0;
             this.totalPaginas = 1;

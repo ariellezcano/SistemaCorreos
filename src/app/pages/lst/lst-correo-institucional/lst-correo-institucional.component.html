@@ -1,36 +1,31 @@
 <div class="container my-5">
-  <div class="card shadow-lg border-0">
+  <div class="card shadow-lg border-0 rounded-4">
     <!-- HEADER -->
     <div
       class="card-header bg-primary text-white d-flex justify-content-between align-items-center rounded-top"
     >
       <h4 class="m-0">
-        <i class="bi bi-envelope-fill me-2"></i> Lista de correos institucionales
+        <i class="bi bi-envelope-fill me-2"></i> Lista de Correos Institucionales
       </h4>
-      <!-- <button
-        type="button"
-        class="btn btn-light text-primary fw-semibold shadow-sm"
-        (click)="abrirModalNuevo()"
-      >
-        <i class="bi bi-plus-circle-fill me-2"></i> Agregar nuevo
-      </button> -->
     </div>
-<!-- Filtro -->
+
+    <!-- FILTRO -->
+    <div class="card-body bg-light">
       <div
         class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3 w-100"
       >
-        <app-fil-usuario-solicitante
+        <app-fil-correos-institucionales
           (emmit)="doFound($event)"
           class="flex-grow-1"
-        ></app-fil-usuario-solicitante>
+        ></app-fil-correos-institucionales>
       </div>
-    <!-- LISTADO -->
-    <div class="card-body bg-light border-top">
+
+      <!-- LISTADO -->
       <div class="table-responsive rounded shadow-sm">
         <table class="table table-hover align-middle mb-0">
           <thead class="table-primary">
             <tr>
-              <!-- <th>#</th> -->
+              <th>#</th>
               <th>Nombre</th>
               <th>Apellido</th>
               <th>DNI</th>
@@ -44,30 +39,28 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of items; index as i">
-              <!-- <td>{{ i + 1 }}</td> -->
+              <td>{{ i + 1 }}</td>
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>
               <td>{{ item.dni }}</td>
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.correoInstitucional }}</td>
               <td>{{ item.tipoCorreo }}</td>
-              <td>{{ item.fechaHabilitacion | date : "dd/MM/yyyy" }}</td>
-              <td>{{ item.fechaNotificacion | date : "dd/MM/yyyy" }}</td>
+              <td>{{ item.fechaHabilitacion | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.fechaNotificacion | date: 'dd/MM/yyyy' }}</td>
               <td class="text-center">
                 <button
                   class="btn btn-sm btn-outline-primary me-2"
-                  title="Editar"
-                  
+                  title="Agregar detalle"
+                  (click)="abrirModalDetalle(item)"
                 >
-                <!-- (click)="editar(item)" -->
                   <i class="bi bi-pencil-square"></i>
                 </button>
                 <button
                   class="btn btn-sm btn-outline-danger"
                   title="Eliminar"
-                 
+                  (click)="eliminar(item)"
                 >
-                 <!-- (click)="eliminar(item)" -->
                   <i class="bi bi-trash"></i>
                 </button>
               </td>
@@ -75,8 +68,8 @@
 
             <tr *ngIf="items.length === 0">
               <td colspan="10" class="text-center text-muted py-3">
-                <i class="bi bi-exclamation-circle me-2"></i> No hay usuarios
-                registrados.
+                <i class="bi bi-exclamation-circle me-2"></i>
+                No hay correos registrados.
               </td>
             </tr>
           </tbody>
@@ -88,7 +81,83 @@
     <div
       class="card-footer text-end text-muted small bg-white border-top fw-semibold"
     >
-      Total: {{ items.length }} usuarios
+      Total: {{ items.length }} registros
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DETALLE -->
+<div
+  class="modal fade"
+  id="modalDetalle"
+  tabindex="-1"
+  aria-labelledby="modalDetalleLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content rounded-4 border-0 shadow-lg">
+      <!-- HEADER -->
+      <div class="modal-header bg-primary text-white rounded-top">
+        <h5 class="modal-title" id="modalDetalleLabel">
+          <i class="bi bi-file-earmark-text-fill me-2"></i> Nuevo Detalle de Acta
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Cerrar"
+        ></button>
+      </div>
+
+      <!-- BODY -->
+      <form
+        class="needs-validation"
+        novalidate
+        (ngSubmit)="crearDetalle()"
+        #formDetalle="ngForm"
+      >
+        <div class="modal-body bg-light">
+          <div class="form-check form-switch mb-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="actaRecibida"
+              [(ngModel)]="itemDetalle.actaRecibida"
+              name="actaRecibida"
+            />
+            <label class="form-check-label fw-semibold" for="actaRecibida">
+              ¿Acta recibida?
+            </label>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Fecha de Recepción</label>
+            <input
+              type="date"
+              class="form-control"
+              [(ngModel)]="itemDetalle.fechaRecepcion"
+              name="fechaRecepcion"
+              required
+            />
+            <div class="invalid-feedback">Seleccione una fecha válida.</div>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="modal-footer bg-white border-top">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save-fill me-2"></i> Guardar
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

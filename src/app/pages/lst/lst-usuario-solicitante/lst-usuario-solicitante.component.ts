@@ -14,8 +14,7 @@ import * as bootstrap from 'bootstrap';
   styleUrls: ['./lst-usuario-solicitante.component.scss'],
 })
 export class LstUsuarioSolicitanteComponent implements OnInit {
-
- @ViewChild('closeUnidad') cerrarUnidad!: ElementRef;
+  @ViewChild('closeUnidad') cerrarUnidad!: ElementRef;
 
   @ViewChild(FilUsuarioSolicitanteComponent, { static: false })
   fil!: FilUsuarioSolicitanteComponent;
@@ -164,7 +163,12 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
 
     try {
       const data = await firstValueFrom(
-        this.wsdl.patchJerarquia(id, nuevaJerarquia, this.item.unidadDpte, this.item.nombreUnidad)
+        this.wsdl.patchJerarquia(
+          id,
+          nuevaJerarquia,
+          this.item.unidadDpte,
+          this.item.nombreUnidad
+        )
       );
       const result = JSON.parse(JSON.stringify(data));
 
@@ -210,7 +214,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
     }
   }
 
-unidadSeleccionada(event: Unidad) {
+  unidadSeleccionada(event: Unidad) {
     if (event != undefined) {
       console.log(event);
       this.item.unidadDpte = event.id;
@@ -222,8 +226,7 @@ unidadSeleccionada(event: Unidad) {
     this.cerrarUnidad.nativeElement.click();
   }
 
-  abmCorreo(id: number){
-    this.route.navigate(['pages/agregar_correo/'+ id]);
+  abmCorreo(id: number) {
+    this.route.navigate(['pages/agregar_correo/' + id]);
   }
-
 }

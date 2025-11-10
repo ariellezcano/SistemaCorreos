@@ -49,8 +49,8 @@ export class CorreoInstitucionalService {
   //   });
   // }
   
-    patchJerarquia(id: number, jerarquia: string, unidad: number, nombreUnidad: string) {
-      return this.http.patch(`${this.api}/${id}`, { jerarquia, unidad, nombreUnidad });
+    patch(id: number, actaRecibida: any, fechaRecepcion: any) {
+      return this.http.patch(`${this.api}/${id}`, { actaRecibida, fechaRecepcion });
     }
   
     // patch(id: number, evento: any) {

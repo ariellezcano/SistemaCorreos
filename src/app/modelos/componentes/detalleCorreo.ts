@@ -1,6 +1,6 @@
 export class DetalleCorreo{
     id!: number;
-    fechaNotificacion: any;
+    correoInstitucional!: number;
     actaRecibida!: boolean;
     usuarioRecibe!: number;
     fechaRecepcion: any;

@@ -7,14 +7,23 @@
   border-top-right-radius: 1rem !important;
 }
 
-.table thead th {
-  vertical-align: middle;
-}
-
 .table tbody tr:hover {
   background-color: #eef5ff !important;
 }
 
 .btn {
   border-radius: 0.5rem;
+}
+
+.modal-content {
+  border-radius: 1rem;
+}
+
+.modal-header {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
 }

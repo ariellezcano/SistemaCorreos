@@ -27,7 +27,7 @@ export class UsuarioSolicitanteService {
   }
 
   getId(id: number) {
-    console.log('servicio', id);
+    //console.log('servicio', id);
     return this.http.get(this.api + '/' + id);
   }
 
