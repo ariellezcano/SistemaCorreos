@@ -34,34 +34,36 @@
               <th>Tipo</th>
               <th>Habilitación</th>
               <th>Notificación</th>
+              <th>¿Acta recibida?</th>
               <th class="text-center">Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of items; index as i">
-              <td>{{ i + 1 }}</td>
+              <td>{{ item.idCorreo }}</td>
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>
               <td>{{ item.dni }}</td>
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.correoInstitucional }}</td>
               <td>{{ item.tipoCorreo }}</td>
-              <td>{{ item.fechaHabilitacion | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ item.fechaNotificacion | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.fechaHabilitacion ? (item.fechaHabilitacion | date:'dd/MM/yyyy') : 'No fue habilitado' }}</td>
+              <td>{{ item.fechaNotificacion ? (item.fechaNotificacion | date:'dd/MM/yyyy') : 'No fue notificado' }}</td>
+              <td>{{ item.actaRecibida ? 'Sí' : 'No' }}</td>
               <td class="text-center">
                 <button
                   class="btn btn-sm btn-outline-primary me-2"
                   title="Agregar detalle"
                   (click)="abrirModalDetalle(item)"
                 >
-                  <i class="bi bi-pencil-square"></i>
+                  <i class="bi bi-card-list"></i>
                 </button>
                 <button
-                  class="btn btn-sm btn-outline-danger"
-                  title="Eliminar"
-                  (click)="eliminar(item)"
+                  class="btn btn-sm btn-info"
+                  title="Plataforma"
+                  (click)="linkear(item.idCorreo)"
                 >
-                  <i class="bi bi-trash"></i>
+                  <i class="bi bi-patch-plus"></i>
                 </button>
               </td>
             </tr>

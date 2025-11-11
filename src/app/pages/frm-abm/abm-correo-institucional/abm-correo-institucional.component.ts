@@ -34,7 +34,7 @@ export class AbmCorreoInstitucionalComponent implements OnInit {
     try {
       const data = await firstValueFrom(this.wsdl.getId(Number(this.id)));
       const result = JSON.parse(JSON.stringify(data));
-      console.log('find id', result);
+      //console.log('find id', result);
 
       if (result.code === '200') {
         this.item = result.dato;
@@ -68,7 +68,7 @@ export class AbmCorreoInstitucionalComponent implements OnInit {
   }
 
   async guardar() {
-    if (Number(this.id) > 0) {
+    if (Number(this.id) > 0 && this.editando) {
       this.editar();
     } else {
       this.crear();

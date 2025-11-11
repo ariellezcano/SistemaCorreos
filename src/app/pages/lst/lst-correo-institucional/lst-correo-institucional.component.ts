@@ -120,7 +120,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
 
   abrirModalDetalle(item: any) {
     this.correoSeleccionado = item;
-    console.log('modal detalle', this.correoSeleccionado);
+    //console.log('modal detalle', this.correoSeleccionado);
     //this.itemDetalle = {}; // Limpia detalle previo
     const modal = new bootstrap.Modal(document.getElementById('modalDetalle')!);
     modal.show();
@@ -141,7 +141,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
         this.wsdlDetalle.insert(this.itemDetalle)
       );
       const result = JSON.parse(JSON.stringify(data));
-
+      //console.log("resultado", result)
       if (result.code === '201') {
         Swal.fire({
           icon: 'success',
@@ -150,6 +150,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
           showConfirmButton: false,
         });
       }
+      this.fil.filter();
     } catch (error) {
       Swal.fire('Error', 'No se pudo actualizar el registro', 'error');
     }
@@ -160,13 +161,13 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   }
 
   doFound(event: UsuarioCorreoDto[]) {
-    //console.log('llegue');
+    console.log('llegue');
     this.items = event;
   }
 
-  // linkear(id?: Number) {
-  //   this.route.navigateByUrl('lst-marcas/abm/' + id);
-  // }
+  linkear(id?: Number) {
+    this.route.navigateByUrl('pages/plataformas/' + id);
+  }
 
   back() {
     this.route.navigate(['principal']);
@@ -237,4 +238,5 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   abmCorreo(id: number) {
     this.route.navigate(['pages/agregar_correo/' + id]);
   }
+
 }

@@ -20,6 +20,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { AbmCorreoInstitucionalComponent } from './frm-abm/abm-correo-institucional/abm-correo-institucional.component';
 import { LstCorreoInstitucionalComponent } from './lst/lst-correo-institucional/lst-correo-institucional.component';
 import { FilCorreosInstitucionalesComponent } from './filtros/fil-correos-institucionales/fil-correos-institucionales.component';
+import { AbmPlataformaComponent } from './frm-abm/abm-plataforma/abm-plataforma.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FilCorreosInstitucionalesComponent } from './filtros/fil-correos-instit
     AbmCorreoInstitucionalComponent,
     LstCorreoInstitucionalComponent,
     FilCorreosInstitucionalesComponent,
+    AbmPlataformaComponent,
 
   ],
   imports: [

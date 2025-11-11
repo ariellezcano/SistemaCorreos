@@ -11,7 +11,8 @@ export class UsuarioCorreoDto {
   tipoCorreo!: string;
   fechaHabilitacion: any;
   fechaNotificacion: any;
-  
+  actaRecibida!: boolean;
+
   constructor(){
 
   }
