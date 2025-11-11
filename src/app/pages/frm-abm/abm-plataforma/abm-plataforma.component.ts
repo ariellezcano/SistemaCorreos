@@ -31,7 +31,7 @@ export class AbmPlataformaComponent implements OnInit {
 
   guardar() {
     if (Number(this.id) > 0 && this.editando) {
-     // this.editar();
+      this.editar();
     } else {
       this.crear();
     }
@@ -85,15 +85,41 @@ export class AbmPlataformaComponent implements OnInit {
     }
   }
 
+  async editar() {
+      try {
+        const data = await firstValueFrom(this.wsdl.update(this.item));
+        const result = JSON.parse(JSON.stringify(data));
+  
+        if (result.code === '200') {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Registro actualizado correctamente',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.back();
+        } else {
+          Swal.fire('Atención', result.message, 'warning');
+        }
+      } catch (error: any) {
+        if (error.status == '500') {
+          Swal.fire({
+            title: 'Error al crear registro, verifique!',
+            icon: 'error',
+          });
+        }
+      }
+    }
+
   async crear() {
     this.item.correoInstitucional = Number(this.id);
-    this.item.usuarioSolicita = 8;
-    this.item.usuarioCrea = 8;
+    this.item.usuarioSolicita = 9;
+    this.item.usuarioCrea = 9;
     try {
       const data = await firstValueFrom(this.wsdl.insert(this.item));
       const result = JSON.parse(JSON.stringify(data));
-      console.log("resultado", result)
-
+      
       if(result.code === '201'){
         Swal.fire({
           title: "FELICITACIONES!",
@@ -101,8 +127,8 @@ export class AbmPlataformaComponent implements OnInit {
           icon: "success"
         });
       }
-      //console.log('find id', result);
-
+      
+      this.back();
     } catch (error: any) {
       if (error.status === 500) {
         Swal.fire({
