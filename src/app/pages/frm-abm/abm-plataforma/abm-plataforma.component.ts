@@ -40,7 +40,7 @@ export class AbmPlataformaComponent implements OnInit {
   async ObtenerId() {
     try {
       const data = await firstValueFrom(this.wsdl.getId(Number(this.id)));
-      console.log("data")
+      //console.log("data")
       const result = JSON.parse(JSON.stringify(data));
       //console.log('find id', result);
 

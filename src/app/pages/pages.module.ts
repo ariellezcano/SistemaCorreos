@@ -21,6 +21,12 @@ import { AbmCorreoInstitucionalComponent } from './frm-abm/abm-correo-institucio
 import { LstCorreoInstitucionalComponent } from './lst/lst-correo-institucional/lst-correo-institucional.component';
 import { FilCorreosInstitucionalesComponent } from './filtros/fil-correos-institucionales/fil-correos-institucionales.component';
 import { AbmPlataformaComponent } from './frm-abm/abm-plataforma/abm-plataforma.component';
+import { FilPlataformasComponent } from './filtros/fil-plataformas/fil-plataformas.component';
+import { LstPlataformasComponent } from './lst/lst-plataformas/lst-plataformas.component';
+import { AbmActualizacionplataformaComponent } from './frm-abm/abm-actualizacionplataforma/abm-actualizacionplataforma.component';
+import { AbmReclamosComponent } from './frm-abm/abm-reclamos/abm-reclamos.component';
+import { LstReclamosComponent } from './lst/lst-reclamos/lst-reclamos.component';
+import { FilReclamosComponent } from './filtros/fil-reclamos/fil-reclamos.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +44,12 @@ import { AbmPlataformaComponent } from './frm-abm/abm-plataforma/abm-plataforma.
     LstCorreoInstitucionalComponent,
     FilCorreosInstitucionalesComponent,
     AbmPlataformaComponent,
+    FilPlataformasComponent,
+    LstPlataformasComponent,
+    AbmActualizacionplataformaComponent,
+    AbmReclamosComponent,
+    LstReclamosComponent,
+    FilReclamosComponent,
 
   ],
   imports: [

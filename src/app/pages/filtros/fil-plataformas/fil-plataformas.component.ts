@@ -1,18 +1,18 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { UsuarioCorreoDto } from 'src/app/modelos/componentes/relacionModelos/usuarioCorreoDto';
-import { CorreoInstitucionalService } from 'src/app/services/componentes/correo-institucional.service';
+import { PlataformaCorreoDto } from 'src/app/modelos/componentes/relacionModelos/plataformaCorreoDto';
+import { PlataformaService } from 'src/app/services/index.service';
 
 @Component({
-  selector: 'app-fil-correos-institucionales',
-  templateUrl: './fil-correos-institucionales.component.html',
-  styleUrls: ['./fil-correos-institucionales.component.scss'],
+  selector: 'app-fil-plataformas',
+  templateUrl: './fil-plataformas.component.html',
+  styleUrls: ['./fil-plataformas.component.scss'],
 })
-export class FilCorreosInstitucionalesComponent implements OnInit {
-  @Output() emmit: EventEmitter<UsuarioCorreoDto[]> = new EventEmitter();
+export class FilPlataformasComponent implements OnInit {
+  @Output() emmit: EventEmitter<PlataformaCorreoDto[]> = new EventEmitter();
 
   busqueda: any;
-  items: UsuarioCorreoDto[];
+  items: PlataformaCorreoDto[];
 
   paginaAnterior!: number;
   anterior: boolean;
@@ -24,7 +24,7 @@ export class FilCorreosInstitucionalesComponent implements OnInit {
   public limit: any;
   public limits: Number[] = [10, 20, 30];
 
-  constructor(private wsdl: CorreoInstitucionalService) {
+  constructor(private wsdl: PlataformaService) {
     this.busqueda = '';
     this.items = [];
 
@@ -50,38 +50,6 @@ export class FilCorreosInstitucionalesComponent implements OnInit {
     }
     this.filter();
   }
-
-  // async filter() {
-  //   try {
-  //     const tieneBusqueda = this.busqueda && this.busqueda.trim() !== '';
-
-  //     const data$ = this.wsdl.getList(
-  //       this.paginaActual,
-  //       this.limit,
-  //       tieneBusqueda ? this.busqueda : undefined
-  //     );
-  //     console.log('DATA:', data$);
-  //     const result = await lastValueFrom(data$); // ya devuelve el objeto listo
-  //     console.log('Resultado:', result);
-  //     const Json = JSON.parse(JSON.stringify(result));
-
-  //     if (Json.code === "200") {
-  //       console.log("aca estoysssss")
-  //       this.items = Json.data;
-  //       this.totalRegistros = Json.totalRegistros;
-  //       this.totalPaginas = Json.totalPaginas;
-  //     } else if (Json.code === "204") {
-  //       console.log("aca estoyss")
-  //       this.items = [];
-  //       this.totalRegistros = 0;
-  //       this.totalPaginas = 1;
-  //     }
-
-  //     //this.emmit.emit(this.items);
-  //   } catch (error) {
-  //     console.error('Error en filter():', error);
-  //   }
-  // }
 
   async filter() {
     try {

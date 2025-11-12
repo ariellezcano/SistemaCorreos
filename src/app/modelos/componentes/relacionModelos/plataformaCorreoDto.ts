@@ -1,4 +1,5 @@
 export class PlataformaCorreoDto {
+  idCorreo!: number;
   nombre!: string;
   apellido!: string;
   dni!: number;
@@ -9,6 +10,7 @@ export class PlataformaCorreoDto {
   miminseg: boolean;
   sifcop: boolean;
   fechaSolicitud: any;
+  fechaAlta: any;
   estadoSolicitud!: string;
   fechaNotif: any;
 

@@ -129,7 +129,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   async crearDetalle() {
     if (!this.itemDetalle.actaRecibida || !this.itemDetalle.fechaRecepcion)
       return;
-    
+
     this.itemDetalle.correoInstitucional = Number(
       this.correoSeleccionado.idCorreo
     );
@@ -238,5 +238,4 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   abmCorreo(id: number) {
     this.route.navigate(['pages/agregar_correo/' + id]);
   }
-
 }

@@ -9,6 +9,8 @@ import { AbmUsuarioSolicitanteComponent } from './frm-abm/abm-usuario-solicitant
 import { AbmCorreoInstitucionalComponent } from './frm-abm/abm-correo-institucional/abm-correo-institucional.component';
 import { LstCorreoInstitucionalComponent } from './lst/lst-correo-institucional/lst-correo-institucional.component';
 import { AbmPlataformaComponent } from './frm-abm/abm-plataforma/abm-plataforma.component';
+import { LstPlataformasComponent } from './lst/lst-plataformas/lst-plataformas.component';
+import { AbmActualizacionplataformaComponent } from './frm-abm/abm-actualizacionplataforma/abm-actualizacionplataforma.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,8 @@ const routes: Routes = [
       { path: 'agregar_correo/:id', component: AbmCorreoInstitucionalComponent },
       { path: 'lst_correos_institucionales', component: LstCorreoInstitucionalComponent },
       { path: 'plataformas/:id', component: AbmPlataformaComponent },
+      { path: 'lst_plataforma', component: LstPlataformasComponent },
+      { path: 'abm_plataforma/:id', component: AbmActualizacionplataformaComponent },
     ],
   },
 ];

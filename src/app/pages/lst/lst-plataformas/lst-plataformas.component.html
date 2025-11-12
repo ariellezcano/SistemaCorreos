@@ -1,0 +1,153 @@
+<div class="container-fluid my-5 px-5">
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+    <!-- CABECERA -->
+    <div
+      class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3"
+    >
+      <h3 class="m-0 fw-semibold">
+        <i class="bi bi-grid-fill me-2"></i> Listado de Sistemas Federales
+      </h3>
+
+      <!-- Botón opcional -->
+      <!--
+      <button
+        type="button"
+        class="btn btn-light text-primary fw-semibold shadow-sm"
+        (click)="nuevoRegistro()"
+      >
+        <i class="bi bi-plus-circle-fill me-2"></i> Nuevo Registro
+      </button>
+      -->
+    </div>
+
+    <!-- FILTROS -->
+    <div class="card-body bg-light py-4">
+      <div
+        class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3 w-100"
+      >
+        <app-fil-plataformas
+          (emmit)="doFound($event)"
+          class="flex-grow-1"
+        ></app-fil-plataformas>
+      </div>
+
+      <!-- LISTADO -->
+      <div class="table-responsive rounded-4 shadow-sm bg-white">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-primary text-center align-middle">
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th>Jerarquía</th>
+              <th>Unidad</th>
+              <th>Correo</th>
+              <th>Tipo</th>
+              <th>SIFCOP</th>
+              <th>MIMINSEG</th>
+              <th>Solicitado</th>
+              <th>Estado</th>
+              <th>Alta</th>
+              <th>Notificación</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of items; index as i">
+              <td class="fw-semibold text-center">{{ item.idCorreo }}</td>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.apellido }}</td>
+              <td>{{ item.dni }}</td>
+              <td>{{ item.jerarquia }}</td>
+              <td>{{ item.unidad }}</td>
+              <td>{{ item.correoInstitucional }}</td>
+              <td>{{ item.tipoCorreo }}</td>
+
+              <!-- BOOLEANOS -->
+              <td class="text-center">
+                <span
+                  class="badge px-3 py-2"
+                  [ngClass]="
+                    item.sifcop
+                      ? 'bg-success bg-opacity-75'
+                      : 'bg-secondary bg-opacity-50'
+                  "
+                >
+                  {{ item.sifcop ? 'Sí' : 'No' }}
+                </span>
+              </td>
+              <td class="text-center">
+                <span
+                  class="badge px-3 py-2"
+                  [ngClass]="
+                    item.miminseg
+                      ? 'bg-success bg-opacity-75'
+                      : 'bg-secondary bg-opacity-50'
+                  "
+                >
+                  {{ item.miminseg ? 'Sí' : 'No' }}
+                </span>
+              </td>
+
+              <!-- FECHAS -->
+              <td>{{ item.fechaSolicitud | date: 'dd/MM/yyyy' }}</td>
+
+              <!-- ESTADO -->
+              <td class="text-center">
+                <span
+                  class="badge px-3 py-2"
+                  [ngClass]="{
+                    'bg-info text-dark': item.estadoSolicitud === 'Solicitado',
+                    'bg-success': item.estadoSolicitud === 'Alta'
+                    
+                  }"
+                >
+                <!-- 'bg-warning text-dark': item.estadoSolicitud === 'Finalizado' -->
+                  {{ item.estadoSolicitud }}
+                </span>
+              </td>
+              <td>{{ item.fechaAlta | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.fechaNotif | date: 'dd/MM/yyyy' }}</td>
+
+              <!-- ACCIONES -->
+              <td class="text-center">
+                <button
+                  class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
+                  title="Editar"
+                 (click)="linkear(item.idCorreo)"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+
+                <button
+                  class="btn btn-sm btn-outline-danger rounded-pill px-3"
+                  title="Eliminar"
+                  
+                >
+                <!-- (click)="eliminar(item)" -->
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+
+            <tr *ngIf="items.length === 0">
+              <td colspan="14" class="text-center text-muted py-4">
+                <i class="bi bi-exclamation-circle me-2"></i> No hay registros
+                disponibles.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div
+      class="card-footer text-end text-muted small bg-white border-top fw-semibold py-3"
+    >
+      Total: {{ items.length }} registros
+    </div>
+  </div>
+</div>
