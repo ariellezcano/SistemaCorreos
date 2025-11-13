@@ -1,0 +1,29 @@
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 1rem;
+}
+
+.card-header {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+  background: linear-gradient(90deg, #003366, #0055a5);
+}
+
+.btn-primary {
+  background-color: #003366;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.btn-primary:hover {
+  background-color: #00264d;
+}
+
+.form-control {
+  border-radius: 0.5rem;
+}
+
+.login-container {
+  background: linear-gradient(135deg, #e8edf5, #cfd8e8);
+}

@@ -27,9 +27,12 @@ import { AbmActualizacionplataformaComponent } from './frm-abm/abm-actualizacion
 import { AbmReclamosComponent } from './frm-abm/abm-reclamos/abm-reclamos.component';
 import { LstReclamosComponent } from './lst/lst-reclamos/lst-reclamos.component';
 import { FilReclamosComponent } from './filtros/fil-reclamos/fil-reclamos.component';
+import { FooterComponent } from "./compartido/footer/footer.component";
 
 @NgModule({
   declarations: [
+    // NavbarComponent,
+    // FooterComponent,
     LstUsuariosComponent,
     FilUsuariosComponent,
     PanelHabilitacionComponent,

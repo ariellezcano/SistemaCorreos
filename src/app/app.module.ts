@@ -8,12 +8,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './pages/compartido/navbar/navbar.component';
 import { FooterComponent } from './pages/compartido/footer/footer.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
