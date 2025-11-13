@@ -1,0 +1,39 @@
+.card {
+  border-radius: 1.5rem;
+}
+
+.card-header {
+  border-top-left-radius: 1.5rem !important;
+  border-top-right-radius: 1.5rem !important;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #eef6ff !important;
+  transition: background-color 0.25s ease;
+}
+
+.badge {
+  font-size: 0.9rem;
+  border-radius: 1rem;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-danger:hover {
+  transform: scale(1.05);
+  transition: 0.2s ease-in-out;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.btn-light {
+  border-radius: 2rem;
+  padding: 0.45rem 1.2rem;
+  transition: all 0.2s;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+}

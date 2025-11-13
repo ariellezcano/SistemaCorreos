@@ -31,8 +31,9 @@ import { FooterComponent } from "./compartido/footer/footer.component";
 
 @NgModule({
   declarations: [
-    // NavbarComponent,
-    // FooterComponent,
+    PagesComponent,
+    NavbarComponent,
+    FooterComponent,
     LstUsuariosComponent,
     FilUsuariosComponent,
     PanelHabilitacionComponent,

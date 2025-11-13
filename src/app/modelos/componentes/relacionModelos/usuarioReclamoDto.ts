@@ -1,4 +1,5 @@
 export class UsuarioReclamoDTO{
+    idReclamo!: number;
     nombre!: string;
     apellido!: string;
     dni!: number;
@@ -6,8 +7,11 @@ export class UsuarioReclamoDTO{
     unidad!: string;
     correoInstitucional!: string;
     tipoCorreo!: string;
+    sifcop!: boolean;
+    miminseg!: boolean;
     fechaReclamo: any;
     estadoReclamo!: string;
+    fechaSolucion: any;
     observacion!: string;
 
     constructor(){

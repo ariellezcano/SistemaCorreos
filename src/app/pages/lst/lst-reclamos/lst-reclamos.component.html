@@ -1,1 +1,153 @@
-<p>lst-reclamos works!</p>
+<div class="container-fluid my-5 px-5">
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+    <!-- CABECERA -->
+    <div
+      class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3"
+    >
+      <h3 class="m-0 fw-semibold">
+        <i class="bi bi-chat-left-text-fill me-2"></i> Listado de Reclamos
+      </h3>
+
+      <!-- BOTÓN NUEVO RECLAMO -->
+      <button
+        type="button"
+        class="btn btn-light text-primary fw-semibold shadow-sm rounded-pill"
+        (click)="nuevoReclamo()"
+      >
+        <i class="bi bi-plus-circle-fill me-2"></i> Nuevo Reclamo
+      </button>
+    </div>
+
+    <!-- CUERPO -->
+    <div class="card-body bg-light py-4">
+      <!-- FILTROS (opcional) -->
+      <app-fil-reclamos (emmit)="doFound($event)" class="mb-4 w-100"></app-fil-reclamos>
+
+      <!-- TABLA -->
+      <div class="table-responsive rounded-4 shadow-sm bg-white">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-primary text-center align-middle">
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th>Jerarquía</th>
+              <th>Unidad</th>
+              <th>Correo</th>
+              <th>Tipo</th>
+              <th>SIFCOP</th>
+              <th>MIMINSEG</th>
+              <th>Fecha Reclamo</th>
+              <th>Estado</th>
+              <th>Fecha Solución</th>
+              <th>Observación</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of items; index as i">
+              <td class="fw-semibold text-center">{{ i + 1 }}</td>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.apellido }}</td>
+              <td>{{ item.dni }}</td>
+              <td>{{ item.jerarquia }}</td>
+              <td>{{ item.unidad }}</td>
+              <td>{{ item.correoInstitucional }}</td>
+              <td>{{ item.tipoCorreo }}</td>
+
+              <!-- BOOLEANOS -->
+              <td class="text-center">
+                <span
+                  class="badge px-3 py-2"
+                  [ngClass]="
+                    item.sifcop
+                      ? 'bg-success bg-opacity-75'
+                      : 'bg-secondary bg-opacity-50'
+                  "
+                >
+                  {{ item.sifcop ? 'Sí' : 'No' }}
+                </span>
+              </td>
+
+              <td class="text-center">
+                <span
+                  class="badge px-3 py-2"
+                  [ngClass]="
+                    item.miminseg
+                      ? 'bg-success bg-opacity-75'
+                      : 'bg-secondary bg-opacity-50'
+                  "
+                >
+                  {{ item.miminseg ? 'Sí' : 'No' }}
+                </span>
+              </td>
+
+              <!-- FECHAS -->
+              <td>{{ item.fechaReclamo | date: 'dd/MM/yyyy' }}</td>
+
+              <!-- ESTADO -->
+              <td class="text-center">
+                <span
+                  class="badge px-3 py-2"
+                  [ngClass]="{
+                    'bg-info text-dark': item.estadoReclamo === 'Pendiente',
+                    'bg-success': item.estadoReclamo === 'Resuelto',
+                    'bg-warning text-dark': item.estadoReclamo === 'En Proceso'
+                  }"
+                >
+                  {{ item.estadoReclamo }}
+                </span>
+              </td>
+
+              <td>{{ item.fechaSolucion | date: 'dd/MM/yyyy' }}</td>
+
+              <td>
+                <span class="text-muted fst-italic">
+                  {{ item.observacion || '-' }}
+                </span>
+              </td>
+
+              <!-- ACCIONES -->
+              <td class="text-center">
+                <button
+                  class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
+                  title="Editar"
+                  
+                >
+                <!-- (click)="editar(item)" -->
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+
+                <button
+                  class="btn btn-sm btn-outline-danger rounded-pill px-3"
+                  title="Eliminar"
+                 
+                >
+                 <!-- (click)="eliminar(item)" -->
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
+            </tr>
+
+            <!-- SIN REGISTROS -->
+            <tr *ngIf="items.length === 0">
+              <td colspan="15" class="text-center text-muted py-4">
+                <i class="bi bi-exclamation-circle me-2"></i> No hay reclamos
+                registrados.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div
+      class="card-footer text-end text-muted small bg-white border-top fw-semibold py-3"
+    >
+      Total: {{ items.length }} reclamos
+    </div>
+  </div>
+</div>

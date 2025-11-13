@@ -11,11 +11,14 @@ import { LstCorreoInstitucionalComponent } from './lst/lst-correo-institucional/
 import { AbmPlataformaComponent } from './frm-abm/abm-plataforma/abm-plataforma.component';
 import { LstPlataformasComponent } from './lst/lst-plataformas/lst-plataformas.component';
 import { AbmActualizacionplataformaComponent } from './frm-abm/abm-actualizacionplataforma/abm-actualizacionplataforma.component';
+import { LstReclamosComponent } from './lst/lst-reclamos/lst-reclamos.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: PagesComponent,
     children: [
+      { path: '', redirectTo: 'lst_usuario', pathMatch: 'full' }, // Agregá esto
       { path: 'lst_usuario', component: LstUsuariosComponent },
       { path: 'habilitar_usuario', component: PanelHabilitacionComponent },
       { path: 'lst_usuario_solicitante', component: LstUsuarioSolicitanteComponent },
@@ -26,9 +29,12 @@ const routes: Routes = [
       { path: 'plataformas/:id', component: AbmPlataformaComponent },
       { path: 'lst_plataforma', component: LstPlataformasComponent },
       { path: 'abm_plataforma/:id', component: AbmActualizacionplataformaComponent },
+      { path: 'lst_reclamos', component: LstReclamosComponent },
+      // { path: 'abm_reclamos/:id', component: AbmActualizacionplataformaComponent },
     ],
   },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)], // ✅ forChild, no forRoot

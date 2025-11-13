@@ -5,11 +5,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
- anioActual = new Date().getFullYear();
+  anioActual = new Date().getFullYear();
 
   form = this.fb.group({
     usuario: ['', Validators.required],
@@ -35,4 +34,5 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  
 }
