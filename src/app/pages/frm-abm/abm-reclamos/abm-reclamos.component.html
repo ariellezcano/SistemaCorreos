@@ -1,1 +1,180 @@
-<p>abm-reclamos works!</p>
+<div class="container my-5">
+  <div class="card shadow-lg border-0 rounded-4">
+    <!-- CABECERA -->
+    <div
+      class="card-header bg-primary text-white d-flex justify-content-between align-items-center rounded-top-4"
+    >
+      <h4 class="m-0">
+        <i class="bi bi-exclamation-diamond-fill me-2"></i> Gestión de Reclamos
+      </h4>
+    </div>
+ 
+        <app-fil-busqueda-plataforma (emmit)="doFound($event)"></app-fil-busqueda-plataforma>
+ 
+    <div class="card-body bg-light">
+      <form (ngSubmit)="guardar()" #formReclamo="ngForm" class="row g-3">
+        <!-- DATOS BASE (solo lectura) -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="itemPlataforma.nombre"
+            name="nombre"
+            readonly
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="itemPlataforma.apellido"
+            name="apellido"
+            readonly
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">DNI</label>
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="itemPlataforma.dni"
+            name="dni"
+            readonly
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Jerarquía</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="itemPlataforma.jerarquia"
+            name="jerarquia"
+            readonly
+          />
+        </div>
+
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Unidad</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="itemPlataforma.nombreUnidad"
+            name="nombreUnidad"
+            readonly
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Correo Institucional</label>
+          <input
+            type="email"
+            class="form-control"
+            [(ngModel)]="itemPlataforma.correoInstitucional"
+            name="correoInstitucional"
+            readonly
+          />
+        </div>
+
+        <div class="col-md-3">
+          <label class="form-label fw-semibold">Tipo de Correo</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="itemPlataforma.tipoCorreo"
+            name="tipoCorreo"
+            readonly
+          />
+        </div>
+
+        <div class="col-md-3 d-flex align-items-center">
+          <div class="form-check me-3">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="itemPlataforma.sifcop"
+              name="sifcop"
+              disabled
+            />
+            <label class="form-check-label">SIFCOP</label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [(ngModel)]="itemPlataforma.miminseg"
+              name="miminseg"
+              disabled
+            />
+            <label class="form-check-label">MIMINSEG</label>
+          </div>
+        </div>
+
+        <hr class="my-3" />
+
+        <!-- CAMPOS RECLAMO -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Fecha del Reclamo</label>
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="item.fechaReclamo"
+            name="fechaReclamo"
+            required
+          />
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Estado del Reclamo</label>
+          <select
+            class="form-select"
+            [(ngModel)]="item.estado"
+            name="estadoReclamo"
+            required
+          >
+            <option value="" disabled selected>Seleccione estado...</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="En proceso">En proceso</option>
+            <option value="Solucionado">Solucionado</option>
+            <option value="Cerrado">Cerrado</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold">Observación</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            [(ngModel)]="item.observacion"
+            name="observacion"
+            placeholder="Detalle el reclamo..."
+          ></textarea>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="col-12 text-end mt-3">
+          <button
+            type="submit"
+            class="btn btn-success me-2 px-4 shadow-sm"
+            [disabled]="!formReclamo.valid"
+          >
+            <i class="bi bi-save me-2"></i>
+            {{ editando ? "Actualizar" : "Guardar" }}
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-secondary px-4 shadow-sm"
+            (click)="back()"
+          >
+            <i class="bi bi-x-circle me-2"></i> Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

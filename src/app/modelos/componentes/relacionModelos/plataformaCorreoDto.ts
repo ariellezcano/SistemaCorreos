@@ -1,5 +1,6 @@
 export class PlataformaCorreoDto {
   idCorreo!: number;
+  idPlataforma!: number;
   nombre!: string;
   apellido!: string;
   dni!: number;

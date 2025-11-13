@@ -26,6 +26,10 @@ export class PlataformaService {
     });
   }
 
+  getPorDni(dni: number) {
+    return this.http.get(`${this.api}/buscar-por-dni/${dni}`);
+  }
+
   getId(id: number) {
     //console.log('servicio', id);
     return this.http.get(this.api + '/' + id);

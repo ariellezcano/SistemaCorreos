@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsuarioReclamoDTO } from 'src/app/modelos/componentes/relacionModelos/usuarioReclamoDto';
 import { Reclamos } from 'src/app/modelos/index.models';
 import { ReclamoService } from 'src/app/services/index.service';
@@ -12,15 +13,15 @@ export class LstReclamosComponent implements OnInit {
 
   items: UsuarioReclamoDTO[];
 
-  constructor(private wsdl: ReclamoService) { 
+  constructor(private wsdl: ReclamoService, private route: Router) { 
     this.items = [];
   }
 
   ngOnInit(): void {
   }
 
-nuevoReclamo() {
-    console.log('Nuevo reclamo');
+  nuevoReclamo() {
+    this.route.navigate(['/pages/abm_reclamos']);
   }
 
   editar(item: Reclamos) {

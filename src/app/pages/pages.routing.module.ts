@@ -12,6 +12,7 @@ import { AbmPlataformaComponent } from './frm-abm/abm-plataforma/abm-plataforma.
 import { LstPlataformasComponent } from './lst/lst-plataformas/lst-plataformas.component';
 import { AbmActualizacionplataformaComponent } from './frm-abm/abm-actualizacionplataforma/abm-actualizacionplataforma.component';
 import { LstReclamosComponent } from './lst/lst-reclamos/lst-reclamos.component';
+import { AbmReclamosComponent } from './frm-abm/abm-reclamos/abm-reclamos.component';
 
 const routes: Routes = [
   {
@@ -30,7 +31,7 @@ const routes: Routes = [
       { path: 'lst_plataforma', component: LstPlataformasComponent },
       { path: 'abm_plataforma/:id', component: AbmActualizacionplataformaComponent },
       { path: 'lst_reclamos', component: LstReclamosComponent },
-      // { path: 'abm_reclamos/:id', component: AbmActualizacionplataformaComponent },
+      { path: 'abm_reclamos', component: AbmReclamosComponent },
     ],
   },
 ];

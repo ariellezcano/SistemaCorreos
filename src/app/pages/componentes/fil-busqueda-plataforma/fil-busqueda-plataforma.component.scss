@@ -1,0 +1,33 @@
+.filtro-card {
+  border-radius: 1rem !important;
+  background-color: #f8f9fa !important;
+}
+
+.input-group-text {
+  border-top-left-radius: 0.75rem !important;
+  border-bottom-left-radius: 0.75rem !important;
+}
+
+.form-control {
+  border-top-right-radius: 0.75rem !important;
+  border-bottom-right-radius: 0.75rem !important;
+}
+
+.btn {
+  border-radius: 0.75rem !important;
+}
+
+.filtro-card .btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  transition: 0.2s;
+}
+
+.filtro-card .btn-primary:hover {
+  background-color: #084298;
+}
+
+.filtro-card .btn-outline-secondary:hover {
+  background-color: #e9ecef;
+  color: #212529;
+}
