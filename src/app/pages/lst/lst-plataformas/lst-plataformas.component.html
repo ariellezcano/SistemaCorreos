@@ -101,10 +101,9 @@
                   [ngClass]="{
                     'bg-info text-dark': item.estadoSolicitud === 'Solicitado',
                     'bg-success': item.estadoSolicitud === 'Alta',
-                    'bg-warning text-dark': item.estadoSolicitud === 'Reclamado'
+                    'bg-danger text-dark': item.estadoSolicitud === 'Reclamado'
                   }"
                 >
-                <!--  -->
                   {{ item.estadoSolicitud }}
                 </span>
               </td>
