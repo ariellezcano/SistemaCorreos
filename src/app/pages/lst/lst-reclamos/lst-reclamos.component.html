@@ -21,7 +21,10 @@
     <!-- CUERPO -->
     <div class="card-body bg-light py-4">
       <!-- FILTROS (opcional) -->
-      <app-fil-reclamos (emmit)="doFound($event)" class="mb-4 w-100"></app-fil-reclamos>
+      <app-fil-reclamos
+        (emmit)="doFound($event)"
+        class="mb-4 w-100"
+      ></app-fil-reclamos>
 
       <!-- TABLA -->
       <div class="table-responsive rounded-4 shadow-sm bg-white">
@@ -67,7 +70,7 @@
                       : 'bg-secondary bg-opacity-50'
                   "
                 >
-                  {{ item.sifcop ? 'Sí' : 'No' }}
+                  {{ item.sifcop ? "Sí" : "No" }}
                 </span>
               </td>
 
@@ -80,32 +83,29 @@
                       : 'bg-secondary bg-opacity-50'
                   "
                 >
-                  {{ item.miminseg ? 'Sí' : 'No' }}
+                  {{ item.miminseg ? "Sí" : "No" }}
                 </span>
               </td>
 
               <!-- FECHAS -->
-              <td>{{ item.fechaReclamo | date: 'dd/MM/yyyy' }}</td>
-
-              <!-- ESTADO -->
+              <td>{{ item.fechaReclamo | date : "dd/MM/yyyy" }}</td>
               <td class="text-center">
+                <!-- ESTADO -->
                 <span
                   class="badge px-3 py-2"
                   [ngClass]="{
-                    'bg-info text-dark': item.estadoReclamo === 'Pendiente',
-                    'bg-success': item.estadoReclamo === 'Resuelto',
-                    'bg-warning text-dark': item.estadoReclamo === 'En Proceso'
+                    'bg-warning text-dark': item.estadoReclamo === 'Reclamado',
+                    'bg-success': item.estadoReclamo === 'Solucionado'
                   }"
                 >
                   {{ item.estadoReclamo }}
                 </span>
               </td>
-
-              <td>{{ item.fechaSolucion | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.fechaSolucion | date : "dd/MM/yyyy" }}</td>
 
               <td>
                 <span class="text-muted fst-italic">
-                  {{ item.observacion || '-' }}
+                  {{ item.observacion || "-" }}
                 </span>
               </td>
 
@@ -114,18 +114,16 @@
                 <button
                   class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
                   title="Editar"
-                  
                 >
-                <!-- (click)="editar(item)" -->
+                  <!-- (click)="editar(item)" -->
                   <i class="bi bi-pencil-square"></i>
                 </button>
 
                 <button
                   class="btn btn-sm btn-outline-danger rounded-pill px-3"
                   title="Eliminar"
-                 
                 >
-                 <!-- (click)="eliminar(item)" -->
+                  <!-- (click)="eliminar(item)" -->
                   <i class="bi bi-trash"></i>
                 </button>
               </td>

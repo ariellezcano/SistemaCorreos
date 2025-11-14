@@ -1,7 +1,7 @@
 export class Reclamos {
 
     id!: number;
-    correoInstitucional!: number;
+    plataforma!: number;
     fechaReclamo: any;
     estado!: string;
     fechaSolucion: any;

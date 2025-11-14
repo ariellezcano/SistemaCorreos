@@ -100,11 +100,11 @@
                   class="badge px-3 py-2"
                   [ngClass]="{
                     'bg-info text-dark': item.estadoSolicitud === 'Solicitado',
-                    'bg-success': item.estadoSolicitud === 'Alta'
-                    
+                    'bg-success': item.estadoSolicitud === 'Alta',
+                    'bg-warning text-dark': item.estadoSolicitud === 'Reclamado'
                   }"
                 >
-                <!-- 'bg-warning text-dark': item.estadoSolicitud === 'Finalizado' -->
+                <!--  -->
                   {{ item.estadoSolicitud }}
                 </span>
               </td>

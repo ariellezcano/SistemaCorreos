@@ -4,7 +4,7 @@ export class PlataformaReclamo {
   apellido!: string;
   dni!: number;
   jerarquia!: string;
-  nombreUnidad!: string;
+  unidad!: string;
   correoInstitucional!: string;
   tipoCorreo!: string;
   miminseg!: boolean;

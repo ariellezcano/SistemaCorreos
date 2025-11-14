@@ -51,6 +51,12 @@ export class PlataformaService {
     });
   }
 
+  patchEstado(id: number, estado: string) {
+    return this.http.patch(`${this.api}/Estado/${id}`, {
+      estado
+    });
+  }
+
   delete(id: number, usuarioBaja: number) {
     return this.http.delete(`${this.api}/${id},${usuarioBaja}`);
   }
