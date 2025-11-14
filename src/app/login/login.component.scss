@@ -1,29 +1,80 @@
-.login-card {
+/* Fondo claro institucional */
+.login-wrapper {
+  background: linear-gradient(135deg, #e9eef5, #f5f7fa);
+}
+
+/* Caja moderna con borde suave */
+.login-box {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 1.2rem;
   width: 100%;
   max-width: 420px;
-  border-radius: 1rem;
+  border: 1px solid #dfe6ee;
 }
 
-.card-header {
-  border-top-left-radius: 1rem !important;
-  border-top-right-radius: 1rem !important;
-  background: linear-gradient(90deg, #003366, #0055a5);
+/* Logo */
+.login-logo {
+  width: 85px;
+  margin-bottom: 10px;
 }
 
+/* Títulos más legibles y elegantes */
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  color: #6c7583;
+  font-size: 0.9rem;
+}
+
+/* Inputs */
+.form-label {
+  font-weight: 600;
+  color: #003366;
+}
+
+.form-control {
+  border-radius: 0.6rem;
+  padding: 0.75rem;
+  border: 1px solid #c8d2df;
+  font-size: 0.95rem;
+}
+
+.form-control:focus {
+  border-color: #0055a5;
+  box-shadow: 0 0 0 0.15rem rgba(0, 85, 165, 0.15);
+}
+
+/* Input group */
+.input-group-text {
+  background: #003366;
+  color: white;
+  border: none;
+  border-radius: 0.6rem 0 0 0.6rem;
+}
+
+/* Botón */
 .btn-primary {
   background-color: #003366;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.6rem;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
 .btn-primary:hover {
   background-color: #00264d;
 }
 
-.form-control {
-  border-radius: 0.5rem;
-}
-
-.login-container {
-  background: linear-gradient(135deg, #e8edf5, #cfd8e8);
+/* Footer */
+.footer-text {
+  color: #8c98a8;
+  text-align: center;
+  font-size: 0.88rem;
+  margin-top: 1rem;
 }

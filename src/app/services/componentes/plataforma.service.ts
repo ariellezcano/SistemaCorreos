@@ -27,7 +27,7 @@ export class PlataformaService {
   }
 
   getPorDni(dni: number) {
-    return this.http.get(`${this.api}/buscar-por-dni/${dni}`);
+    return this.http.get(`${this.api}/buscar_por_dni/${dni}`);
   }
 
   getId(id: number) {
