@@ -1,5 +1,6 @@
 export class UsuarioReclamoDTO{
     idReclamo!: number;
+    idPlataforma!: number;
     nombre!: string;
     apellido!: string;
     dni!: number;

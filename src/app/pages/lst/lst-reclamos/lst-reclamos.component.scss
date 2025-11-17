@@ -37,3 +37,32 @@
 .btn-light:hover {
   background-color: #e2e6ea;
 }
+
+
+
+////modal
+.card,
+.modal-content {
+  border-radius: 1rem !important;
+}
+
+.table tbody tr:hover {
+  background-color: #eef5ff !important;
+}
+
+.btn {
+  border-radius: 0.6rem !important;
+}
+
+.modal-header {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+}
+
+.modal-body {
+  background: #f8f9fa;
+}
+
+.badge {
+  font-size: 0.9rem;
+}

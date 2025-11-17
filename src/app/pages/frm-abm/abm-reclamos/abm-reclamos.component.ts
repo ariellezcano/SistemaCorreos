@@ -39,38 +39,19 @@ export class AbmReclamosComponent implements OnInit {
   async guardar() {
     try {
       this.item.plataforma = this.itemPlataforma.idPlataforma;
-      this.item.usuarioCrea = 8;
 
-      //console.log("items reclamo", this.item);
-      const data = await firstValueFrom(this.wsdl.insert(this.item));
+      const data = await firstValueFrom(
+        this.wsdl.verificar(this.item.plataforma)
+      );
       const result = JSON.parse(JSON.stringify(data));
-      if (result.code === '201') {
-        try {
-          const data = await firstValueFrom(
-            this.wsdlPlataforma.patchEstado(
-              this.itemPlataforma.idPlataforma,
-              this.item.estado
-            )
-          );
-          const result = JSON.parse(JSON.stringify(data));
-
-          if (result.code === '200') {
-            Swal.fire({
-              title: 'FELICITACIONES!',
-              text: 'Registro creado correctamente!',
-              icon: 'success',
-            });
-          }
-        } catch (error) {
-          Swal.fire({
-            title: 'Error al modificar el estado',
-            text: 'Ocurrió un error inesperado',
-            icon: 'error',
-          });
-        }
+      console.log("resultado:", result);
+      if (result.code === '200') {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Oops...',
+          text: 'Hay un reclamo activo!',
+        });
       }
-
-      this.back();
     } catch (error: any) {
       if (error.status === 500) {
         Swal.fire({
@@ -78,8 +59,46 @@ export class AbmReclamosComponent implements OnInit {
           text: 'Ocurrió un error inesperado. Verifique!',
           icon: 'error',
         });
+      } else if (error.status === 404) {
+        alert("404")
+        this.crearReclamo();
       }
     }
+  }
+
+  async crearReclamo() {
+    this.item.usuarioCrea = 8;
+
+    //console.log("items reclamo", this.item);
+    const data = await firstValueFrom(this.wsdl.insert(this.item));
+    const result = JSON.parse(JSON.stringify(data));
+    if (result.code === '201') {
+      try {
+        const data = await firstValueFrom(
+          this.wsdlPlataforma.patchEstado(
+            this.itemPlataforma.idPlataforma,
+            this.item.estado
+          )
+        );
+        const result = JSON.parse(JSON.stringify(data));
+
+        if (result.code === '200') {
+          Swal.fire({
+            title: 'FELICITACIONES!',
+            text: 'Registro creado correctamente!',
+            icon: 'success',
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Error al modificar el estado',
+          text: 'Ocurrió un error inesperado',
+          icon: 'error',
+        });
+      }
+    }
+
+    this.back();
   }
 
   back() {

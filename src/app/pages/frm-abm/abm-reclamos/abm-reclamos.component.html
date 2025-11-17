@@ -125,7 +125,8 @@
             [ngClass]="{
               'bg-warning text-dark':
                 itemPlataforma.estadoCorreo === 'Solicitado',
-              'bg-success': itemPlataforma.estadoCorreo === 'Alta'
+              'bg-success': itemPlataforma.estadoCorreo === 'Alta',
+              'bg-danger': itemPlataforma.estadoCorreo === 'Reclamado'
             }"
           >
             {{ itemPlataforma.estadoCorreo }}

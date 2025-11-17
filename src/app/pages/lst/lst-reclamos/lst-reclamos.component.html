@@ -114,18 +114,18 @@
                 <button
                   class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
                   title="Editar"
+                  (click)="abrirModal(item.idReclamo, item.idPlataforma)"
                 >
-                  <!-- (click)="editar(item)" -->
                   <i class="bi bi-pencil-square"></i>
                 </button>
 
-                <button
+                <!-- <button
                   class="btn btn-sm btn-outline-danger rounded-pill px-3"
                   title="Eliminar"
-                >
-                  <!-- (click)="eliminar(item)" -->
+                  (click)="eliminar(item)"
+                  >
                   <i class="bi bi-trash"></i>
-                </button>
+                </button> -->
               </td>
             </tr>
 
@@ -146,6 +146,88 @@
       class="card-footer text-end text-muted small bg-white border-top fw-semibold py-3"
     >
       Total: {{ items.length }} reclamos
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL -->
+<div
+  class="modal fade"
+  id="modalReclamo"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content rounded-4 shadow-lg">
+
+      <!-- Header -->
+      <div class="modal-header bg-primary text-white rounded-top-4">
+        <h5 class="modal-title">
+          <i class="bi bi-pencil-square me-2"></i> Modificar Reclamo
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body bg-light">
+        <form #formEdit="ngForm">
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Fecha Solución</label>
+              <input
+                type="date"
+                class="form-control"
+                [(ngModel)]="item.fechaSolucion"
+                name="fechaReclamo"
+                required
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Estado</label>
+              <select
+                class="form-select"
+                [(ngModel)]="item.estado"
+                name="estado"
+                required
+              >
+                <option value="Solucionado">Solucionado</option>
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label fw-semibold">Observación</label>
+              <textarea
+                class="form-control"
+                rows="3"
+                [(ngModel)]="item.observacion"
+                name="observacion"
+              ></textarea>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="modal-footer">
+        <button
+          class="btn btn-success"
+          (click)="actualizar()"
+        >
+          <i class="bi bi-save me-2"></i> Guardar Cambios
+        </button>
+
+        <button
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Cancelar
+        </button>
+      </div>
+
     </div>
   </div>
 </div>
