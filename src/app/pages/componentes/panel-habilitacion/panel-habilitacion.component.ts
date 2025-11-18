@@ -10,6 +10,7 @@ import {
   UsuarioService,
 } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-panel-habilitacion',
@@ -43,11 +44,33 @@ export class PanelHabilitacionComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  pregunta() {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Usted está por habilitar un nuevo usuario!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.insert();
+      } else if (result.dismiss === 'cancel') {
+        Swal.fire({
+          title: 'Cancelado',
+          text: 'La operación no se realizó :)',
+          icon: 'error',
+        });
+      }
+    });
+  }
+
   public async insert() {
     //this.dtUsuario.sistema = 1;
-    this.dtUsuario.userCreaRepo = 1;
+    //this.dtUsuario.userCreaRepo = 1;
     //console.log('usuario a insertar', this.dtUsuario);
-    //this.dtSued.userCreaRepo = UturuncoUtils.getSession('user');
+    this.dtUsuario.userCreaRepo = Utils.getSession('user');
 
     // this.dtUsuario.fechaAlta = moment(this.dtUsuario.fechaAlta).format(
     //   'YYYY-MM-DD'
@@ -55,7 +78,7 @@ export class PanelHabilitacionComponent implements OnInit {
     try {
       let data = await lastValueFrom(this.wsdl.insert(this.dtUsuario));
       let res = JSON.parse(JSON.stringify(data));
-      
+
       if (res.code === '201') {
         //alert("usuario insertado")
 
@@ -81,28 +104,6 @@ export class PanelHabilitacionComponent implements OnInit {
       } else {
       }
     } catch (error) {}
-  }
-
-  pregunta() {
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: 'Usted está por habilitar un nuevo usuario!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '¡Sí!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.insert();
-      } else if (result.dismiss === 'cancel') {
-        Swal.fire({
-          title: 'Cancelado',
-          text: 'La operación no se realizó :)',
-          icon: 'error',
-        });
-      }
-    });
   }
 
   doFound(event: any) {
