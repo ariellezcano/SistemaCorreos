@@ -24,6 +24,8 @@ export class LstReclamosComponent implements OnInit {
   items: UsuarioReclamoDTO[];
   item: Reclamos;
 
+  modalRef: any;
+
   idPlataformaSeleccionada!: number;
   idReclamoSeleccionado!: number;
 
@@ -43,16 +45,13 @@ export class LstReclamosComponent implements OnInit {
   }
 
   abrirModal(idReclamo: number, idPlataforma: number) {
-    this.idReclamoSeleccionado = idReclamo;
-    this.idPlataformaSeleccionada = idPlataforma;
+  this.idReclamoSeleccionado = idReclamo;
+  this.idPlataformaSeleccionada = idPlataforma;
 
-    // abrir modal
-    const modalEl = document.getElementById('modalReclamo');
-    const modal = new bootstrap.Modal(modalEl!);
-    modal.show();
+  const modalEl = document.getElementById('modalReclamo')!;
+  this.modalRef = new bootstrap.Modal(modalEl); // 🔴 GUARDAMOS REFERENCIA
+  this.modalRef.show();
   }
-
-  
 
   async actualizar() {
     this.item.activo = false;
@@ -83,31 +82,42 @@ export class LstReclamosComponent implements OnInit {
   }
 
   async editarPlataforma() {
-    try {
-      const data = await firstValueFrom(
-        this.wsdlPlataforma.patchEstado(
-          this.idPlataformaSeleccionada,
-          this.item.estado
-        )
-      );
-      const result = JSON.parse(JSON.stringify(data));
-      if (result?.code === '200') {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Modificación realizada',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+  this.item.estado = "Alta";
+
+  try {
+    const data = await firstValueFrom(
+      this.wsdlPlataforma.patchEstado(
+        this.idPlataformaSeleccionada,
+        this.item.estado
+      )
+    );
+    const result = JSON.parse(JSON.stringify(data));
+
+    if (result?.code === '200') {
+
+      // 🔴 CERRAR MODAL
+      if (this.modalRef) {
+        this.modalRef.hide();
       }
-    } catch (error) {
+
       Swal.fire({
-        title: 'Error al modificar la plataforma',
-        text: 'Ocurrió un error inesperado',
-        icon: 'error',
+        position: 'top-end',
+        icon: 'success',
+        title: 'Modificación realizada',
+        showConfirmButton: false,
+        timer: 1500,
       });
     }
+
+  } catch (error) {
+    Swal.fire({
+      title: 'Error al modificar la plataforma',
+      text: 'Ocurrió un error inesperado',
+      icon: 'error',
+    });
   }
+}
+
 
 
   nuevoReclamo() {

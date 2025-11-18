@@ -64,7 +64,6 @@ export class FilPlataformasComponent implements OnInit {
 
       // Espera a que el Observable emita
       const result = await lastValueFrom(data$);
-      console.log('filtro', result);
       const Json = JSON.parse(JSON.stringify(result));
 
       // console.log('Resultado real:', Json); // Aquí vas a ver code, data, etc.

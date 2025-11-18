@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {
+  RegistroUsuarioService,
+  UsuarioService,
+} from '../services/index.service';
+import Swal from 'sweetalert2';
+import { Usuarios } from '../modelos/index.models';
+import { lastValueFrom } from 'rxjs';
+import { Utils } from '../utils/utils';
 
 @Component({
   selector: 'app-login',
@@ -10,29 +18,134 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   anioActual = new Date().getFullYear();
 
+  item: Usuarios;
+
+  id: number = 0;
+  datosPersonal: any;
+
   form = this.fb.group({
     usuario: ['', Validators.required],
     contrasenia: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private router: Router) {}
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private wsdlRegistro: RegistroUsuarioService,
+    private wsdlUsuario: UsuarioService
+  ) {
+    this.item = new Usuarios();
   }
 
-  login() {
+  ngOnInit(): void {
+  }
+
+  async login() {
     if (this.form.invalid) return;
 
     const { usuario, contrasenia } = this.form.value;
 
     // Simulación simple (luego podés conectar con tu API)
-    if (usuario === 'policia' && contrasenia === 'policia') {
-      this.router.navigate(['/pages']);
-    } else {
-      alert('Credenciales incorrectas. Intente nuevamente.');
+    try {
+      // Buscar el usuario logeado en Policia Digital
+      let res = await this.wsdlRegistro.getLogin(usuario, contrasenia);
+      const jsonData = JSON.parse(JSON.stringify(res));
+
+      if (jsonData.code == 200) {
+
+        //console.log(jsonData)
+        this.id = jsonData.data;
+
+        // Si el usuario existe se procede a buscar al mismo usuario
+        // en la base de datos del sistema
+        if(this.id > 0){
+          this.login2();
+        }
+      
+      } else if (jsonData.code == 204) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Alerta...',
+          text: 'Usted no se encuentra registrado en el Sistema RePO',
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Un error ha ocurrido',
+          text: jsonData.msg,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: 'Oops...',
+        icon: 'error',
+        text: 'Un error ha ocurrido',
+      });
     }
   }
 
-  
+  // login a la base de datos del sistema
+  async login2() {
+    this.id = 3908;
+    try {
+      let data$ = this.wsdlUsuario.getId(this.id);
+      const result = await lastValueFrom(data$);
+      const Json = JSON.parse(JSON.stringify(result));
+
+      if (Json.code == 200) {
+        this.item = Json.dato;
+        if (!this.item.baja && this.item.activo) {
+          
+          this.datosPersonal = {
+            apellido: this.item.apellido,
+            nombre: this.item.nombre,
+            //rol: this.item.rolNavigation?.nombre,
+          };
+
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'Bienvenido Sr/a: ' + this.item.apellido,
+          });
+
+          // guardar en local storage
+          Utils.setSession(
+            'personal',
+            JSON.stringify(this.datosPersonal)
+          );
+          Utils.setSession('user', JSON.stringify(this.item.idUsuario));
+
+          // redirección a la pagina principal
+          this.router.navigate(['/pages/lst_usuario']);
+        } else {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Alerta...',
+            text: 'Usuario dado de baja, contáctese con el administrador del sistema!',
+          });
+        }
+      } else if (Json.code == 401) {
+        Swal.fire(
+          'Usuario no habilitado',
+          'Por favor contáctese con el administrador del sistema para generar su usuario',
+          'info'
+        );
+      } else {
+        Swal.fire('Oops...', Json.msg, 'error');
+      }
+    } catch (error) {
+      Swal.fire('Oops...', 'Algo salio mal vuelva a intentar ', 'error');
+    }
+  }
+
+  //  if (usuario === 'policia' && contrasenia === 'policia') {
+  //     this.router.navigate(['/pages']);
+  //   } else {
+  //     alert('Credenciales incorrectas. Intente nuevamente.');
+  //   }
 }

@@ -81,7 +81,7 @@ export class AbmActualizacionplataformaComponent implements OnInit {
       try {
         const data = await firstValueFrom(this.wsdl.patch(this.id, this.item.estado, this.item.fechaAlta, this.item.fechaNotificacion));
         const result = JSON.parse(JSON.stringify(data));
-  
+        //console.log("result", result);
         if (result.code === '200') {
           Swal.fire({
             position: 'top-end',
