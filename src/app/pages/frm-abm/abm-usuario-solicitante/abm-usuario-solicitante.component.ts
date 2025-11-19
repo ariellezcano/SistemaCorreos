@@ -8,6 +8,7 @@ import {
   UsuarioSolicitante,
 } from 'src/app/modelos/index.models';
 import { UsuarioSolicitanteService } from 'src/app/services/index.service';
+import { Utils } from 'src/app/utils/utils';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -98,7 +99,7 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
 
   private async procesarGuardado() {
     try {
-      this.item.usuarioCrea = 9;
+      this.item.usuarioCrea = Number(Utils.getSession('user'));
       const data = await firstValueFrom(this.wsdl.insert(this.item));
       const result = JSON.parse(JSON.stringify(data));
 

@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FilUsuariosComponent } from '../../filtros/fil-usuarios/fil-usuarios.component';
 import { firstValueFrom } from 'rxjs';
 import { UsuarioRol } from 'src/app/modelos/componentes/relacionModelos/usuarioRol';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-usuarios',
@@ -51,7 +52,8 @@ export class LstUsuariosComponent implements OnInit {
       .then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const res: any = await firstValueFrom(this.wsdl.delete(id, 1));
+            let usuarioBaja = Number(Utils.getSession('user'));
+            const res: any = await firstValueFrom(this.wsdl.delete(id, usuarioBaja));
             const Json = JSON.parse(JSON.stringify(res));
 
             if (Json.code === '200') {

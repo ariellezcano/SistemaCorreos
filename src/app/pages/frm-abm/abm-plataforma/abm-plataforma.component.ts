@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { firstValueFrom } from 'rxjs';
 import { Plataforma } from 'src/app/modelos/index.models';
 import { PlataformaService } from 'src/app/services/index.service';
+import { Utils } from 'src/app/utils/utils';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -105,7 +106,7 @@ export class AbmPlataformaComponent implements OnInit {
       } catch (error: any) {
         if (error.status == '500') {
           Swal.fire({
-            title: 'Error al crear registro, verifique!',
+            title: 'Error al editar registro, verifique!',
             icon: 'error',
           });
         }
@@ -113,9 +114,11 @@ export class AbmPlataformaComponent implements OnInit {
     }
 
   async crear() {
+    
     this.item.correoInstitucional = Number(this.id);
-    this.item.usuarioSolicita = 9;
-    this.item.usuarioCrea = 9;
+    this.item.usuarioSolicita = Number(Utils.getSession('user'));;
+    this.item.usuarioCrea = Number(Utils.getSession('user'));;
+
     try {
       const data = await firstValueFrom(this.wsdl.insert(this.item));
       const result = JSON.parse(JSON.stringify(data));

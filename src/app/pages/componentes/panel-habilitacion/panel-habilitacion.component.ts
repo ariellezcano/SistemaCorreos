@@ -67,21 +67,12 @@ export class PanelHabilitacionComponent implements OnInit {
   }
 
   public async insert() {
-    //this.dtUsuario.sistema = 1;
-    //this.dtUsuario.userCreaRepo = 1;
-    //console.log('usuario a insertar', this.dtUsuario);
     this.dtUsuario.userCreaRepo = Utils.getSession('user');
-
-    // this.dtUsuario.fechaAlta = moment(this.dtUsuario.fechaAlta).format(
-    //   'YYYY-MM-DD'
-    // );
     try {
       let data = await lastValueFrom(this.wsdl.insert(this.dtUsuario));
       let res = JSON.parse(JSON.stringify(data));
 
       if (res.code === '201') {
-        //alert("usuario insertado")
-
         try {
           let data = await this.wsdlRegistro
             .patchSistemaHabilitados(
@@ -107,7 +98,7 @@ export class PanelHabilitacionComponent implements OnInit {
   }
 
   doFound(event: any) {
-    console.log('Event', event);
+    //console.log('Event', event);
     this.proceso = true;
     ////console.log('event', event);
     if (event != null) {
@@ -117,10 +108,10 @@ export class PanelHabilitacionComponent implements OnInit {
       this.dtUsuario.nombre = event.nombre;
       this.dtUsuario.apellido = event.apellido;
       this.dtUsuario.norDni = event.DNI;
-      this.dtUsuario.usuarioRepo = event.persona;
+      this.dtUsuario.persona = event.id_persona;
       //this.dtUsuario.rol = event.rol;
       //this.dtUsuario.rolNombre = event.rol.nombre;
-      this.dtUsuario.usuarioRepo = event.id_persona;
+      this.dtUsuario.usuarioRepo = event.id_repo;
     }
 
     // if (event.persona != null) {

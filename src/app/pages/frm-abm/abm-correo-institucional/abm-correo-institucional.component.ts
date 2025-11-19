@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { firstValueFrom } from 'rxjs';
 import { Correo } from 'src/app/modelos/index.models';
 import { CorreoInstitucionalService } from 'src/app/services/componentes/correo-institucional.service';
+import { Utils } from 'src/app/utils/utils';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,6 +17,10 @@ export class AbmCorreoInstitucionalComponent implements OnInit {
   editando = false;
   mostrarPass = false;
   id: any;
+
+  dominios = ['@chaco.gov.ar', '@chaco.gob.ar'];
+  mostrarSugerencias = false;
+  seleccionadoIndex = -1;
 
   constructor(
     private wsdl: CorreoInstitucionalService,
@@ -104,7 +109,7 @@ export class AbmCorreoInstitucionalComponent implements OnInit {
 
   async crear() {
     try {
-      this.item.usuarioCrea = 9;
+      this.item.usuarioCrea = Number(Utils.getSession('user'));;
       this.item.usuarioSolicitante = Number(this.id);
       const data = await firstValueFrom(this.wsdl.insert(this.item));
       const result = JSON.parse(JSON.stringify(data));
@@ -136,5 +141,56 @@ export class AbmCorreoInstitucionalComponent implements OnInit {
   cancelar() {
     //this.item = {};
     this.editando = false;
+  }
+
+  onCorreoInput() {
+    const value = this.item.correoInstitucional || '';
+
+    if (value.includes('@') && !value.includes('.')) {
+      this.mostrarSugerencias = true;
+    } else {
+      this.mostrarSugerencias = false;
+      this.seleccionadoIndex = -1;
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent) {
+    if (!this.mostrarSugerencias) return;
+
+    const total = this.dominios.length;
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        this.seleccionadoIndex = (this.seleccionadoIndex + 1) % total;
+        break;
+
+      case 'ArrowUp':
+        event.preventDefault();
+        this.seleccionadoIndex = (this.seleccionadoIndex - 1 + total) % total;
+        break;
+
+      case 'Enter':
+        event.preventDefault();
+        if (this.seleccionadoIndex >= 0) {
+          this.seleccionarDominio(this.dominios[this.seleccionadoIndex]);
+        }
+        break;
+
+      case 'Escape':
+        this.mostrarSugerencias = false;
+        this.seleccionadoIndex = -1;
+        break;
+    }
+  }
+
+  seleccionarDominio(dominio: string) {
+    const correo = this.item.correoInstitucional;
+    const usuario = correo.split('@')[0];
+
+    this.item.correoInstitucional = usuario + dominio;
+
+    this.mostrarSugerencias = false;
+    this.seleccionadoIndex = -1;
   }
 }

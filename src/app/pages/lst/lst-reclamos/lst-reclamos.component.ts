@@ -17,10 +17,9 @@ import { FilReclamosComponent } from '../../filtros/fil-reclamos/fil-reclamos.co
   styleUrls: ['./lst-reclamos.component.scss'],
 })
 export class LstReclamosComponent implements OnInit {
-  
   @ViewChild(FilReclamosComponent, { static: false })
-    fil!: FilReclamosComponent;
-  
+  fil!: FilReclamosComponent;
+
   items: UsuarioReclamoDTO[];
   item: Reclamos;
 
@@ -45,17 +44,17 @@ export class LstReclamosComponent implements OnInit {
   }
 
   abrirModal(idReclamo: number, idPlataforma: number) {
-  this.idReclamoSeleccionado = idReclamo;
-  this.idPlataformaSeleccionada = idPlataforma;
+    this.idReclamoSeleccionado = idReclamo;
+    this.idPlataformaSeleccionada = idPlataforma;
 
-  const modalEl = document.getElementById('modalReclamo')!;
-  this.modalRef = new bootstrap.Modal(modalEl); // 🔴 GUARDAMOS REFERENCIA
-  this.modalRef.show();
+    const modalEl = document.getElementById('modalReclamo')!;
+    this.modalRef = new bootstrap.Modal(modalEl); // 🔴 GUARDAMOS REFERENCIA
+    this.modalRef.show();
   }
 
   async actualizar() {
     this.item.activo = false;
-    alert(this.idReclamoSeleccionado)
+    alert(this.idReclamoSeleccionado);
     try {
       const data = await firstValueFrom(
         this.wsdl.patchReclamo(
@@ -82,43 +81,39 @@ export class LstReclamosComponent implements OnInit {
   }
 
   async editarPlataforma() {
-  this.item.estado = "Alta";
+    this.item.estado = 'Alta';
 
-  try {
-    const data = await firstValueFrom(
-      this.wsdlPlataforma.patchEstado(
-        this.idPlataformaSeleccionada,
-        this.item.estado
-      )
-    );
-    const result = JSON.parse(JSON.stringify(data));
+    try {
+      const data = await firstValueFrom(
+        this.wsdlPlataforma.patchEstado(
+          this.idPlataformaSeleccionada,
+          this.item.estado
+        )
+      );
+      const result = JSON.parse(JSON.stringify(data));
 
-    if (result?.code === '200') {
+      if (result?.code === '200') {
+        // 🔴 CERRAR MODAL
+        if (this.modalRef) {
+          this.modalRef.hide();
+        }
 
-      // 🔴 CERRAR MODAL
-      if (this.modalRef) {
-        this.modalRef.hide();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Modificación realizada',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
-
+    } catch (error) {
       Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Modificación realizada',
-        showConfirmButton: false,
-        timer: 1500,
+        title: 'Error al modificar la plataforma',
+        text: 'Ocurrió un error inesperado',
+        icon: 'error',
       });
     }
-
-  } catch (error) {
-    Swal.fire({
-      title: 'Error al modificar la plataforma',
-      text: 'Ocurrió un error inesperado',
-      icon: 'error',
-    });
   }
-}
-
-
 
   nuevoReclamo() {
     this.route.navigate(['/pages/abm_reclamos']);

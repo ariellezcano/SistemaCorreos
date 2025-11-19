@@ -8,6 +8,7 @@ import { firstValueFrom } from 'rxjs';
 import * as bootstrap from 'bootstrap';
 import { DetalleCorreoService } from 'src/app/services/index.service';
 import { DetalleCorreo } from 'src/app/modelos/index.models';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-correo-institucional',
@@ -133,7 +134,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
     this.itemDetalle.correoInstitucional = Number(
       this.correoSeleccionado.idCorreo
     );
-    this.itemDetalle.usuarioRecibe = 9;
+    this.itemDetalle.usuarioRecibe = Number(Utils.getSession('user'));;
     this.itemDetalle.activo = true;
 
     try {
@@ -161,7 +162,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   }
 
   doFound(event: UsuarioCorreoDto[]) {
-    console.log('llegue');
+    // console.log('llegue');
     this.items = event;
   }
 

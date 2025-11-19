@@ -6,6 +6,7 @@ import { Plataforma } from 'src/app/modelos/index.models';
 import { PlataformaService } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
 import { FilPlataformasComponent } from '../../filtros/fil-plataformas/fil-plataformas.component';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-plataformas',
@@ -59,7 +60,9 @@ export class LstPlataformasComponent implements OnInit {
   async eliminacion(plataforma: number) {
     try {
       // capturar el idUsuarioBaja
-      const data = await firstValueFrom(this.wsdl.delete(plataforma, 8));
+      let usuarioBaja = Number(Utils.getSession('user'));
+      
+      const data = await firstValueFrom(this.wsdl.delete(plataforma, usuarioBaja));
       const result = JSON.parse(JSON.stringify(data));
 
       if (result.code === '200') {

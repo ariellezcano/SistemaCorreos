@@ -8,6 +8,7 @@ import {
   PlataformaService,
   ReclamoService,
 } from 'src/app/services/index.service';
+import { Utils } from 'src/app/utils/utils';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -44,7 +45,7 @@ export class AbmReclamosComponent implements OnInit {
         this.wsdl.verificar(this.item.plataforma)
       );
       const result = JSON.parse(JSON.stringify(data));
-      console.log("resultado:", result);
+      //console.log("resultado:", result);
       if (result.code === '200') {
         Swal.fire({
           icon: 'warning',
@@ -60,15 +61,15 @@ export class AbmReclamosComponent implements OnInit {
           icon: 'error',
         });
       } else if (error.status === 404) {
-        alert("404")
+        //alert("404")
         this.crearReclamo();
       }
     }
   }
 
   async crearReclamo() {
-    this.item.usuarioCrea = 8;
-
+    this.item.usuarioCrea = Number(Utils.getSession('user'));
+    
     //console.log("items reclamo", this.item);
     const data = await firstValueFrom(this.wsdl.insert(this.item));
     const result = JSON.parse(JSON.stringify(data));

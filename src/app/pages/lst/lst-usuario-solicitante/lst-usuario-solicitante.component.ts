@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { firstValueFrom } from 'rxjs';
 import { Modal } from 'bootstrap';
 import * as bootstrap from 'bootstrap';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-usuario-solicitante',
@@ -65,7 +66,11 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
       .then(async (result) => {
         if (result.isConfirmed) {
           try {
-            const res: any = await firstValueFrom(this.wsdl.delete(id, 7));
+            
+            let usuarioBaja = Number(Utils.getSession('user'));
+            const res: any = await firstValueFrom(
+              this.wsdl.delete(id, usuarioBaja)
+            );
             const Json = JSON.parse(JSON.stringify(res));
 
             if (Json.code === '200') {
@@ -181,8 +186,6 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
         });
 
         this.cerrarModalJerarquia();
-
-        // Si querés refrescar lista después
 
         this.fil.filter();
       } else {

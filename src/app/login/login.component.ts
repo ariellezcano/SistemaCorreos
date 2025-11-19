@@ -37,31 +37,26 @@ export class LoginComponent implements OnInit {
     this.item = new Usuarios();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async login() {
     if (this.form.invalid) return;
 
     const { usuario, contrasenia } = this.form.value;
-
-    // Simulación simple (luego podés conectar con tu API)
     try {
       // Buscar el usuario logeado en Policia Digital
       let res = await this.wsdlRegistro.getLogin(usuario, contrasenia);
       const jsonData = JSON.parse(JSON.stringify(res));
 
       if (jsonData.code == 200) {
-
         //console.log(jsonData)
         this.id = jsonData.data;
 
         // Si el usuario existe se procede a buscar al mismo usuario
         // en la base de datos del sistema
-        if(this.id > 0){
+        if (this.id > 0) {
           this.login2();
         }
-      
       } else if (jsonData.code == 204) {
         Swal.fire({
           icon: 'error',
@@ -86,7 +81,7 @@ export class LoginComponent implements OnInit {
 
   // login a la base de datos del sistema
   async login2() {
-    this.id = 3908;
+    //this.id = 3908;
     try {
       let data$ = this.wsdlUsuario.getId(this.id);
       const result = await lastValueFrom(data$);
@@ -94,12 +89,11 @@ export class LoginComponent implements OnInit {
 
       if (Json.code == 200) {
         this.item = Json.dato;
+        console.log("login 2", this.item)
         if (!this.item.baja && this.item.activo) {
-          
           this.datosPersonal = {
             apellido: this.item.apellido,
             nombre: this.item.nombre,
-            //rol: this.item.rolNavigation?.nombre,
           };
 
           const Toast = Swal.mixin({
@@ -114,10 +108,7 @@ export class LoginComponent implements OnInit {
           });
 
           // guardar en local storage
-          Utils.setSession(
-            'personal',
-            JSON.stringify(this.datosPersonal)
-          );
+          Utils.setSession('personal', JSON.stringify(this.datosPersonal));
           Utils.setSession('user', JSON.stringify(this.item.idUsuario));
 
           // redirección a la pagina principal
@@ -142,10 +133,4 @@ export class LoginComponent implements OnInit {
       Swal.fire('Oops...', 'Algo salio mal vuelva a intentar ', 'error');
     }
   }
-
-  //  if (usuario === 'policia' && contrasenia === 'policia') {
-  //     this.router.navigate(['/pages']);
-  //   } else {
-  //     alert('Credenciales incorrectas. Intente nuevamente.');
-  //   }
 }
