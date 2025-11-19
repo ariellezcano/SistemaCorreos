@@ -75,7 +75,7 @@
                       : 'bg-secondary bg-opacity-50'
                   "
                 >
-                  {{ item.sifcop ? 'Sí' : 'No' }}
+                  {{ item.sifcop ? "Sí" : "No" }}
                 </span>
               </td>
               <td class="text-center">
@@ -87,12 +87,12 @@
                       : 'bg-secondary bg-opacity-50'
                   "
                 >
-                  {{ item.miminseg ? 'Sí' : 'No' }}
+                  {{ item.miminseg ? "Sí" : "No" }}
                 </span>
               </td>
 
               <!-- FECHAS -->
-              <td>{{ item.fechaSolicitud | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.fechaSolicitud | date : "dd/MM/yyyy" }}</td>
 
               <!-- ESTADO -->
               <td class="text-center">
@@ -107,15 +107,53 @@
                   {{ item.estadoSolicitud }}
                 </span>
               </td>
-              <td>{{ item.fechaAlta | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ item.fechaNotif | date: 'dd/MM/yyyy' }}</td>
+
+              <td class="text-center">
+                <span
+                  *ngIf="
+                    item.fechaAlta && item.fechaAlta !== '0001-01-01T00:00:00';
+                    else sinAlta
+                  "
+                >
+                  {{ item.fechaAlta | date : "dd/MM/yyyy" }}
+                </span>
+
+                <ng-template #sinAlta>
+                  <span
+                    class="badge px-3 py-2"
+                    style="background-color: #ffe5d0; color: #b25e09"
+                  >
+                    Sin alta
+                  </span>
+                </ng-template>
+              </td>
+              <td class="text-center">
+                <span
+                  *ngIf="
+                    item.fechaNotif &&
+                      item.fechaNotif !== '0001-01-01T00:00:00';
+                    else sinNotif
+                  "
+                >
+                  {{ item.fechaNotif | date : "dd/MM/yyyy" }}
+                </span>
+
+                <ng-template #sinNotif>
+                  <span
+                    class="badge px-3 py-2"
+                    style="background-color: #e0f0ff; color: #084298"
+                  >
+                    Sin notificar
+                  </span>
+                </ng-template>
+              </td>
 
               <!-- ACCIONES -->
               <td class="text-center">
                 <button
                   class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
                   title="Editar"
-                 (click)="linkear(item.idCorreo)"
+                  (click)="linkear(item.idCorreo)"
                 >
                   <i class="bi bi-pencil-square"></i>
                 </button>
@@ -125,7 +163,7 @@
                   title="Eliminar"
                   (click)="eliminar(item.idPlataforma)"
                 >
-                <!--  -->
+                  <!--  -->
                   <i class="bi bi-trash"></i>
                 </button>
               </td>
