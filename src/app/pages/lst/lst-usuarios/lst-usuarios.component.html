@@ -46,12 +46,11 @@
 
           <tbody>
             <tr *ngFor="let item of items; index as i">
-              <td>{{ item.IdUsuario }}</td>
+              <td>{{ item.idUsuario }}</td>
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>
               <td>{{ item.dni }}</td>
               <td>
-                
                 <span class="badge rol-badge px-3 py-2" [ngClass]="item.rol">
                   {{ item.rol }}
                 </span>
@@ -71,7 +70,7 @@
                   <button
                     class="btn btn-sm btn-outline-danger rounded-3 px-2"
                     title="Eliminar"
-                    (click)="eliminar(item.IdUsuario)"
+                    (click)="eliminar(item.idUsuario)"
                   >
                     <i class="bi bi-trash"></i>
                   </button>

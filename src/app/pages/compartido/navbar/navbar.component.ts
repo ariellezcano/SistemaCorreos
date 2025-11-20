@@ -39,6 +39,6 @@ export class NavbarComponent implements OnInit {
   cerrar(): void {
     
     Utils.clearSession();
-        this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
   }
 }

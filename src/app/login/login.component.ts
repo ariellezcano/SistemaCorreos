@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { Usuarios } from '../modelos/index.models';
 import { lastValueFrom } from 'rxjs';
 import { Utils } from '../utils/utils';
+import { UsuarioRol } from '../modelos/componentes/relacionModelos/usuarioRol';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ import { Utils } from '../utils/utils';
 export class LoginComponent implements OnInit {
   anioActual = new Date().getFullYear();
 
-  item: Usuarios;
+  item: UsuarioRol;
 
   id: number = 0;
   datosPersonal: any;
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
     private wsdlRegistro: RegistroUsuarioService,
     private wsdlUsuario: UsuarioService
   ) {
-    this.item = new Usuarios();
+    this.item = new UsuarioRol();
   }
 
   ngOnInit(): void {}
@@ -89,11 +90,12 @@ export class LoginComponent implements OnInit {
 
       if (Json.code == 200) {
         this.item = Json.dato;
-        console.log("login 2", this.item)
+       // console.log("login 2", this.item)
         if (!this.item.baja && this.item.activo) {
           this.datosPersonal = {
             apellido: this.item.apellido,
             nombre: this.item.nombre,
+            rol: this.item.rol
           };
 
           const Toast = Swal.mixin({

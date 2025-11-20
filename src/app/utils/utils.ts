@@ -23,14 +23,7 @@ export class Utils {
   }
 
   public static clearSession() {
-    localStorage.clear();
-    /*
-        for (let i = 0; i < localStorage.length; i++) {
-          let key = this.loc.key(i);
-          let value = this.loc.getItem(key);
-          //console.log(key, value);
-        }
-        */
+    sessionStorage.clear();
   }
 
   public static getHeader() {

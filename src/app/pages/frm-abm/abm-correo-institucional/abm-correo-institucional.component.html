@@ -16,36 +16,35 @@
       <form (ngSubmit)="guardar()" #formCorreo="ngForm" class="row g-3">
         <!-- CORREO INSTITUCIONAL -->
         <div class="col-md-6 position-relative">
-  <label class="form-label fw-semibold">Correo Institucional</label>
+          <label class="form-label fw-semibold">Correo Institucional</label>
 
-  <input
-    type="email"
-    class="form-control"
-    [(ngModel)]="item.correoInstitucional"
-    name="correoInstitucional"
-    placeholder="ejemplo@institucion.gob.ar"
-    required
-    (input)="onCorreoInput()"
-    (keydown)="onKeyDown($event)"
-  />
+          <input
+            type="email"
+            class="form-control"
+            [(ngModel)]="item.correoInstitucional"
+            name="correoInstitucional"
+            placeholder="ejemplo@institucion.gob.ar"
+            required
+            (input)="onCorreoInput()"
+            (keydown)="onKeyDown($event)"
+          />
 
-  <!-- SUGERENCIAS -->
-  <ul
-    *ngIf="mostrarSugerencias"
-    class="list-group position-absolute w-100 shadow-sm"
-    style="z-index: 20;"
-  >
-    <li
-      class="list-group-item"
-      *ngFor="let dominio of dominios; let i = index"
-      [class.active]="i === seleccionadoIndex"
-      (click)="seleccionarDominio(dominio)"
-    >
-      {{ dominio }}
-    </li>
-  </ul>
-</div>
-
+          <!-- SUGERENCIAS -->
+          <ul
+            *ngIf="mostrarSugerencias"
+            class="list-group position-absolute w-100 shadow-sm"
+            style="z-index: 20"
+          >
+            <li
+              class="list-group-item"
+              *ngFor="let dominio of dominios; let i = index"
+              [class.active]="i === seleccionadoIndex"
+              (click)="seleccionarDominio(dominio)"
+            >
+              {{ dominio }}
+            </li>
+          </ul>
+        </div>
 
         <!-- CONTRASEÑA -->
         <div class="col-md-6">
@@ -86,7 +85,9 @@
             <option value="Personal Institucional">
               Personal Institucional
             </option>
-            <option value="Institucional Dependencia">Institucional Unidad</option>
+            <option value="Institucional Dependencia">
+              Institucional Unidad
+            </option>
           </select>
         </div>
 
