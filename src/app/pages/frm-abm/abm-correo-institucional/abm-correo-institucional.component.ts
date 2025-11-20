@@ -17,6 +17,7 @@ export class AbmCorreoInstitucionalComponent implements OnInit {
   editando = false;
   mostrarPass = false;
   id: any;
+  rol!: string;
 
   dominios = ['@chaco.gov.ar', '@chaco.gob.ar'];
   mostrarSugerencias = false;
@@ -33,6 +34,13 @@ export class AbmCorreoInstitucionalComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.url.snapshot.params['id'];
     this.ObtenerId();
+    //this.rol = Utils.getSession('personal')?.rol || '';
+
+    //capturo el rol
+    const personalJson = Utils.getSession('personal');
+    const personal = personalJson ? JSON.parse(personalJson) : null;
+
+    this.rol = personal?.rol || '';
   }
 
   async ObtenerId() {
@@ -109,7 +117,7 @@ export class AbmCorreoInstitucionalComponent implements OnInit {
 
   async crear() {
     try {
-      this.item.usuarioCrea = Number(Utils.getSession('user'));;
+      this.item.usuarioCrea = Number(Utils.getSession('user'));
       this.item.usuarioSolicitante = Number(this.id);
       const data = await firstValueFrom(this.wsdl.insert(this.item));
       const result = JSON.parse(JSON.stringify(data));

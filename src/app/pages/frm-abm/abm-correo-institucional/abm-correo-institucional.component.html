@@ -47,7 +47,7 @@
         </div>
 
         <!-- CONTRASEÑA -->
-        <div class="col-md-6">
+        <div class="col-md-6" *ngIf="editando">
           <label class="form-label fw-semibold">Contraseña</label>
           <div class="input-group">
             <input
@@ -55,14 +55,17 @@
               class="form-control"
               [(ngModel)]="item.contrasenia"
               name="contrasenia"
+              [readonly]="rol !== 'MANAGER'"
               placeholder="Ingrese contraseña"
               required
             />
+
             <button
               type="button"
               class="btn btn-outline-secondary"
               (click)="mostrarPass = !mostrarPass"
               title="Mostrar / Ocultar"
+              [disabled]="rol !== 'MANAGER'"
             >
               <i
                 class="bi"
