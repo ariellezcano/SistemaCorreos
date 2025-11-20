@@ -101,7 +101,11 @@
                   {{ item.estadoReclamo }}
                 </span>
               </td>
-              <td>{{ item.fechaSolucion | date : "dd/MM/yyyy" }}</td>
+              <td
+  [ngClass]="item.fechaSolucion ? 'text-success fw-semibold' : 'text-danger fw-bold'"
+>
+  {{ item.fechaSolucion ? (item.fechaSolucion | date:'dd/MM/yyyy') : 'Sin solucionar' }}
+</td>
 
               <td>
                 <span class="text-muted fst-italic">

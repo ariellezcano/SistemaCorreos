@@ -1,22 +1,28 @@
 <div class="container my-5">
-  <div class="card shadow-lg border-0">
-    <div
-      class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
-    >
-      <h4 class="m-0">
-        <i class="bi bi-people-fill me-2"></i> Lista de Usuarios
-      </h4>
-      <button type="button" (click)="habilitarUsuario()"
-        class="btn btn-light text-primary fw-semibold"
-      >
-        <i class="fa fa-plus me-2"></i> Habilitar Nuevo usuario
-      </button>
-    </div>
+  <div class="card shadow-lg border-0 rounded-4">
+    <!-- HEADER -->
+<div
+  class="card-header header-usuarios d-flex justify-content-between align-items-center rounded-top-4 py-3 px-4"
+>
+  <h4 class="m-0 d-flex align-items-center text-white">
+    <i class="bi bi-people-fill me-2 fs-4"></i>
+    Lista de Usuarios
+  </h4>
 
+  <button
+    type="button"
+    (click)="habilitarUsuario()"
+    class="btn btn-agregar-usuario px-3 py-2 rounded-3"
+  >
+    <i class="bi bi-person-plus-fill me-2"></i> Nuevo Usuario
+  </button>
+</div>
+
+    <!-- BODY -->
     <div class="card-body bg-light">
-      <!-- Filtros y paginado -->
+      <!-- FILTRO -->
       <div
-        class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3 w-100"
+        class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3"
       >
         <app-fil-usuarios
           (emmit)="doFound($event)"
@@ -24,46 +30,57 @@
         ></app-fil-usuarios>
       </div>
 
-      <!-- Tabla de usuarios -->
+      <!-- TABLA -->
       <div class="table-responsive rounded shadow-sm">
         <table class="table table-striped table-hover align-middle mb-0">
           <thead class="table-primary">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Apellido</th>
-              <th scope="col">DNI</th>
-              <th scope="col">Rol</th>
-              <th scope="col" class="text-center">Acciones</th>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>DNI</th>
+              <th>Rol</th>
+              <th class="text-center">Acciones</th>
             </tr>
           </thead>
+
           <tbody>
             <tr *ngFor="let item of items; index as i">
               <td>{{ item.IdUsuario }}</td>
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>
               <td>{{ item.dni }}</td>
-              <td>{{ item.rol }}</td>
+              <td>
+                
+                <span class="badge rol-badge px-3 py-2" [ngClass]="item.rol">
+                  {{ item.rol }}
+                </span>
+              </td>
+
+              <!-- ACCIONES -->
               <td class="text-center">
-                <button
-                  class="btn btn-sm btn-outline-primary me-2"
-                  title="Editar"
-                  (click)="editar(item.IdUsuario, item)"
-                >
-                  <i class="bi bi-pencil-square"></i>
-                </button>
-                <button
-                  class="btn btn-sm btn-outline-danger"
-                  title="Eliminar"
-                  (click)="eliminar(item.IdUsuario)"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
+                <div class="d-flex justify-content-center gap-2">
+                  <!-- <button
+                    class="btn btn-sm btn-outline-primary rounded-3 px-2"
+                    title="Editar"
+                    (click)="editar(item.IdUsuario, item)"
+                  >
+                    <i class="bi bi-pencil-square"></i>
+                  </button> -->
+
+                  <button
+                    class="btn btn-sm btn-outline-danger rounded-3 px-2"
+                    title="Eliminar"
+                    (click)="eliminar(item.IdUsuario)"
+                  >
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
               </td>
             </tr>
 
             <tr *ngIf="items.length === 0">
-              <td colspan="4" class="text-center text-muted py-3">
+              <td colspan="6" class="text-center text-muted py-3">
                 No hay usuarios registrados.
               </td>
             </tr>
@@ -72,7 +89,7 @@
       </div>
     </div>
 
-    <!-- Footer opcional (para resumen o paginado global) -->
+    <!-- FOOTER -->
     <div class="card-footer text-end text-muted small">
       Mostrando {{ items.length }} usuarios
     </div>

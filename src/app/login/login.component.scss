@@ -1,27 +1,32 @@
-/* Fondo claro institucional */
+/* --- FONDO GENERAL --- */
 .login-wrapper {
-  background: linear-gradient(135deg, #e9eef5, #f5f7fa);
+  background: linear-gradient(135deg, #0b1a33, #0f2747);
 }
 
-/* Caja moderna con borde suave */
+/* --- CAJA PRINCIPAL DEL LOGIN --- */
 .login-box {
-  background: white;
+  background: #ffffff;
   padding: 2.5rem;
-  border-radius: 1.2rem;
   width: 100%;
-  max-width: 420px;
-  border: 1px solid #dfe6ee;
+  max-width: 430px;
+  border-radius: 1.2rem;
+
+  /* 🔶 BORDE NARANJA */
+  border: 4px solid #ff7b00;
+
+  /* Sombra elegante */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* Logo */
+/* --- LOGO --- */
 .login-logo {
-  width: 85px;
+  width: 90px;
   margin-bottom: 10px;
 }
 
-/* Títulos más legibles y elegantes */
+/* --- TÍTULOS --- */
 .title {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 700;
   color: #003366;
   margin-bottom: 0;
@@ -29,15 +34,17 @@
 
 .subtitle {
   color: #6c7583;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  margin-top: -5px;
 }
 
-/* Inputs */
+/* --- LABELS --- */
 .form-label {
   font-weight: 600;
   color: #003366;
 }
 
+/* --- INPUTS --- */
 .form-control {
   border-radius: 0.6rem;
   padding: 0.75rem;
@@ -50,7 +57,7 @@
   box-shadow: 0 0 0 0.15rem rgba(0, 85, 165, 0.15);
 }
 
-/* Input group */
+/* --- INPUT ICONOS --- */
 .input-group-text {
   background: #003366;
   color: white;
@@ -58,23 +65,23 @@
   border-radius: 0.6rem 0 0 0.6rem;
 }
 
-/* Botón */
+/* --- BOTÓN PRINCIPAL --- */
 .btn-primary {
   background-color: #003366;
   border: none;
   border-radius: 0.6rem;
   font-size: 1.05rem;
   font-weight: 600;
+  padding: 0.7rem;
 }
 
 .btn-primary:hover {
   background-color: #00264d;
 }
 
-/* Footer */
+/* --- FOOTER --- */
 .footer-text {
-  color: #8c98a8;
-  text-align: center;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
+  color: #c5c9d1;
   margin-top: 1rem;
 }

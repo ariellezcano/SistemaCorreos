@@ -47,8 +47,17 @@
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.correoInstitucional }}</td>
               <td>{{ item.tipoCorreo }}</td>
-              <td>{{ item.fechaHabilitacion ? (item.fechaHabilitacion | date:'dd/MM/yyyy') : 'No fue habilitado' }}</td>
-              <td>{{ item.fechaNotificacion ? (item.fechaNotificacion | date:'dd/MM/yyyy') : 'No fue notificado' }}</td>
+              <td 
+  [ngClass]="item.fechaHabilitacion ? 'text-success fw-semibold' : 'text-warning fw-bold'"
+>
+  {{ item.fechaHabilitacion ? (item.fechaHabilitacion | date:'dd/MM/yyyy') : 'No fue habilitado' }}
+</td>
+
+<td 
+  [ngClass]="item.fechaNotificacion ? 'text-info fw-semibold' : 'text-danger fw-bold'"
+>
+  {{ item.fechaNotificacion ? (item.fechaNotificacion | date:'dd/MM/yyyy') : 'No fue notificado' }}
+</td>
               <td>{{ item.actaRecibida ? 'Sí' : 'No' }}</td>
               <td class="text-center">
                 <button
