@@ -5,7 +5,8 @@
       class="card-header bg-primary text-white d-flex justify-content-between align-items-center rounded-top"
     >
       <h4 class="m-0">
-        <i class="bi bi-envelope-fill me-2"></i> Lista de Correos Institucionales
+        <i class="bi bi-envelope-fill me-2"></i> Lista de Correos
+        Institucionales
       </h4>
     </div>
 
@@ -47,18 +48,34 @@
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.correoInstitucional }}</td>
               <td>{{ item.tipoCorreo }}</td>
-              <td 
-  [ngClass]="item.fechaHabilitacion ? 'text-success fw-semibold' : 'text-warning fw-bold'"
->
-  {{ item.fechaHabilitacion ? (item.fechaHabilitacion | date:'dd/MM/yyyy') : 'No fue habilitado' }}
-</td>
+              <td
+                [ngClass]="
+                  item.fechaHabilitacion
+                    ? 'text-success fw-semibold'
+                    : 'text-warning fw-bold'
+                "
+              >
+                {{
+                  item.fechaHabilitacion
+                    ? (item.fechaHabilitacion | date : "dd/MM/yyyy")
+                    : "No fue habilitado"
+                }}
+              </td>
 
-<td 
-  [ngClass]="item.fechaNotificacion ? 'text-info fw-semibold' : 'text-danger fw-bold'"
->
-  {{ item.fechaNotificacion ? (item.fechaNotificacion | date:'dd/MM/yyyy') : 'No fue notificado' }}
-</td>
-              <td>{{ item.actaRecibida ? 'Sí' : 'No' }}</td>
+              <td
+                [ngClass]="
+                  item.fechaNotificacion
+                    ? 'text-info fw-semibold'
+                    : 'text-danger fw-bold'
+                "
+              >
+                {{
+                  item.fechaNotificacion
+                    ? (item.fechaNotificacion | date : "dd/MM/yyyy")
+                    : "No fue notificado"
+                }}
+              </td>
+              <td>{{ item.actaRecibida ? "Sí" : "No" }}</td>
               <td class="text-center">
                 <button
                   class="btn btn-sm btn-outline-primary me-2"
@@ -72,6 +89,7 @@
                 <button
                   class="btn btn-sm btn-info"
                   title="Plataforma"
+                  *ngIf="item.tipoCorreo !== 'Institucional Dependencia'"
                   (click)="linkear(item.idCorreo)"
                 >
                   <i class="bi bi-patch-plus"></i>
@@ -112,7 +130,8 @@
       <!-- HEADER -->
       <div class="modal-header bg-primary text-white rounded-top">
         <h5 class="modal-title" id="modalDetalleLabel">
-          <i class="bi bi-file-earmark-text-fill me-2"></i> Nuevo Detalle de Acta
+          <i class="bi bi-file-earmark-text-fill me-2"></i> Nuevo Detalle de
+          Acta
         </h5>
         <button
           type="button"

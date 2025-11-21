@@ -47,7 +47,7 @@
         </div>
 
         <!-- CONTRASEÑA -->
-        <div class="col-md-6" *ngIf="editando">
+        <div class="col-md-6">
           <label class="form-label fw-semibold">Contraseña</label>
           <div class="input-group">
             <input
@@ -55,7 +55,7 @@
               class="form-control"
               [(ngModel)]="item.contrasenia"
               name="contrasenia"
-              [readonly]="rol !== 'MANAGER'"
+              [readonly]="rol !== 'MANAGER' && editando"
               placeholder="Ingrese contraseña"
               required
             />
