@@ -29,6 +29,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   itemDetalle: DetalleCorreo;
   usuarioSeleccionado: any = {};
   idSeleccionado!: number;
+  rol: unknown;
 
   constructor(
     private wsdl: CorreoInstitucionalService,
@@ -41,7 +42,16 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.rol = JSON.parse(''+ Utils.getSession('personal')).rol;
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
   }
 
   abmAgregarNuevo(id: number) {
@@ -134,7 +144,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
     this.itemDetalle.correoInstitucional = Number(
       this.correoSeleccionado.idCorreo
     );
-    this.itemDetalle.usuarioRecibe = Number(Utils.getSession('user'));;
+    this.itemDetalle.usuarioRecibe = Number(Utils.getSession('user'));
     this.itemDetalle.activo = true;
 
     try {

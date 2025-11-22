@@ -31,6 +31,7 @@ export class LstUsuariosComponent implements OnInit {
   }
 
   async eliminar(id: any) {
+    console.log("id", id)
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -52,6 +53,7 @@ export class LstUsuariosComponent implements OnInit {
       .then(async (result) => {
         if (result.isConfirmed) {
           try {
+            
             let usuarioBaja = Number(Utils.getSession('user'));
             const res: any = await firstValueFrom(this.wsdl.delete(id, usuarioBaja));
             const Json = JSON.parse(JSON.stringify(res));

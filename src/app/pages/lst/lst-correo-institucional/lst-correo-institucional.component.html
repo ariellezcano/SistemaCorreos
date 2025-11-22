@@ -32,6 +32,7 @@
               <th>DNI</th>
               <th>Jerarquía</th>
               <th>Correo</th>
+              <th>Contraseña</th>
               <th>Tipo</th>
               <th>Habilitación</th>
               <th>Notificación</th>
@@ -47,7 +48,41 @@
               <td>{{ item.dni }}</td>
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.correoInstitucional }}</td>
-              <td>{{ item.tipoCorreo }}</td>
+              <td>
+                <ng-container *ngIf="rol === 'MANAGER'; else oculto">
+                  {{ item.contrasenia }}
+                </ng-container>
+
+                <ng-template #oculto>
+                  <span class="text-muted fst-italic">******</span>
+                </ng-template>
+              </td>
+              <td>
+                <span
+                  class="badge px-3 py-2"
+                  [ngStyle]="{
+                    'background-color':
+                      item.tipoCorreo === 'Personal Institucional'
+                        ? '#198754'
+                        : '#0d6efd',
+                    color: 'white',
+                    'border-radius': '12px',
+                    'font-weight': '600'
+                  }"
+                >
+                  <i
+                    class="bi"
+                    [ngClass]="{
+                      'bi-person-badge':
+                        item.tipoCorreo === 'Personal Institucional',
+                      'bi-building':
+                        item.tipoCorreo === 'Institucional Dependencia'
+                    }"
+                  ></i>
+                  {{ " " + item.tipoCorreo }}
+                </span>
+              </td>
+
               <td
                 [ngClass]="
                   item.fechaHabilitacion
@@ -78,21 +113,29 @@
               <td>{{ item.actaRecibida ? "Sí" : "No" }}</td>
               <td class="text-center">
                 <button
-                  class="btn btn-sm btn-outline-primary me-2"
+                  class="btn btn-sm"
+                  style="
+                    border: 1px solid #0d6efd;
+                    color: #0d6efd;
+                    background-color: white;
+                  "
                   title="Agregar detalle"
                   (click)="abrirModalDetalle(item)"
                 >
-                  <i class="bi bi-card-list"></i>
+                  <i class="bi bi-journal-text"></i>
                 </button>
+
+                &nbsp;
 
                 <!-- Asignar  -->
                 <button
-                  class="btn btn-sm btn-info"
+                  class="btn btn-sm"
+                  style="background-color: #0d6efd; color: white"
                   title="Plataforma"
                   *ngIf="item.tipoCorreo !== 'Institucional Dependencia'"
                   (click)="linkear(item.idCorreo)"
                 >
-                  <i class="bi bi-patch-plus"></i>
+                  <i class="bi bi-hdd-network"></i>
                 </button>
               </td>
             </tr>

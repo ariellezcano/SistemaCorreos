@@ -26,7 +26,7 @@ export class UsuarioService {
   }
 
   getId(id: number) {
-    console.log("servicio", id);
+    //console.log('servicio', id);
     return this.http.get(this.api + '/' + id);
   }
 
@@ -39,12 +39,11 @@ export class UsuarioService {
   }
 
   patch(id: number, evento: any) {
-  return this.http.patch(this.api + '/' + id, evento);
+    return this.http.patch(this.api + '/' + id, evento);
   }
 
   delete(id: number, usuarioBaja: number) {
-    console.log("servicio:", id, usuarioBaja)
-    return this.http.delete(`${this.api}/${id}/${usuarioBaja}`);
+    console.log('servicio:', id, usuarioBaja);
+    return this.http.delete(`${this.api}/${id},${usuarioBaja}`);
   }
-  
 }

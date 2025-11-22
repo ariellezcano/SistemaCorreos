@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { UsuarioRol } from 'src/app/modelos/componentes/relacionModelos/usuarioRol';
 import { Usuario_repo } from 'src/app/modelos/componentes/usuario-repo';
 import { Usuarios } from 'src/app/modelos/index.models';
 import {
@@ -32,7 +33,7 @@ export class BusquedaPersonaComponent implements OnInit {
   public activoSistema: boolean = true;
 
   itemBaja!: number;
-  item: Usuarios;
+  item: UsuarioRol;
 
   constructor(
     private route: Router,
@@ -41,7 +42,7 @@ export class BusquedaPersonaComponent implements OnInit {
   ) {
     this.procesando = false;
     this.cargando = false;
-    this.item = new Usuarios();
+    this.item = new UsuarioRol();
   }
 
   ngOnInit() {}
@@ -56,10 +57,13 @@ export class BusquedaPersonaComponent implements OnInit {
       let data = await this.wsdl.BusquedaPorDni(this.crit).then();
       this.result = JSON.parse(JSON.stringify(data));
       if (this.result.code === '200') {
+        //console.log("este viene de policia digital:", this.result.data)
+        this.id = this.result.data.id_repo;
+        //console.log("id policia digital", this.id)
+        if(this.id > 0){
+          this.verificarUsuario();
+        }
         
-        this.id = this.result.data.id_persona;
-        
-        this.verificarUsuario();
       } else if (this.result.code == 204) {
         Swal.fire({
           title: 'El usuario no existe!',
@@ -106,6 +110,7 @@ export class BusquedaPersonaComponent implements OnInit {
       const result1 = JSON.parse(JSON.stringify(data1));
       if (result1.code === '200') {
         this.item = result1.dato;
+        //console.log("verifico contra mi bd", this.item)
         //console.log('this.item', this.item);
         if (this.item.baja) {
           Swal.fire({
@@ -157,7 +162,9 @@ export class BusquedaPersonaComponent implements OnInit {
     let data2 = await firstValueFrom(
       this.wsdlUsuario.patch(this.item.idUsuario, this.item)
     );
+   // console.log("data 2", data2)
     const result2 = JSON.parse(JSON.stringify(data2));
+
     if (result2.code === "200") {
       try {
         let data = await this.wsdl
@@ -170,7 +177,7 @@ export class BusquedaPersonaComponent implements OnInit {
           .then();
         let res = JSON.parse(JSON.stringify(data));
         if (res.code == 200) {
-          //console.log("Personal Habilitado");
+          console.log("Personal Habilitado");
         }
       } catch (error) {
         ////console.log("respuestaerror", error);
@@ -181,11 +188,12 @@ export class BusquedaPersonaComponent implements OnInit {
         'El usuario ha sido habilitado correctamente!',
         'success'
       );
+      
       this.back();
     }
   }
 
   back() {
-    this.route.navigate(['pages/lst-usuarios']);
+    this.route.navigate(['pages/lst_usuario']);
   }
 }
