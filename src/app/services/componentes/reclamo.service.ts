@@ -14,17 +14,18 @@ export class ReclamoService {
     this.api = environment.URL + 'Reclamos';
   }
 
-  getList(pagina: number, cantidad: number, busqueda?: string) {
-    const params = {
-      pagina: pagina.toString(),
-      tamanoPagina: cantidad.toString(),
-      nombre: busqueda ?? '',
-    };
+  getList(pagina: number, cantidad: number, busqueda?: string, incluirInactivos: boolean = false) {
 
-    return this.http.get<Results<UsuarioReclamoDTO>>(`${this.api}/Listar`, {
-      params,
-    });
-  }
+  const params: any = {
+    pagina: pagina.toString(),
+    tamanoPagina: cantidad.toString(),
+    nombre: busqueda ?? '',
+    incluirInactivos: incluirInactivos.toString()   // <---- NUEVO
+  };
+
+  return this.http.get<Results<UsuarioReclamoDTO>>(`${this.api}/Listar`, { params });
+}
+
 
   getId(id: number) {
     //console.log('servicio', id);

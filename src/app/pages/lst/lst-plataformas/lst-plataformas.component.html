@@ -7,21 +7,11 @@
       <h3 class="m-0 fw-semibold">
         <i class="bi bi-grid-fill me-2"></i> Listado de Sistemas Federales
       </h3>
-
-      <!-- Botón opcional -->
-      <!--
-      <button
-        type="button"
-        class="btn btn-light text-primary fw-semibold shadow-sm"
-        (click)="nuevoRegistro()"
-      >
-        <i class="bi bi-plus-circle-fill me-2"></i> Nuevo Registro
-      </button>
-      -->
     </div>
 
-    <!-- FILTROS -->
+    <!-- CUERPO -->
     <div class="card-body bg-light py-4">
+      <!-- FILTROS -->
       <div
         class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3 w-100"
       >
@@ -32,11 +22,11 @@
       </div>
 
       <!-- LISTADO -->
-      <div class="table-responsive rounded-4 shadow-sm bg-white">
-        <table class="table table-hover align-middle mb-0">
+      <div class="table-responsive rounded-4 shadow-sm bg-white w-100">
+        <table class="table table-hover align-middle mb-0 w-100">
           <thead class="table-primary text-center align-middle">
             <tr>
-              <th>#</th>
+              <!-- <th>#</th> -->
               <th>Nombre</th>
               <th>Apellido</th>
               <th>DNI</th>
@@ -55,17 +45,41 @@
           </thead>
 
           <tbody>
+            <!-- FILAS -->
             <tr *ngFor="let item of items; index as i">
-              <td class="fw-semibold text-center">{{ item.idCorreo }}</td>
+              <!-- <td class="fw-semibold text-center">{{ item.idCorreo }}</td> -->
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>
               <td>{{ item.dni }}</td>
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.unidad }}</td>
               <td>{{ item.correoInstitucional }}</td>
-              <td>{{ item.tipoCorreo }}</td>
+              <td>
+                <span
+                  class="badge px-3 py-2 d-inline-flex align-items-center gap-1"
+                  [ngStyle]="{
+                    'background-color': '#1f1f1f',
+                    color: 'white',
+                    'border-radius': '12px',
+                    'font-weight': '600',
+                    'font-size': '0.85rem',
+                    border: '2px solid #ff9800'
+                  }"
+                >
+                  <i
+                    class="bi"
+                    [ngClass]="{
+                      'bi-person-badge':
+                        item.tipoCorreo === 'Personal Institucional',
+                      'bi-building':
+                        item.tipoCorreo === 'Institucional Dependencia'
+                    }"
+                  ></i>
+                  {{ item.tipoCorreo }}
+                </span>
+              </td>
 
-              <!-- BOOLEANOS -->
+              <!-- SIFCOP -->
               <td class="text-center">
                 <span
                   class="badge px-3 py-2"
@@ -78,6 +92,8 @@
                   {{ item.sifcop ? "Sí" : "No" }}
                 </span>
               </td>
+
+              <!-- MIMINSEG -->
               <td class="text-center">
                 <span
                   class="badge px-3 py-2"
@@ -91,10 +107,9 @@
                 </span>
               </td>
 
-              <!-- FECHAS -->
               <td>{{ item.fechaSolicitud | date : "dd/MM/yyyy" }}</td>
 
-              <!-- ESTADO -->
+              <!-- ESTADO SOLICITUD -->
               <td class="text-center">
                 <span
                   class="badge px-3 py-2"
@@ -108,6 +123,7 @@
                 </span>
               </td>
 
+              <!-- ALTA -->
               <td class="text-center">
                 <span
                   *ngIf="
@@ -127,6 +143,8 @@
                   </span>
                 </ng-template>
               </td>
+
+              <!-- NOTIFICACIÓN -->
               <td class="text-center">
                 <span
                   *ngIf="
@@ -163,16 +181,25 @@
                   title="Eliminar"
                   (click)="eliminar(item.idPlataforma)"
                 >
-                  <!--  -->
                   <i class="bi bi-trash"></i>
                 </button>
               </td>
             </tr>
 
+            <!-- SI NO HAY REGISTROS -->
             <tr *ngIf="items.length === 0">
-              <td colspan="14" class="text-center text-muted py-4">
-                <i class="bi bi-exclamation-circle me-2"></i> No hay registros
-                disponibles.
+              <td colspan="15" class="py-5 text-center">
+                <div class="text-center">
+                  <i
+                    class="bi bi-emoji-frown fs-1 text-secondary d-block mb-2"
+                  ></i>
+                  <span class="fw-semibold text-secondary fs-5">
+                    No se encontraron registros
+                  </span>
+                  <p class="text-muted mt-1">
+                    Pruebe ajustando los filtros o agregando nuevos datos.
+                  </p>
+                </div>
               </td>
             </tr>
           </tbody>

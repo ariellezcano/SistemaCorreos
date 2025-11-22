@@ -48,13 +48,13 @@ export class LstReclamosComponent implements OnInit {
     this.idPlataformaSeleccionada = idPlataforma;
 
     const modalEl = document.getElementById('modalReclamo')!;
-    this.modalRef = new bootstrap.Modal(modalEl); // 🔴 GUARDAMOS REFERENCIA
+    this.modalRef = new bootstrap.Modal(modalEl); // GUARDAMOS REFERENCIA
     this.modalRef.show();
   }
 
   async actualizar() {
     this.item.activo = false;
-    alert(this.idReclamoSeleccionado);
+    //alert(this.idReclamoSeleccionado);
     try {
       const data = await firstValueFrom(
         this.wsdl.patchReclamo(

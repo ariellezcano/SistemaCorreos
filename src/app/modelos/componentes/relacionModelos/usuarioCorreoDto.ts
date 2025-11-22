@@ -4,6 +4,7 @@ export class UsuarioCorreoDto {
   apellido!: string;
   dni!: number;
   jerarquia!: string;
+  unidad!: string;
   fechaSolicitud: any;
   idCorreo!: number;
   correoInstitucional!: string;

@@ -17,7 +17,7 @@
     </div>
 
     <!-- Paginación estilo EXACTO -->
-    <div class="col-md-5 mb-3">
+    <div class="col-md-4 mb-3">
       <nav aria-label="Page navigation" class="mt-3">
         <ul class="pagination justify-content-center mb-0">
 
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Búsqueda -->
-    <div class="col-md-5 mb-3">
+    <div class="col-md-4 mb-3">
       <label class="form-label fw-semibold small text-secondary">Buscar</label>
       <div class="input-group shadow-sm">
         <input
@@ -67,6 +67,20 @@
         <span class="input-group-text bg-primary text-white rounded-end-3">
           <i class="bi bi-search"></i>
         </span>
+      </div>
+    </div>
+
+    <!-- Mostrar inactivos -->
+    <div class="col-md-2 mb-3">
+      <label class="form-label fw-semibold small text-secondary d-block">Incluir inactivos</label>
+      <div class="form-check form-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="incluirInactivos"
+          (change)="filter()"
+        />
+        <label class="form-check-label">Mostrar inactivos</label>
       </div>
     </div>
 
