@@ -31,7 +31,7 @@ export class FilBusquedaPlataformaComponent implements OnInit {
         if (Json.code === '200') {
           
           this.item = Json.dato;
-          console.log("encontrado", this.item)
+          //console.log("encontrado", this.item)
           Swal.fire({
             position: 'top-end',
             icon: 'success',

@@ -99,15 +99,15 @@ export class FilUsuariosComponent implements OnInit {
       const result = await lastValueFrom(data$);
       const Json = JSON.parse(JSON.stringify(result));
 
-      console.log('Resultado real:', Json); // Aquí vas a ver code, data, etc.
+      //console.log('Resultado real:', Json); // Aquí vas a ver code, data, etc.
 
       if (Json.code === '200') {
         this.items = Json.data ?? [];
-        console.log("items:", this.items)
+        //console.log("items:", this.items)
         this.totalRegistros = Json.totalRegistros;
         this.totalPaginas = Json.totalPaginas;
       } else if (result.code === '204') {
-        console.log('aca estoyss');
+        //console.log('aca estoyss');
         this.items = [];
         this.totalRegistros = 0;
         this.totalPaginas = 1;

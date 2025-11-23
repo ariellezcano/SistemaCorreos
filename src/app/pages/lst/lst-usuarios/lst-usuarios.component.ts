@@ -95,7 +95,7 @@ export class LstUsuariosComponent implements OnInit {
   }
 
   doFound(event: UsuarioRol[]) {
-    console.log('llegue');
+    //console.log('llegue');
     this.items = event;
   }
 

@@ -124,7 +124,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
         });
       }
     } catch (error) {
-      console.error('Error al editar:', error);
+      //console.error('Error al editar:', error);
       Swal.fire('Error', 'No se pudo actualizar el registro', 'error');
     }
   }
@@ -172,7 +172,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   }
 
   doFound(event: UsuarioCorreoDto[]) {
-    // console.log('llegue');
+    //console.log('llegue');
     this.items = event;
   }
 

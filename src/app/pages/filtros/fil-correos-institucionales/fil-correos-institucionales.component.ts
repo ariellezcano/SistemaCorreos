@@ -79,7 +79,7 @@ export class FilCorreosInstitucionalesComponent implements OnInit {
 
       const result = await lastValueFrom(data$);
       const Json = JSON.parse(JSON.stringify(result));
-      console.log(Json);
+      //console.log("Json:", Json);
       if (Json.code === '200') {
         this.items = Json.data ?? [];
         this.totalRegistros = Json.totalRegistros;

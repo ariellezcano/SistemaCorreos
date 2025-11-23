@@ -128,7 +128,7 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
   }
 
   doFound(data: any) {
-    console.log('data', data);
+    //console.log('data', data);
     if (data.code === '200') {
       this.item.persona = data.data.id_persona;
       this.item.apellido = data.data.apellido;

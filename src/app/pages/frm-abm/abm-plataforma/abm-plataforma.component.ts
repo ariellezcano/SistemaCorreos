@@ -75,7 +75,7 @@ export class AbmPlataformaComponent implements OnInit {
         this.editando = true;
       }
     } catch (error: any) {
-      console.log("error", error)
+      //console.log("error", error)
       if (error.status === 500) {
         Swal.fire({
           title: 'Error al obtener el registro',

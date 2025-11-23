@@ -60,7 +60,7 @@ export class FilBusquedaSolicitanteComponent implements OnInit {
           
         }
       } catch (error) {
-        console.log("error", error);
+       // console.log("error", error);
         this.procesando = false;
         this.cargando = false;
         Utils.showToas('Error', 'error');

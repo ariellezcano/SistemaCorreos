@@ -83,7 +83,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
               );
             }
           } catch (err) {
-            console.error('Error al eliminar:', err);
+            //console.error('Error al eliminar:', err);
             swalWithBootstrapButtons.fire(
               'Error',
               'No se pudo eliminar el registro.',
@@ -108,7 +108,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
         });
       }
     } catch (error) {
-      console.error('Error al editar:', error);
+      //console.error('Error al editar:', error);
       Swal.fire('Error', 'No se pudo actualizar el registro', 'error');
     }
   }
@@ -192,7 +192,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
         Swal.fire('Atención', result.message, 'warning');
       }
     } catch (error) {
-      console.error('Error al actualizar datos:', error);
+     // console.error('Error al actualizar datos:', error);
       Swal.fire('Error', 'No se pudo actualizar los datos', 'error');
     }
   }
