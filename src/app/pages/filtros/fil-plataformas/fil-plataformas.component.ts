@@ -14,6 +14,9 @@ export class FilPlataformasComponent implements OnInit {
   busqueda: any;
   items: PlataformaCorreoDto[];
 
+  fechaDesde: string | null = null;
+  fechaHasta: string | null = null;
+
   paginaAnterior!: number;
   anterior: boolean;
   paginaActual: number;
@@ -55,26 +58,22 @@ export class FilPlataformasComponent implements OnInit {
     try {
       const tieneBusqueda = this.busqueda && this.busqueda.trim() !== '';
 
-      // No loguees el Observable, loguea el resultado después de esperar
       const data$ = this.wsdl.getList(
         this.paginaActual,
         this.limit,
-        tieneBusqueda ? this.busqueda : undefined
+        tieneBusqueda ? this.busqueda : undefined,
+        this.fechaDesde ? this.fechaDesde : undefined,
+        this.fechaHasta ? this.fechaHasta : undefined
       );
 
-      // Espera a que el Observable emita
       const result = await lastValueFrom(data$);
       const Json = JSON.parse(JSON.stringify(result));
 
-      // console.log('Resultado real:', Json); // Aquí vas a ver code, data, etc.
-
       if (Json.code === '200') {
         this.items = Json.data ?? [];
-        console.log('items:', this.items);
         this.totalRegistros = Json.totalRegistros;
         this.totalPaginas = Json.totalPaginas;
-      } else if (result.code === '204') {
-        //console.log('aca estoyss');
+      } else if (Json.code === '204') {
         this.items = [];
         this.totalRegistros = 0;
         this.totalPaginas = 1;

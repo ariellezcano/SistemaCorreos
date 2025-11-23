@@ -1,22 +1,22 @@
 <div class="container-fluid my-5 px-5">
   <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
     <!-- CABECERA -->
-    <div
-      class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3"
-    >
-      <h3 class="m-0 fw-semibold">
-        <i class="bi bi-chat-left-text-fill me-2"></i> Listado de Reclamos
-      </h3>
+<div class="card-header reclamo-header d-flex justify-content-between align-items-center">
+  <h3 class="m-0 fw-semibold d-flex align-items-center">
+    <i class="bi bi-chat-left-text-fill me-2 fs-4"></i>
+    Listado de Reclamos
+  </h3>
 
-      <!-- BOTÓN NUEVO RECLAMO -->
-      <button
-        type="button"
-        class="btn btn-light text-primary fw-semibold shadow-sm rounded-pill"
-        (click)="nuevoReclamo()"
-      >
-        <i class="bi bi-plus-circle-fill me-2"></i> Nuevo Reclamo
-      </button>
-    </div>
+  <!-- BOTÓN NUEVO RECLAMO -->
+  <button
+    type="button"
+    class="btn btn-nuevo-reclamo shadow-sm"
+    (click)="nuevoReclamo()"
+  >
+    <i class="bi bi-plus-circle-fill me-2"></i> Nuevo Reclamo
+  </button>
+</div>
+
 
     <!-- CUERPO -->
     <div class="card-body bg-light py-4">

@@ -14,17 +14,27 @@ export class PlataformaService {
     this.api = environment.URL + 'Plataforma';
   }
 
-  getList(pagina: number, cantidad: number, busqueda?: string) {
-    const params = {
-      pagina: pagina.toString(),
-      tamanoPagina: cantidad.toString(),
-      nombre: busqueda ?? '',
-    };
+  getList(
+  pagina: number,
+  cantidad: number,
+  busqueda?: string,
+  fechaDesde?: string,
+  fechaHasta?: string
+) {
+  const params: any = {
+    pagina: pagina.toString(),
+    tamanoPagina: cantidad.toString(),
+  };
 
-    return this.http.get<Results<PlataformaCorreoDto>>(`${this.api}/Listar`, {
-      params,
-    });
-  }
+  if (busqueda) params.nombre = busqueda;
+  if (fechaDesde) params.fechaDesde = fechaDesde;
+  if (fechaHasta) params.fechaHasta = fechaHasta;
+
+  return this.http.get<Results<PlataformaCorreoDto>>(`${this.api}/Listar`, {
+    params,
+  });
+}
+
 
   getPorDni(dni: number) {
     return this.http.get(`${this.api}/buscar_por_dni/${dni}`);
@@ -53,7 +63,7 @@ export class PlataformaService {
 
   patchEstado(id: number, estado: string) {
     return this.http.patch(`${this.api}/Estado/${id}`, {
-      estado
+      estado,
     });
   }
 

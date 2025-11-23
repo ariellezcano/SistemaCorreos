@@ -1,31 +1,72 @@
+/* --- CARD GENERAL --- */
 .card {
-  border-radius: 1.5rem;
+  border-radius: 1.5rem !important;
 }
 
+/* Cabeceras redondeadas */
 .card-header {
   border-top-left-radius: 1.5rem !important;
   border-top-right-radius: 1.5rem !important;
 }
 
+/* ---- CABECERA ESPECIAL DE RECLAMOS ---- */
+.reclamo-header {
+  background: #0d6efd;
+  color: #fff;
+  padding: 18px 24px;
+  border-bottom: 4px solid #ff8c00 !important; /* borde inferior naranja */
+}
+
+/* Botón "Nuevo Reclamo" */
+.btn-nuevo-reclamo {
+  background: #ffffff;
+  color: #0d6efd;
+  font-weight: 600;
+  border-radius: 2rem;
+  padding: 0.45rem 1.2rem;
+  border: 2px solid #0d6efd;
+  transition: 0.2s ease;
+}
+
+.btn-nuevo-reclamo:hover {
+  background: #0d6efd;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+/* --- TABLAS --- */
 .table-hover tbody tr:hover {
   background-color: #eef6ff !important;
   transition: background-color 0.25s ease;
 }
 
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+/* --- BADGES --- */
 .badge {
   font-size: 0.9rem;
   border-radius: 1rem;
 }
 
-.btn-outline-primary:hover,
-.btn-outline-danger:hover {
-  transform: scale(1.05);
-  transition: 0.2s ease-in-out;
+/* --- COLORES DE ESTADOS --- */
+.text-success {
+  color: #198754 !important;
 }
 
-.table th,
-.table td {
-  vertical-align: middle;
+.text-danger {
+  color: #d9534f !important;
+}
+
+.text-warning {
+  color: #ff8c00 !important;
+}
+
+/* --- BOTONES GENERALES --- */
+.btn {
+  border-radius: 0.6rem !important;
 }
 
 .btn-light {
@@ -38,20 +79,15 @@
   background-color: #e2e6ea;
 }
 
+.btn-outline-primary:hover,
+.btn-outline-danger:hover {
+  transform: scale(1.05);
+  transition: 0.2s ease-in-out;
+}
 
-
-////modal
-.card,
+/* --- MODAL --- */
 .modal-content {
   border-radius: 1rem !important;
-}
-
-.table tbody tr:hover {
-  background-color: #eef5ff !important;
-}
-
-.btn {
-  border-radius: 0.6rem !important;
 }
 
 .modal-header {
@@ -63,19 +99,29 @@
   background: #f8f9fa;
 }
 
-.badge {
-  font-size: 0.9rem;
+/* --- FILTROS Y NAVEGACIÓN PERSONALIZADA --- */
+.filtro-card {
+  border-radius: 1.5rem;
+  border: 2px solid #ff8c00;
 }
 
-
-.text-success {
-  color: #198754 !important; /* verde */
+.filtro-input {
+  border: 1px solid #0d6efd !important;
 }
 
-.text-danger {
-  color: #d9534f !important; /* rojo suave */
+.filtro-buscar-icon {
+  background: #0d6efd;
+  color: white;
 }
 
-.text-warning {
-  color: #ff8c00 !important; /* naranja */
+.filtro-nav-box {
+  padding: 0.4rem 1.2rem;
+  border-radius: 0.8rem;
+  border: 1px solid #0d6efd;
+  background: #fff;
+}
+
+.filtro-nav-btn {
+  border-radius: 1.5rem !important;
+  padding: 0.3rem 0.9rem !important;
 }
