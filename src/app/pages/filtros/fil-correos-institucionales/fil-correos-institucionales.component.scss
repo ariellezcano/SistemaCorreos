@@ -1,78 +1,71 @@
-/* --- CARD GENERAL CON BORDE NARANJA --- */
+/* --- CARD DEL FILTRO --- */
 .filtro-card {
-  border: 2px solid #f4b674 !important; /* Naranja suave */
-  background: #fff;
-  border-radius: 15px;
-  padding: 25px;
+  border: 2px solid #ff8c00 !important; /* borde naranja */
+  border-radius: 1.5rem !important;
 }
 
-/* --- INPUTS GENERALES --- */
+/* Inputs generales */
 .filtro-input {
-  border: 1px solid #1a73e8;
-  border-radius: 10px;
-  padding: 6px 10px;
-  font-size: 14px;
-  transition: 0.2s ease-in-out;
+  border: 1px solid #0d6efd !important;   /* azul */
+  border-radius: 0.6rem !important;
 }
 
-.filtro-input:focus {
-  border-color: #0b57d0;
-  box-shadow: 0 0 6px rgba(26, 115, 232, 0.35);
-}
-
-/* --- BUSCADOR --- */
-.filtro-buscar .form-control {
-  border-right: none;
-}
-
+/* Input buscar */
 .filtro-buscar-icon {
-  background: #1a73e8;
-  color: white;
-  border: 1px solid #1a73e8;
+  background: #0d6efd;
+  color: #fff;
+  border: 1px solid #0d6efd;
 }
 
-/* --- NAVEGACIÓN --- */
-.filtro-nav {
-  margin-top: 10px;
+/* Caja central de navegación */
+.filtro-nav-box {
+  padding: 0.45rem 1.2rem;
+  border: 1px solid #0d6efd;
+  border-radius: 0.8rem;
+  background: #fff;
+  min-width: 160px;
+  text-align: center;
 }
 
-/* Botones redondos laterales */
+/* Botones navegación */
 .filtro-nav-btn {
-  border: 1px solid #f4b674 !important; /* naranja suave */
-  border-radius: 50px !important;
-  background: white;
-  color: #d88a2d;
-  font-size: 17px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.2s;
+  border-radius: 1.5rem !important;
+  padding: 0.35rem 0.9rem !important;
+  transition: 0.2s ease;
 }
 
 .filtro-nav-btn:hover:not(:disabled) {
-  background: #fff7ec;
-  border-color: #e0953c;
+  transform: scale(1.08);
 }
 
-.filtro-nav-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Caja central */
-.filtro-nav-box {
-  padding: 10px 25px;
-  border-radius: 15px;
-  border: 1px solid #f4b674;
-  background: #fffaf3;
+/* Botón aplicar filtros */
+.btn-primary {
+  border-radius: 2rem !important;
+  padding: 0.45rem 1.3rem !important;
   font-weight: 600;
-  text-align: center;
-  min-width: 160px;
 }
 
-/* Texto gris pequeño en el contador */
-.filtro-nav-box span {
-  line-height: 12px;
+.btn-primary i {
+  font-size: 1rem;
+}
+
+/* Checkboxes */
+.form-check-input {
+  border: 1px solid #0d6efd;
+  cursor: pointer;
+}
+
+.form-check-label {
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Mejor separación entre checkbox y navegación */
+.filtro-nav {
+  margin-top: 0.4rem;
+}
+
+/* Sombra suave */
+.shadow-sm {
+  box-shadow: 0 0.25rem 0.6rem rgba(0,0,0,0.06) !important;
 }

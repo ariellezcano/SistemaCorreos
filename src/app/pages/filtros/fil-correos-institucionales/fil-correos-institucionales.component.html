@@ -1,21 +1,20 @@
 <div class="card filtro-card rounded-4 shadow-sm p-4 my-4">
-
   <div class="row g-4">
-
     <!-- Registros -->
     <div class="col-md-2">
-      <label class="form-label fw-semibold small text-secondary">Registros por página</label>
-      <select
-        class="form-select filtro-input"
-        [(ngModel)]="limit"
+      <label class="form-label fw-semibold small text-secondary"
+        >Registros por página</label
       >
+      <select class="form-select filtro-input" [(ngModel)]="limit">
         <option *ngFor="let c of limits" [ngValue]="c">{{ c }}</option>
       </select>
     </div>
 
     <!-- Fecha desde -->
     <div class="col-md-3">
-      <label class="form-label fw-semibold small text-secondary">Fecha desde</label>
+      <label class="form-label fw-semibold small text-secondary"
+        >Fecha desde</label
+      >
       <input
         type="date"
         class="form-control filtro-input shadow-sm rounded-3 text-center"
@@ -25,7 +24,9 @@
 
     <!-- Fecha hasta -->
     <div class="col-md-3">
-      <label class="form-label fw-semibold small text-secondary">Fecha hasta</label>
+      <label class="form-label fw-semibold small text-secondary"
+        >Fecha hasta</label
+      >
       <input
         type="date"
         class="form-control filtro-input shadow-sm rounded-3 text-center"
@@ -52,9 +53,9 @@
     <!-- FILTRO POR TIPO DE CORREO -->
     <div class="col-md-12 d-flex gap-4 align-items-center">
       <div class="form-check">
-        <input 
-          class="form-check-input" 
-          type="checkbox" 
+        <input
+          class="form-check-input"
+          type="checkbox"
           id="chkPersonal"
           [(ngModel)]="chkPersonal"
         />
@@ -64,9 +65,9 @@
       </div>
 
       <div class="form-check">
-        <input 
-          class="form-check-input" 
-          type="checkbox" 
+        <input
+          class="form-check-input"
+          type="checkbox"
           id="chkDependencia"
           [(ngModel)]="chkDependencia"
         />
@@ -76,21 +77,34 @@
       </div>
 
       <!-- Botón aplicar -->
-      <button 
+      <button
         class="btn btn-primary ms-auto px-4 rounded-pill shadow-sm"
         (click)="filter()"
       >
         <i class="bi bi-funnel me-1"></i> Aplicar filtros
       </button>
+
+      <!-- Botón limpiar -->
+      <button
+        class="btn btn-outline-secondary px-4 ms-3 rounded-pill shadow-sm"
+        (click)="limpiarFiltros()"
+      >
+        <i class="bi bi-x-circle me-1"></i> Limpiar
+      </button>
     </div>
 
     <!-- Navegación (ABAJO) -->
-    <div class="col-12 d-flex flex-column justify-content-center align-items-center mt-4">
-      <label class="form-label fw-semibold small text-secondary">Navegación</label>
+    <div
+      class="col-12 d-flex flex-column justify-content-center align-items-center mt-4"
+    >
+      <label class="form-label fw-semibold small text-secondary"
+        >Navegación</label
+      >
 
-      <div class="d-flex align-items-center justify-content-center gap-3 filtro-nav">
-
-        <button 
+      <div
+        class="d-flex align-items-center justify-content-center gap-3 filtro-nav"
+      >
+        <button
           class="btn btn-outline-primary btn-sm px-3 rounded-pill filtro-nav-btn"
           [disabled]="paginaActual <= 1"
           (click)="setPage(paginaActual, 'anterior')"
@@ -104,14 +118,13 @@
           <span class="text-muted small">({{ totalRegistros }} registros)</span>
         </div>
 
-        <button 
+        <button
           class="btn btn-outline-primary btn-sm px-3 rounded-pill filtro-nav-btn"
           [disabled]="paginaActual >= totalPaginas"
           (click)="setPage(paginaActual, 'siguiente')"
         >
           <i class="bi bi-chevron-right"></i>
         </button>
-
       </div>
     </div>
   </div>

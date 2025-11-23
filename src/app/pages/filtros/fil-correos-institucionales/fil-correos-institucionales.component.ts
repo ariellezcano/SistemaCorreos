@@ -16,8 +16,8 @@ export class FilCorreosInstitucionalesComponent implements OnInit {
 
   fechaDesde: string | null = null;
   fechaHasta: string | null = null;
-chkPersonal = false;
-chkDependencia = false;
+  chkPersonal = false;
+  chkDependencia = false;
 
   paginaAnterior!: number;
   anterior: boolean;
@@ -57,79 +57,90 @@ chkDependencia = false;
   }
 
   async filter() {
-  try {
-    const tipoCorreo =
-      this.chkPersonal && !this.chkDependencia ? 'Personal Institucional' :
-      this.chkDependencia && !this.chkPersonal ? 'Institucional Dependencia' :
-      undefined; // Ambos seleccionados -> no filtra
+    try {
+      const tipoCorreo =
+        this.chkPersonal && !this.chkDependencia
+          ? 'Personal Institucional'
+          : this.chkDependencia && !this.chkPersonal
+          ? 'Institucional Dependencia'
+          : undefined; // Ambos seleccionados -> no filtra
 
-    const fechaDesdeStr = this.fechaDesde ? this.fechaDesde : undefined;
-    const fechaHastaStr = this.fechaHasta ? this.fechaHasta : undefined;
+      const fechaDesdeStr = this.fechaDesde ? this.fechaDesde : undefined;
+      const fechaHastaStr = this.fechaHasta ? this.fechaHasta : undefined;
 
-    const data$ = this.wsdl.getList(
-      this.paginaActual,
-      this.limit,
-      this.busqueda ?? undefined,
-      fechaDesdeStr,
-      fechaHastaStr,
-      tipoCorreo
-    );
+      const data$ = this.wsdl.getList(
+        this.paginaActual,
+        this.limit,
+        this.busqueda ?? undefined,
+        fechaDesdeStr,
+        fechaHastaStr,
+        tipoCorreo
+      );
 
-    const result = await lastValueFrom(data$);
-    const Json = JSON.parse(JSON.stringify(result));
+      const result = await lastValueFrom(data$);
+      const Json = JSON.parse(JSON.stringify(result));
       console.log(Json);
-    if (Json.code === '200') {
-      this.items = Json.data ?? [];
-      this.totalRegistros = Json.totalRegistros;
-      this.totalPaginas = Json.totalPaginas;
-    } else {
-      this.items = [];
-      this.totalRegistros = 0;
-      this.totalPaginas = 1;
+      if (Json.code === '200') {
+        this.items = Json.data ?? [];
+        this.totalRegistros = Json.totalRegistros;
+        this.totalPaginas = Json.totalPaginas;
+      } else {
+        this.items = [];
+        this.totalRegistros = 0;
+        this.totalPaginas = 1;
+      }
+
+      this.emmit.emit(this.items);
+    } catch (error) {
+      console.error('Error en filter():', error);
     }
-
-   this.emmit.emit(this.items);
-  } catch (error) {
-    console.error('Error en filter():', error);
   }
-}
 
+  limpiarFiltros() {
+    this.busqueda = '';
+    this.fechaDesde = '';
+    this.fechaHasta = '';
+    this.chkPersonal = false;
+    this.chkDependencia = false;
 
+    this.paginaActual = 1; // Resetear paginación
 
-//   async filter() {
-//   try {
-//     const tipoCorreo =
-//       this.chkPersonal && !this.chkDependencia ? 'Personal Institucional' :
-//       this.chkDependencia && !this.chkPersonal ? 'Institucional Dependencia' :
-//       ''; // Ambos seleccionados -> no filtra
+    this.filter(); // Recargar datos sin filtros
+  }
 
-//       console.log(this.fechaDesde, this.fechaHasta)
-//     const data$ = this.wsdl.getList(
-//       this.paginaActual,
-//       this.limit,
-//       this.busqueda ?? '',
-//       this.fechaDesde ?? '',
-//       this.fechaHasta ?? '',
-//       tipoCorreo
-//     );
+  //   async filter() {
+  //   try {
+  //     const tipoCorreo =
+  //       this.chkPersonal && !this.chkDependencia ? 'Personal Institucional' :
+  //       this.chkDependencia && !this.chkPersonal ? 'Institucional Dependencia' :
+  //       ''; // Ambos seleccionados -> no filtra
 
-//     const result = await lastValueFrom(data$);
-//     const Json = JSON.parse(JSON.stringify(result));
+  //       console.log(this.fechaDesde, this.fechaHasta)
+  //     const data$ = this.wsdl.getList(
+  //       this.paginaActual,
+  //       this.limit,
+  //       this.busqueda ?? '',
+  //       this.fechaDesde ?? '',
+  //       this.fechaHasta ?? '',
+  //       tipoCorreo
+  //     );
 
-//     if (Json.code === '200') {
-//       this.items = Json.data ?? [];
-//       this.totalRegistros = Json.totalRegistros;
-//       this.totalPaginas = Json.totalPaginas;
-//     } else {
-//       this.items = [];
-//       this.totalRegistros = 0;
-//       this.totalPaginas = 1;
-//     }
+  //     const result = await lastValueFrom(data$);
+  //     const Json = JSON.parse(JSON.stringify(result));
 
-//     this.emmit.emit(this.items);
-//   } catch (error) {
-//     console.error('Error en filter():', error);
-//   }
-// }
+  //     if (Json.code === '200') {
+  //       this.items = Json.data ?? [];
+  //       this.totalRegistros = Json.totalRegistros;
+  //       this.totalPaginas = Json.totalPaginas;
+  //     } else {
+  //       this.items = [];
+  //       this.totalRegistros = 0;
+  //       this.totalPaginas = 1;
+  //     }
 
+  //     this.emmit.emit(this.items);
+  //   } catch (error) {
+  //     console.error('Error en filter():', error);
+  //   }
+  // }
 }
