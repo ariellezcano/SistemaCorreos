@@ -12,7 +12,7 @@ export class UnidadService {
   api;
 
   constructor(private http: HttpClient) {
-    this.api = environment.URLOci + 'unidad';
+    this.api = environment.URLUnidades + 'unidad';
     //this.api = "http://10.125.31.241:3000/unidad/";
   }
   /* particularidad de la entidad */
