@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit {
           Utils.setSession('user', JSON.stringify(this.item.idUsuario));
 
           // redirección a la pagina principal
-          this.router.navigate(['/pages/lst_usuario']);
+          this.router.navigate(['/pages/principal']);
         } else {
           Swal.fire({
             icon: 'warning',

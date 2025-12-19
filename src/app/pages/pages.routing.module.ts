@@ -19,7 +19,8 @@ const routes: Routes = [
     path: '',
     component: PagesComponent,
     children: [
-      { path: '', redirectTo: 'lst_usuario', pathMatch: 'full' }, // Agregá esto
+      { path: '', redirectTo: 'principal', pathMatch: 'full' }, // Agregá esto
+      { path: 'principal', component: LstUsuariosComponent },
       { path: 'lst_usuario', component: LstUsuariosComponent },
       { path: 'habilitar_usuario', component: PanelHabilitacionComponent },
       { path: 'lst_usuario_solicitante', component: LstUsuarioSolicitanteComponent },
