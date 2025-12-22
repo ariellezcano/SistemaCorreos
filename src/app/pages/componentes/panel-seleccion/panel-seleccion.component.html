@@ -1,1 +1,80 @@
-<p>panel-seleccion works!</p>
+<div class="container my-5">
+
+  <h2 class="fw-bold text-primary mb-4">
+    <i class="bi bi-speedometer2 me-2"></i> Panel principal
+  </h2>
+
+  <div class="row g-4">
+
+    <!-- SISTEMAS -->
+     <!-- (click)="irASistemas()" -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card" >
+        <div class="icon bg-primary">
+          <i class="bi bi-diagram-3-fill"></i>
+        </div>
+        <h5>Sistemas</h5>
+        <p>
+          Sistemas desarrollados en la dependencia para uso de las unidades policiales
+        </p>
+      </div>
+    </div>
+
+    <!-- CORREOS -->
+     <!--  -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card" (click)="IrACorreos()">
+        <div class="icon bg-success">
+          <i class="bi bi-envelope-paper-fill"></i>
+        </div>
+        <h5>Correos</h5>
+        <p>
+          Administración de cuentas de correo policial y altas en plataformas nacionales
+        </p>
+      </div>
+    </div>
+
+    <!-- CONEXIONES -->
+     <!-- (click)="irAConexiones()" -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card" >
+        <div class="icon bg-warning text-dark">
+          <i class="bi bi-router-fill"></i>
+        </div>
+        <h5>Conexiones</h5>
+        <p>
+          Conexiones y enlaces instalados en cada dependencia policial
+        </p>
+      </div>
+    </div>
+
+    <!-- INSUMOS -->
+     <!-- (click)="irAInsumos()" -->
+    <div class="col-md-6 col-lg-6">
+      <div class="dashboard-card" >
+        <div class="icon bg-danger">
+          <i class="bi bi-box-seam-fill"></i>
+        </div>
+        <h5>Insumos</h5>
+        <p>
+          Stock disponible en la unidad para provisión y control de insumos
+        </p>
+      </div>
+    </div>
+
+    <!-- NOVEDADES DIARIAS -->
+     <!-- (click)="irANovedades()" -->
+    <div class="col-md-6 col-lg-6">
+      <div class="dashboard-card" >
+        <div class="icon bg-info">
+          <i class="bi bi-journal-text"></i>
+        </div>
+        <h5>Novedades diarias</h5>
+        <p>
+          Registro y seguimiento de novedades surgidas diariamente en la unidad
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>

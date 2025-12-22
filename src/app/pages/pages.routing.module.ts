@@ -13,6 +13,7 @@ import { LstPlataformasComponent } from './lst/lst-plataformas/lst-plataformas.c
 import { AbmActualizacionplataformaComponent } from './frm-abm/abm-actualizacionplataforma/abm-actualizacionplataforma.component';
 import { LstReclamosComponent } from './lst/lst-reclamos/lst-reclamos.component';
 import { AbmReclamosComponent } from './frm-abm/abm-reclamos/abm-reclamos.component';
+import { PanelSeleccionComponent } from './componentes/panel-seleccion/panel-seleccion.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' }, // Agregá esto
-      { path: 'principal', component: LstUsuariosComponent },
+      { path: 'principal', component: PanelSeleccionComponent },
       { path: 'lst_usuario', component: LstUsuariosComponent },
       { path: 'habilitar_usuario', component: PanelHabilitacionComponent },
       { path: 'lst_usuario_solicitante', component: LstUsuarioSolicitanteComponent },

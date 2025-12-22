@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarModo, NavbarService } from '../services/navbar.service';
 
 @Component({
   selector: 'app-pages',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
+  
+  modoNavbar: NavbarModo = 'principal';
 
-  constructor() { }
-
+  constructor(private navbarService: NavbarService) {
+    this.navbarService.modo$.subscribe(modo => {
+      this.modoNavbar = modo;
+    });
+  }
+  
   ngOnInit(): void {
   }
-
 }
