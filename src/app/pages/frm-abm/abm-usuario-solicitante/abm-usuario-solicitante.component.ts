@@ -40,36 +40,41 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
   }
 
   async guardar() {
-    try {
-      if (this.item.unidadDpte > 0) {
-        Swal.fire({
-          title: 'El personal pertenece a esa unidad?',
-          text: 'Controle!',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Sí, pertenece',
-          cancelButtonText: 'No, modificar',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.procesarGuardado();
-          } else {
-            this.abrirModalUnidad(); // 👈 Abrimos modal si NO pertenece
-          }
-        });
-      } else {
-        // Si no hay unidad, también pedimos ingresarla
-        this.abrirModalUnidad();
-      }
-    } catch (error) {
-      Swal.fire({
-        title: 'Error al crear registro, verifique!',
-        icon: 'error',
-        draggable: true,
-      });
+  try {
+
+    // Si no hay unidad → pedir carga
+    if (!this.item?.unidadDpte || this.item.unidadDpte <= 0) {
+      this.abrirModalUnidad();
+      return;
     }
+
+    const result = await Swal.fire({
+      title: '¿El personal pertenece a esta unidad?',
+      text: 'Por favor, confirme la unidad seleccionada.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#0d6efd',
+      cancelButtonColor: '#dc3545',
+      confirmButtonText: 'Sí, pertenece',
+      cancelButtonText: 'No, modificar',
+    });
+
+    if (result.isConfirmed) {
+      await this.procesarGuardado();
+    } else {
+      this.abrirModalUnidad();
+    }
+
+  } catch (error) {
+    Swal.fire({
+      title: 'Error al guardar el registro',
+      text: 'Verifique los datos e intente nuevamente.',
+      icon: 'error',
+      confirmButtonColor: '#dc3545',
+    });
   }
+}
+
 
   // ✅ Abrir modal Bootstrap 5.1.3
   abrirModalUnidad() {
@@ -141,7 +146,7 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
     }
   }
 
-  unidadSeleccionada(event: Unidad) {
+  unidadSeleccionada(event: Unidad | null) {
     if (event != undefined) {
       this.item.unidadDpte = event.id;
       this.item.nombreUnidad = event.nombre;
