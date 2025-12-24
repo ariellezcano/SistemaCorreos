@@ -30,6 +30,9 @@ import { FilReclamosComponent } from './filtros/fil-reclamos/fil-reclamos.compon
 import { FooterComponent } from "./compartido/footer/footer.component";
 import { FilBusquedaPlataformaComponent } from './componentes/fil-busqueda-plataforma/fil-busqueda-plataforma.component';
 import { PanelSeleccionComponent } from './componentes/panel-seleccion/panel-seleccion.component';
+import { FilSistemasComponent } from './filtros/fil-sistemas/fil-sistemas.component';
+import { LstSistemasComponent } from './lst/lst-sistemas/lst-sistemas.component';
+import { AbmSistemasComponent } from './frm-abm/abm-sistemas/abm-sistemas.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,9 @@ import { PanelSeleccionComponent } from './componentes/panel-seleccion/panel-sel
     FilReclamosComponent,
     FilBusquedaPlataformaComponent,
     PanelSeleccionComponent,
+    FilSistemasComponent,
+    LstSistemasComponent,
+    AbmSistemasComponent,
 
   ],
   imports: [

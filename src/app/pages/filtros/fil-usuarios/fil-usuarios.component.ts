@@ -52,38 +52,6 @@ export class FilUsuariosComponent implements OnInit {
     this.filter();
   }
 
-  // async filter() {
-  //   try {
-  //     const tieneBusqueda = this.busqueda && this.busqueda.trim() !== '';
-
-  //     const data$ = this.wsdl.getList(
-  //       this.paginaActual,
-  //       this.limit,
-  //       tieneBusqueda ? this.busqueda : undefined
-  //     );
-  //     console.log('DATA:', data$);
-  //     const result = await lastValueFrom(data$); // ya devuelve el objeto listo
-  //     console.log('Resultado:', result);
-  //     const Json = JSON.parse(JSON.stringify(result));
-
-  //     if (Json.code === "200") {
-  //       console.log("aca estoysssss")
-  //       this.items = Json.data;
-  //       this.totalRegistros = Json.totalRegistros;
-  //       this.totalPaginas = Json.totalPaginas;
-  //     } else if (Json.code === "204") {
-  //       console.log("aca estoyss")
-  //       this.items = [];
-  //       this.totalRegistros = 0;
-  //       this.totalPaginas = 1;
-  //     }
-
-  //     //this.emmit.emit(this.items);
-  //   } catch (error) {
-  //     console.error('Error en filter():', error);
-  //   }
-  // }
-
   async filter() {
     try {
       const tieneBusqueda = this.busqueda && this.busqueda.trim() !== '';

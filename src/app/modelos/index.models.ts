@@ -6,4 +6,5 @@ export {UsuarioSolicitante} from './componentes/usuario_solicitante';
 export {Correo} from './componentes/correo';
 export {DetalleCorreo} from './componentes/detalleCorreo';
 export {Reclamos} from './componentes/reclamos';
-export {Plataforma} from './componentes/Plataforma';
+export {Plataforma} from './componentes/plataforma';
+export {Sistemas} from './componentes/sistemas';

@@ -17,6 +17,12 @@ export class PanelSeleccionComponent implements OnInit {
     this.router.navigate(['/pages/lst_usuario']);
   }
 
+
+  irASistemas(){
+    this.navbarService.setModo('sistemas');
+    this.router.navigate(['/pages/lst_sistemas']);
+  }
+
   volverAlPanel() {
     this.navbarService.setModo('principal');
     this.router.navigate(['/pages/principal']);

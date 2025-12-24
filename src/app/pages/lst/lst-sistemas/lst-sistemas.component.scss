@@ -1,0 +1,156 @@
+/* ===== CARD GENERAL ===== */
+.sistemas-card {
+  border: 1px solid #e6edf5;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+.sistemas-header {
+  background: linear-gradient(135deg, #0d6efd 0%, #084298 100%);
+  color: #fff;
+  position: relative;
+}
+
+.sistemas-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, #ff9800, #ffc107);
+}
+
+.sistemas-header h5 {
+  letter-spacing: 0.3px;
+}
+
+.sistemas-header i {
+  opacity: 0.95;
+}
+
+/* BOTÓN AGREGAR */
+.btn-add {
+  color: #0d6efd;
+  background-color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.btn-add:hover {
+  background-color: #e7f1ff;
+  transform: translateY(-1px);
+}
+
+/* ===== FILTROS ===== */
+app-fil-sistemas {
+  display: block;
+  border: 1px solid #dee2e6;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+}
+
+/* ===== TABLA ===== */
+.sistemas-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.sistemas-table thead th {
+  background-color: #f1f5f9;
+  color: #334155;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-bottom: 2px solid #e2e8f0;
+  padding: 0.85rem;
+}
+
+.sistemas-table tbody td {
+  padding: 0.85rem;
+  vertical-align: middle;
+  font-size: 0.9rem;
+}
+
+.sistemas-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.sistemas-table tbody tr:hover {
+  background-color: #f1f7ff;
+}
+
+/* SISTEMA DESTACADO */
+.sistemas-table tbody td:first-child {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+/* ===== BOTÓN LINK ===== */
+.sistemas-table .btn-outline-primary {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.sistemas-table .btn-outline-primary:hover {
+  transform: scale(1.12);
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+/* ===== BADGES ESTADO ===== */
+.estado-badge {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.estado-dev {
+  background-color: #fff4e5;
+  color: #b45309;
+  border: 1px solid #fed7aa;
+}
+
+.estado-ok {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+/* ===== OBSERVACIONES ===== */
+.sistemas-table td.text-truncate {
+  max-width: 260px;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  background: linear-gradient(135deg, #f8fafc, #ffffff);
+  border: 2px dashed #cbd5e1;
+  border-radius: 1.2rem;
+  min-height: 260px;
+}
+
+.empty-state i {
+  color: #0d6efd;
+  opacity: 0.8;
+}
+
+.empty-state h6 {
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+  color: #64748b;
+  max-width: 420px;
+  line-height: 1.4;
+}

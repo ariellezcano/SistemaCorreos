@@ -5,8 +5,8 @@ export class UsuarioSolicitante {
     apellido!: string;
     dni!: number;
     jerarquia!: string;
-    unidadDpte!: number;
-    nombreUnidad!: string;
+    unidadDpte: number | null = null;
+    nombreUnidad: string | null = null;;
     fechaSolEcom: any;
     persona!: number;
     usuarioCrea!: number;

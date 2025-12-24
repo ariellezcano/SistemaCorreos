@@ -113,37 +113,10 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
     }
   }
 
-  // async actualizarJerarquia(id: number, nuevaJerarquia: string) {
-  //   try {
-  //     let data = await firstValueFrom(
-  //       this.wsdl.patchJerarquia(id, nuevaJerarquia)
-  //     );
-  //     const result = JSON.parse(JSON.stringify(data));
-
-  //     if (result.code === '200') {
-  //       Swal.fire({
-  //         icon: 'success',
-  //         title: 'Jerarquía actualizada correctamente',
-  //         timer: 1500,
-  //         showConfirmButton: false,
-  //       });
-  //     } else {
-  //       Swal.fire('Atención', result.message, 'warning');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error al actualizar jerarquía:', error);
-  //     Swal.fire('Error', 'No se pudo actualizar la jerarquía', 'error');
-  //   }
-  // }
-
   doFound(event: UsuarioSolicitante[]) {
     //console.log('llegue');
     this.items = event;
   }
-
-  // linkear(id?: Number) {
-  //   this.route.navigateByUrl('lst-marcas/abm/' + id);
-  // }
 
   back() {
     this.route.navigate(['principal']);
@@ -156,46 +129,51 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
   }
 
   async actualizarJerarquia() {
-    const id = this.usuarioSeleccionado?.id;
-    const nuevaJerarquia = this.usuarioSeleccionado?.jerarquia;
-    //const unidad = this.usuarioSeleccionado?.unidadDpte;
-    //const nombreUnidad = this.usuarioSeleccionado?.nombreUnidad;
+  const id = this.usuarioSeleccionado?.id;
+  const nuevaJerarquia = this.usuarioSeleccionado?.jerarquia;
+  const unidad = this.item?.unidadDpte;
+  const nombreUnidad = this.item?.nombreUnidad;
 
-    if (!id || !nuevaJerarquia) {
-      Swal.fire('Atención', 'Debe seleccionar una jerarquía válida', 'warning');
-      return;
-    }
-
-    try {
-      const data = await firstValueFrom(
-        this.wsdl.patchJerarquia(
-          id,
-          nuevaJerarquia,
-          this.item.unidadDpte,
-          this.item.nombreUnidad
-        )
-      );
-      const result = JSON.parse(JSON.stringify(data));
-
-      if (result.code === '200') {
-        Swal.fire({
-          icon: 'success',
-          title: 'Datos actualizados correctamente',
-          timer: 1500,
-          showConfirmButton: false,
-        });
-
-        this.cerrarModalJerarquia();
-
-        this.fil.filter();
-      } else {
-        Swal.fire('Atención', result.message, 'warning');
-      }
-    } catch (error) {
-     // console.error('Error al actualizar datos:', error);
-      Swal.fire('Error', 'No se pudo actualizar los datos', 'error');
-    }
+  if (!id || !nuevaJerarquia) {
+    Swal.fire('Atención', 'Debe seleccionar una jerarquía válida', 'warning');
+    return;
   }
+
+  if (!unidad || !nombreUnidad) {
+    Swal.fire('Atención', 'Debe seleccionar una unidad válida', 'warning');
+    return;
+  }
+
+  try {
+    const data = await firstValueFrom(
+      this.wsdl.patchJerarquia(
+        id,
+        nuevaJerarquia,
+        unidad,          // ✅ ahora es number
+        nombreUnidad     // ✅ ahora es string
+      )
+    );
+
+    const result = JSON.parse(JSON.stringify(data));
+
+    if (result.code === '200') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Datos actualizados correctamente',
+        timer: 1500,
+        showConfirmButton: false,
+      });
+
+      this.cerrarModalJerarquia();
+      this.fil.filter();
+    } else {
+      Swal.fire('Atención', result.message, 'warning');
+    }
+  } catch (error) {
+    Swal.fire('Error', 'No se pudo actualizar los datos', 'error');
+  }
+}
+
 
   cerrarModalJerarquia() {
     const modalElement = document.getElementById('modalJerarquia');
@@ -217,7 +195,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
     }
   }
 
-  unidadSeleccionada(event: Unidad) {
+  unidadSeleccionada(event: Unidad | null) {
     if (event != undefined) {
       console.log(event);
       this.item.unidadDpte = event.id;
