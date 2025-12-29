@@ -34,6 +34,9 @@ import { FilSistemasComponent } from './filtros/fil-sistemas/fil-sistemas.compon
 import { LstSistemasComponent } from './lst/lst-sistemas/lst-sistemas.component';
 import { AbmSistemasComponent } from './frm-abm/abm-sistemas/abm-sistemas.component';
 import { PanelEnDesarrolloComponent } from './componentes/panel-en-desarrollo/panel-en-desarrollo.component';
+import { FilConexionesComponent } from './filtros/fil-conexiones/fil-conexiones.component';
+import { LstConexionesComponent } from './lst/lst-conexiones/lst-conexiones.component';
+import { AbmConexionesComponent } from './frm-abm/abm-conexiones/abm-conexiones.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,9 @@ import { PanelEnDesarrolloComponent } from './componentes/panel-en-desarrollo/pa
     LstSistemasComponent,
     AbmSistemasComponent,
     PanelEnDesarrolloComponent,
+    FilConexionesComponent,
+    LstConexionesComponent,
+    AbmConexionesComponent,
 
   ],
   imports: [

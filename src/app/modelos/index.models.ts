@@ -8,3 +8,4 @@ export {DetalleCorreo} from './componentes/detalleCorreo';
 export {Reclamos} from './componentes/reclamos';
 export {Plataforma} from './componentes/plataforma';
 export {Sistemas} from './componentes/sistemas';
+export {Conexion} from './componentes/conexion';

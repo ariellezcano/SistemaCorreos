@@ -29,5 +29,12 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     links: [
       { label: 'Sistemas', route: '/pages/lst_sistemas' }
     ]
+  },
+
+  conexiones: {
+    titulo: 'CONEXIONES Y RECLAMOS SERVICIO DE INTERNET',
+    links: [
+      { label: 'conexiones', route: '/pages/lst_conexiones' }
+    ]
   }
 };

@@ -1,0 +1,163 @@
+<div class="card sistemas-card shadow-sm rounded-4 my-4">
+  <!-- CABECERA -->
+  <div
+    class="card-header sistemas-header d-flex justify-content-between align-items-center px-4 py-3"
+  >
+    <div class="d-flex align-items-center gap-2">
+      <i class="bi bi-router-fill fs-4"></i>
+      <h5 class="m-0 fw-semibold">Listado de Conexiones</h5>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-light fw-semibold rounded-pill px-4 shadow-sm"
+      (click)="linkear(0)"
+    >
+      <i class="bi bi-plus-circle-fill me-2"></i>
+      Nueva Conexión
+    </button>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="px-4 pt-4">
+    <app-fil-conexiones
+      (emmit)="doFound($event)"
+      class="w-100"
+    ></app-fil-conexiones>
+  </div>
+
+  <!-- TABLA -->
+  <div class="table-responsive mt-3">
+    <table class="table table-hover align-middle mb-0 sistemas-table">
+      <thead>
+        <tr>
+          <th>Unidad</th>
+          <th class="text-center">Código</th>
+          <th>Localidad</th>
+          <th>Gateway</th>
+          <th>Velocidad</th>
+          <th>Medio</th>
+          <th>Tipo</th>
+          <th class="text-center">IPs</th>
+          <th class="text-center">Estado</th>
+          <th class="text-center">Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- LISTADO -->
+        <tr *ngFor="let item of items">
+          <td class="fw-semibold text-primary">
+            {{ item.nombreUnidad }}
+          </td>
+
+          <td class="text-center">
+            {{ item.codigoOficina }}
+          </td>
+
+          <td>
+            {{ item.localidad }}
+          </td>
+
+          <td class="font-monospace">
+            {{ item.gateway }}
+          </td>
+
+          <td>
+            {{ item.bajadaSubida }}
+          </td>
+
+          <td>
+            {{ item.medioConexion }}
+          </td>
+
+          <td>
+            {{ item.tipoConexion }}
+          </td>
+
+          <!-- IPs -->
+          <td class="text-center">
+            <span
+              class="badge bg-light text-dark border me-1"
+              title="IP ECOM"
+            >
+              E: {{ item.ipEcom || '—' }}
+            </span>
+            <span
+              class="badge bg-light text-dark border"
+              title="IP LAN CRIA"
+            >
+              L: {{ item.ipLanCria || '—' }}
+            </span>
+          </td>
+
+          <!-- ESTADO -->
+          <td class="text-center">
+            <span
+              class="badge estado-badge"
+              [ngClass]="{
+                'estado-ok': item.activo,
+                'estado-dev': !item.activo
+              }"
+            >
+              {{ item.activo ? 'Activa' : 'Inactiva' }}
+            </span>
+          </td>
+
+          <!-- ACCIONES -->
+          <td class="text-center">
+            <button
+              class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
+              title="Editar"
+              (click)="eliminar(item.idConexion)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button
+              class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+              title="Eliminar"
+              (click)="eliminar(item.idConexion)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+        <!-- EMPTY STATE -->
+        <tr *ngIf="items.length === 0">
+          <td colspan="10">
+            <div
+              class="empty-state d-flex flex-column align-items-center justify-content-center py-5"
+            >
+              <i class="bi bi-router fs-1 mb-3 text-muted"></i>
+
+              <h6 class="fw-semibold mb-1">
+                No hay conexiones registradas
+              </h6>
+
+              <p class="text-muted mb-3 text-center">
+                Aún no se cargaron conexiones de red.<br />
+                Podés comenzar agregando una nueva.
+              </p>
+
+              <!-- <button
+                class="btn btn-primary rounded-pill px-4"
+                (click)="crear()"
+              >
+                <i class="bi bi-plus-circle me-2"></i>
+                Nueva Conexión
+              </button> -->
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- OBSERVACIONES -->
+  <div class="px-4 py-3 border-top small text-muted" *ngIf="items.length">
+    <strong>Observaciones:</strong>
+    se visualizan desde el detalle o edición de la conexión.
+  </div>
+</div>

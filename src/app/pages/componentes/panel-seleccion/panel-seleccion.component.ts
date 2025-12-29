@@ -29,7 +29,7 @@ export class PanelSeleccionComponent implements OnInit {
 
   irAConexiones() {
     this.navbarService.setModo('conexiones');
-    this.router.navigate(['/pages/pagina_en_desarrollo']);
+    this.router.navigate(['/pages/lst_conexiones']);
   }
 
   irAInsumos() {
