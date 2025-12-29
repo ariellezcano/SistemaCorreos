@@ -17,8 +17,7 @@ export class PanelSeleccionComponent implements OnInit {
     this.router.navigate(['/pages/lst_usuario']);
   }
 
-
-  irASistemas(){
+  irASistemas() {
     this.navbarService.setModo('sistemas');
     this.router.navigate(['/pages/lst_sistemas']);
   }
@@ -28,5 +27,18 @@ export class PanelSeleccionComponent implements OnInit {
     this.router.navigate(['/pages/principal']);
   }
 
-  
+  irAConexiones() {
+    this.navbarService.setModo('conexiones');
+    this.router.navigate(['/pages/pagina_en_desarrollo']);
+  }
+
+  irAInsumos() {
+    this.navbarService.setModo('insumos');
+    this.router.navigate(['/pages/pagina_en_desarrollo']);
+  }
+
+  irANovedades() {
+    this.navbarService.setModo('novedades');
+    this.router.navigate(['/pages/pagina_en_desarrollo']);
+  }
 }

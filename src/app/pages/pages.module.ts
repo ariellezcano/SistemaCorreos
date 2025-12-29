@@ -33,6 +33,7 @@ import { PanelSeleccionComponent } from './componentes/panel-seleccion/panel-sel
 import { FilSistemasComponent } from './filtros/fil-sistemas/fil-sistemas.component';
 import { LstSistemasComponent } from './lst/lst-sistemas/lst-sistemas.component';
 import { AbmSistemasComponent } from './frm-abm/abm-sistemas/abm-sistemas.component';
+import { PanelEnDesarrolloComponent } from './componentes/panel-en-desarrollo/panel-en-desarrollo.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { AbmSistemasComponent } from './frm-abm/abm-sistemas/abm-sistemas.compon
     FilSistemasComponent,
     LstSistemasComponent,
     AbmSistemasComponent,
+    PanelEnDesarrolloComponent,
 
   ],
   imports: [

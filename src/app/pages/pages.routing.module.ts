@@ -16,6 +16,7 @@ import { AbmReclamosComponent } from './frm-abm/abm-reclamos/abm-reclamos.compon
 import { PanelSeleccionComponent } from './componentes/panel-seleccion/panel-seleccion.component';
 import { LstSistemasComponent } from './lst/lst-sistemas/lst-sistemas.component';
 import { AbmSistemasComponent } from './frm-abm/abm-sistemas/abm-sistemas.component';
+import { PanelEnDesarrolloComponent } from './componentes/panel-en-desarrollo/panel-en-desarrollo.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' }, // Agregá esto
       { path: 'principal', component: PanelSeleccionComponent },
+      { path: 'pagina_en_desarrollo', component: PanelEnDesarrolloComponent },
       { path: 'lst_usuario', component: LstUsuariosComponent },
       { path: 'habilitar_usuario', component: PanelHabilitacionComponent },
       { path: 'lst_usuario_solicitante', component: LstUsuarioSolicitanteComponent },
@@ -38,6 +40,7 @@ const routes: Routes = [
       { path: 'abm_reclamos', component: AbmReclamosComponent },
       { path: 'lst_sistemas', component: LstSistemasComponent },
       { path: 'abm_sistemas/:id', component: AbmSistemasComponent },
+
     ],
   },
 ];
