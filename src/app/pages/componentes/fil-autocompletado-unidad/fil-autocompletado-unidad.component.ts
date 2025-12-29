@@ -29,7 +29,7 @@ export class FilAutocompletadoUnidadComponent implements OnInit {
   async list() {
     try {
       this.cargando = true;
-      const re = await this.wsdl.getList(1, 1000).then();
+      const re = await this.wsdl.getList(1, 1000);
       const result = JSON.parse(JSON.stringify(re));
       if (result.code == 200) {
         this.items = result.data.docs;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
 import { firstValueFrom } from 'rxjs';
 import { Sistemas, Unidad } from 'src/app/modelos/index.models';
 import { SistemasService } from 'src/app/services/index.service';
@@ -46,6 +47,13 @@ export class AbmSistemasComponent implements OnInit {
 
       if (result.code === '200') {
         this.item = result.dato;
+
+        if (this.item.fechaDisposicion !== undefined) {
+          this.item.fechaDisposicion = moment(this.item.fechaDisposicion).isValid()
+            ? moment(this.item.fechaDisposicion).format('YYYY-MM-DD')
+            : null;
+        }
+
         this.editando = true;
       }
     } catch (error: any) {
@@ -113,16 +121,15 @@ export class AbmSistemasComponent implements OnInit {
   }
 
   unidadSeleccionada(unidad: Unidad | null) {
-  if (!unidad) {
-    this.item.nombreUnidad = null;
-    this.item.unidadPol = null;
-    return;
+    if (!unidad) {
+      this.item.nombreUnidad = null;
+      this.item.unidadPol = null;
+      return;
+    }
+
+    this.item.nombreUnidad = unidad.nombre;
+    this.item.unidadPol = unidad.id;
   }
-
-  this.item.nombreUnidad = unidad.nombre;
-  this.item.unidadPol = unidad.id;
-}
-
 
   back() {
     this.route.navigate(['pages/lst_sistemas']);

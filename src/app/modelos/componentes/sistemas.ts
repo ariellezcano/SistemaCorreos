@@ -1,5 +1,5 @@
 export class Sistemas {
-    idSistema!: number;
+    idSistemas!: number;
     nombreSistema!: string;
     anioImplementacion!: number;
     unidadPol: number | null = null;
@@ -9,8 +9,9 @@ export class Sistemas {
     linkAcceso!: string;
     estado!: string; //en desarrollo / desarrollado
     observaciones!: string;
+    activo: boolean;
 
     constructor(){
-
+        this.activo = true;
     }
 }

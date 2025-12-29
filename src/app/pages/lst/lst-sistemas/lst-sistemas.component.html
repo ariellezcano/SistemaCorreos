@@ -1,5 +1,4 @@
 <div class="card sistemas-card shadow-sm rounded-4 my-4">
-
   <!-- CABECERA -->
   <div
     class="card-header sistemas-header d-flex justify-content-between align-items-center px-4 py-3"
@@ -30,10 +29,9 @@
   <!-- TABLA -->
   <div class="table-responsive mt-3">
     <table class="table table-hover align-middle mb-0 sistemas-table">
-
       <thead>
         <tr>
-          <th>Sistema</th>
+          <th>Plataforma</th>
           <th class="text-center">Año</th>
           <th>Unidad</th>
           <th class="text-center">Disposición</th>
@@ -41,11 +39,11 @@
           <th class="text-center">Acceso</th>
           <th class="text-center">Estado</th>
           <th>Observaciones</th>
+          <th>Acción</th>
         </tr>
       </thead>
 
       <tbody>
-
         <!-- LISTADO -->
         <tr *ngFor="let item of items">
           <td class="fw-semibold text-primary">
@@ -63,7 +61,7 @@
           </td>
 
           <td class="text-center">
-            {{ item.fechaDisposicion | date:'dd/MM/yyyy' }}
+            {{ item.fechaDisposicion | date : "dd/MM/yyyy" }}
           </td>
 
           <td class="text-center">
@@ -90,40 +88,46 @@
             </span>
           </td>
 
-          <td class="text-muted small text-truncate" style="max-width: 260px;">
-            {{ item.observaciones || '—' }}
+          <td class="text-muted small text-truncate" style="max-width: 260px">
+            {{ item.observaciones || "—" }}
+          </td>
+
+          <td>
+            <button
+              class="btn btn-primary rounded-pill px-4 shadow-sm"
+              title="Editar"
+              (click)="linkear(item.idSistemas)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+            <button
+              class="btn btn-danger rounded-pill px-4 shadow-sm"
+              title="Eliminar"
+              (click)="eliminar(item.idSistemas)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
           </td>
         </tr>
 
         <!-- EMPTY STATE -->
         <tr *ngIf="items.length === 0">
-          <td colspan="8">
-            <div class="empty-state d-flex flex-column align-items-center justify-content-center py-5">
+          <td colspan="9">
+            <div
+              class="empty-state d-flex flex-column align-items-center justify-content-center py-5"
+            >
               <i class="bi bi-inbox fs-1 mb-3"></i>
 
-              <h6 class="fw-semibold mb-1">
-                No hay sistemas registrados
-              </h6>
+              <h6 class="fw-semibold mb-1">No hay sistemas registrados</h6>
 
               <p class="text-muted mb-3 text-center">
                 Aún no se cargaron sistemas en la plataforma.<br />
                 Podés comenzar agregando uno nuevo.
               </p>
-
-              <!-- <button
-                class="btn btn-primary rounded-pill px-4 shadow-sm"
-                (click)="agregarSistema()"
-              >
-                <i class="bi bi-plus-circle me-2"></i>
-                Agregar Sistema
-              </button> -->
             </div>
           </td>
         </tr>
-
       </tbody>
-
     </table>
   </div>
-
 </div>

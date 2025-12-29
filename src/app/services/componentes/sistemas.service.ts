@@ -42,8 +42,8 @@ export class SistemasService {
       return this.http.patch(this.api + '/' + id, evento);
     }
   
-    delete(id: number, usuarioBaja: number) {
-      console.log('servicio:', id, usuarioBaja);
-      return this.http.delete(`${this.api}/${id},${usuarioBaja}`);
+    delete(id: number) {
+      console.log('servicio:', id);
+      return this.http.delete(`${this.api}/${id}`);
     }
 }
