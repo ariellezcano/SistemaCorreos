@@ -1,1 +1,179 @@
-<p>abm-conexiones works!</p>
+<div class="container my-5">
+  <div class="card shadow-lg border-0 sistemas-abm-card">
+    <!-- CABECERA -->
+    <div
+      class="card-header bg-primary text-white d-flex justify-content-between align-items-center rounded-top px-4 py-3"
+    >
+      <h4 class="m-0 fw-semibold">
+        <i class="bi bi-diagram-3 me-2"></i>
+        ABM Conexiones
+      </h4>
+    </div>
+
+    <hr class="m-0" />
+
+    <!-- FORMULARIO -->
+    <div class="card-body bg-light px-4 py-4">
+      <form (ngSubmit)="guardar()" #formConexion="ngForm" class="row g-3">
+        <!-- UNIDAD -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Unidad</label>
+
+          <app-fil-autocompletado-unidad
+            (unidadSeleccionada)="unidadSeleccionada($event)"
+          ></app-fil-autocompletado-unidad>
+
+          <small *ngIf="item.nombreUnidad" class="text-muted fst-italic">
+            Seleccionada: {{ item.nombreUnidad }}
+          </small>
+        </div>
+
+        <!-- CÓDIGO OFICINA -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Código Oficina</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codigoOficina"
+            [(ngModel)]="item.codigoOficina"
+            required
+          />
+        </div>
+
+        <!-- LOCALIDAD -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Localidad</label>
+          <select
+            class="form-select"
+            name="localidad"
+            [(ngModel)]="item.localidad"
+            required
+          >
+            <option value="">Seleccione una localidad...</option>
+
+            <option *ngFor="let loc of localidadesChaco" [value]="loc">
+              {{ loc }}
+            </option>
+          </select>
+        </div>
+
+        <!-- GATEWAY -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Gateway</label>
+          <input
+            type="text"
+            class="form-control"
+            name="gateway"
+            [(ngModel)]="item.gateway"
+            required
+          />
+        </div>
+
+        <!-- IP ECOM -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">IP Ecom</label>
+          <input
+            type="text"
+            class="form-control"
+            name="ipEcom"
+            [(ngModel)]="item.ipEcom"
+          />
+        </div>
+
+        <!-- IP LAN -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">IP LAN Cría</label>
+          <input
+            type="text"
+            class="form-control"
+            name="ipLanCria"
+            [(ngModel)]="item.ipLanCria"
+          />
+        </div>
+
+        <!-- VELOCIDAD -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Bajada / Subida</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bajadaSubida"
+            [(ngModel)]="item.bajadaSubida"
+          />
+        </div>
+
+        <!-- MEDIO -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Medio de Conexión</label>
+          <select
+            class="form-select"
+            name="medioConexion"
+            [(ngModel)]="item.medioConexion"
+            required
+          >
+            <option value="">Seleccione...</option>
+            <option value="Fibra Óptica">Fibra Óptica</option>
+            <option value="Alámbrica (FTP)">Alámbrica (FTP)</option>
+            <option value="Inalambrica (Radio Enlace)">
+              Inalambrica (Rádio Enlace)
+            </option>
+          </select>
+        </div>
+
+        <!-- TIPO -->
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Tipo de Conexión</label>
+          <select
+            class="form-select"
+            name="tipoConexion"
+            [(ngModel)]="item.tipoConexion"
+            required
+          >
+            <option value="">Seleccione...</option>
+            <option value="VPN">VPN</option>
+            <option value="Túnel">TUNEL</option>
+          </select>
+        </div>
+
+        <!-- INTERFAZ -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Interfaz</label>
+          <input
+            type="text"
+            class="form-control"
+            name="interfaz"
+            [(ngModel)]="item.interfaz"
+          />
+        </div>
+
+        <!-- OBSERVACIONES -->
+        <div class="col-md-12">
+          <label class="form-label fw-semibold">Observaciones</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            name="observaciones"
+            [(ngModel)]="item.observaciones"
+          ></textarea>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="col-12 text-end mt-4">
+          <button
+            type="submit"
+            class="btn btn-success me-2 px-4"
+            [disabled]="!formConexion.valid"
+          >
+            <i class="bi bi-save me-2"></i>
+            {{ editando ? "Actualizar" : "Guardar" }}
+          </button>
+
+          <button type="button" class="btn btn-secondary px-4" (click)="back()">
+            <i class="bi bi-x-circle me-2"></i>
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

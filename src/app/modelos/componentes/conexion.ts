@@ -1,8 +1,8 @@
 export class Conexion {
 
     idConexion!: number;
-    unidadPol!: number;
-    nombreUnidad!: string;
+    unidadPol: number | null = null;
+    nombreUnidad: string | null = null;
     gateway!: string;
     localidad!: string;
     bajadaSubida!: string;
