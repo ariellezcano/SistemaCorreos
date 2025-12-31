@@ -19,6 +19,8 @@ import { AbmSistemasComponent } from './frm-abm/abm-sistemas/abm-sistemas.compon
 import { PanelEnDesarrolloComponent } from './componentes/panel-en-desarrollo/panel-en-desarrollo.component';
 import { LstConexionesComponent } from './lst/lst-conexiones/lst-conexiones.component';
 import { AbmConexionesComponent } from './frm-abm/abm-conexiones/abm-conexiones.component';
+import { LstSolicitudReclamoComponent } from './lst/lst-solicitud-reclamo/lst-solicitud-reclamo.component';
+import { AbmSolicitudReclamoComponent } from './frm-abm/abm-solicitud-reclamo/abm-solicitud-reclamo.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,8 @@ const routes: Routes = [
       { path: 'abm_sistemas/:id', component: AbmSistemasComponent },
       { path: 'lst_conexiones', component: LstConexionesComponent },
       { path: 'abm_conexiones/:id', component: AbmConexionesComponent },
+      { path: 'lst_solicitudReclamo', component: LstSolicitudReclamoComponent },
+      { path: 'abm_solicitudReclamo/:id', component: AbmSolicitudReclamoComponent },
 
     ],
   },

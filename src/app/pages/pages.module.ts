@@ -37,6 +37,9 @@ import { PanelEnDesarrolloComponent } from './componentes/panel-en-desarrollo/pa
 import { FilConexionesComponent } from './filtros/fil-conexiones/fil-conexiones.component';
 import { LstConexionesComponent } from './lst/lst-conexiones/lst-conexiones.component';
 import { AbmConexionesComponent } from './frm-abm/abm-conexiones/abm-conexiones.component';
+import { FilSolicitudReclamoComponent } from './filtros/fil-solicitud-reclamo/fil-solicitud-reclamo.component';
+import { AbmSolicitudReclamoComponent } from './frm-abm/abm-solicitud-reclamo/abm-solicitud-reclamo.component';
+import { LstSolicitudReclamoComponent } from './lst/lst-solicitud-reclamo/lst-solicitud-reclamo.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +75,9 @@ import { AbmConexionesComponent } from './frm-abm/abm-conexiones/abm-conexiones.
     FilConexionesComponent,
     LstConexionesComponent,
     AbmConexionesComponent,
+    FilSolicitudReclamoComponent,
+    AbmSolicitudReclamoComponent,
+    LstSolicitudReclamoComponent,
 
   ],
   imports: [

@@ -9,3 +9,4 @@ export {Reclamos} from './componentes/reclamos';
 export {Plataforma} from './componentes/plataforma';
 export {Sistemas} from './componentes/sistemas';
 export {Conexion} from './componentes/conexion';
+export {SolicitudReclamo} from './componentes/solicitudReclamo';

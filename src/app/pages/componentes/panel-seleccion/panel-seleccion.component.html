@@ -6,8 +6,20 @@
 
   <div class="row g-4">
 
+    <!-- USUARIOS -->
+    <div class="col-md-6 col-lg-4">
+      <div class="dashboard-card" (click)="irAUsuarios()">
+        <div class="icon bg-secondary">
+          <i class="bi bi-people-fill"></i>
+        </div>
+        <h5>Usuarios</h5>
+        <p>
+          Administración de usuarios habilitados para el uso del sistema
+        </p>
+      </div>
+    </div>
+
     <!-- SISTEMAS -->
-     <!--  -->
     <div class="col-md-6 col-lg-4">
       <div class="dashboard-card" (click)="irASistemas()">
         <div class="icon bg-primary">
@@ -21,7 +33,6 @@
     </div>
 
     <!-- CORREOS -->
-     <!--  -->
     <div class="col-md-6 col-lg-4">
       <div class="dashboard-card" (click)="IrACorreos()">
         <div class="icon bg-success">
@@ -35,7 +46,6 @@
     </div>
 
     <!-- CONEXIONES -->
-     <!--  -->
     <div class="col-md-6 col-lg-4">
       <div class="dashboard-card" (click)="irAConexiones()">
         <div class="icon bg-warning text-dark">
@@ -49,7 +59,6 @@
     </div>
 
     <!-- INSUMOS -->
-     <!--  -->
     <div class="col-md-6 col-lg-6">
       <div class="dashboard-card" (click)="irAInsumos()">
         <div class="icon bg-danger">
@@ -63,7 +72,6 @@
     </div>
 
     <!-- NOVEDADES DIARIAS -->
-     <!--  -->
     <div class="col-md-6 col-lg-6">
       <div class="dashboard-card" (click)="irANovedades()">
         <div class="icon bg-info">

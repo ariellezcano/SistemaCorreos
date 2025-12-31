@@ -9,3 +9,4 @@ export {PlataformaService} from './componentes/plataforma.service'
 export {ReclamoService} from './componentes/reclamo.service';
 export {SistemasService} from './componentes/sistemas.service';
 export {ConexionesService} from './componentes/conexiones.service';
+export {SolicitudReclamoService} from './componentes/solicitud-reclamo.service';

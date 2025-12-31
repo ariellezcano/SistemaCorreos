@@ -16,11 +16,17 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
   correos: {
     titulo: 'PANEL DE CORREOS POLICIALES Y SISTEMAS NACIONALES',
     links: [
-      { label: 'Usuarios', route: '/pages/lst_usuario' },
       { label: 'Solicitantes', route: '/pages/lst_usuario_solicitante' },
       { label: 'Correo Institucional', route: '/pages/lst_correos_institucionales' },
       { label: 'Sistemas Federales', route: '/pages/lst_plataforma' },
       { label: 'Reclamos', route: '/pages/lst_reclamos' }
+    ]
+  },
+
+  usuarios: {
+    titulo: 'USUARIOS PARA USO DEL SISTEMA',
+    links: [
+      { label: 'Usuarios', route: '/pages/lst_usuario' },
     ]
   },
 
@@ -35,7 +41,7 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     titulo: 'CONEXIONES Y RECLAMOS SERVICIO DE INTERNET',
     links: [
       { label: 'Conexiones', route: '/pages/lst_conexiones' },
-      { label: 'Solicitudes / Reclamos', route: '/pages/lst_conexiones' }
+      { label: 'Solicitudes / Reclamos', route: '/pages/lst_solicitudReclamo' }
     ]
   }
 };

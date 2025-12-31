@@ -12,9 +12,14 @@ export class PanelSeleccionComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  irAUsuarios() {
+    this.navbarService.setModo('usuarios');
+    this.router.navigate(['/pages/lst_usuario']);
+  }
+
   IrACorreos() {
     this.navbarService.setModo('correos');
-    this.router.navigate(['/pages/lst_usuario']);
+    this.router.navigate(['/pages/lst_usuario_solicitante']);
   }
 
   irASistemas() {
