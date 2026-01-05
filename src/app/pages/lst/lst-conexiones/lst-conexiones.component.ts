@@ -27,7 +27,7 @@ export class LstConexionesComponent implements OnInit {
      ngOnInit(): void {}
    
      doFound(event: Conexion[]) {
-       console.log('llegue', event);
+       //console.log('llegue', event);
        this.items = event;
      }
    
@@ -39,7 +39,7 @@ export class LstConexionesComponent implements OnInit {
        this.route.navigate(['pages/lst_conexiones']);
      }
    
-     async eliminar(plataforma: number) {
+     async eliminar(registro: number) {
        Swal.fire({
          title: 'Estás seguro de eliminar?',
          showDenyButton: true,
@@ -49,18 +49,18 @@ export class LstConexionesComponent implements OnInit {
        }).then((result) => {
          /* Read more about isConfirmed, isDenied below */
          if (result.isConfirmed) {
-           this.eliminacion(plataforma);
+           this.eliminacion(registro);
          } else if (result.isDenied) {
            Swal.fire('Operacion cancelada', '', 'info');
          }
        });
      }
    
-     async eliminacion(plataforma: number) {
+     async eliminacion(registro: number) {
        try {
    
          const data = await firstValueFrom(
-           this.wsdl.delete(plataforma)
+           this.wsdl.delete(registro)
          );
          const result = JSON.parse(JSON.stringify(data));
    

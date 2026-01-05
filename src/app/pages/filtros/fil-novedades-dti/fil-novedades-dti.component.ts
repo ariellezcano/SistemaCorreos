@@ -1,19 +1,19 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Conexion } from 'src/app/modelos/index.models';
-import { ConexionesService } from 'src/app/services/index.service';
+import { NovedadesDTO } from 'src/app/modelos/componentes/relacionModelos/novedades-dto';
+import { NovedadesDTI } from 'src/app/modelos/index.models';
+import { NovedadesDtiService } from 'src/app/services/index.service';
 
 @Component({
-  selector: 'app-fil-conexiones',
-  templateUrl: './fil-conexiones.component.html',
-  styleUrls: ['./fil-conexiones.component.scss'],
+  selector: 'app-fil-novedades-dti',
+  templateUrl: './fil-novedades-dti.component.html',
+  styleUrls: ['./fil-novedades-dti.component.scss'],
 })
-export class FilConexionesComponent implements OnInit {
-  
-  @Output() emmit: EventEmitter<Conexion[]> = new EventEmitter();
+export class FilNovedadesDtiComponent implements OnInit {
+  @Output() emmit: EventEmitter<NovedadesDTO[]> = new EventEmitter();
 
   busqueda: any;
-  items: Conexion[];
+  items: NovedadesDTO[];
 
   paginaAnterior!: number;
   anterior: boolean;
@@ -25,7 +25,7 @@ export class FilConexionesComponent implements OnInit {
   public limit: any;
   public limits: Number[] = [10, 20, 30];
 
-  constructor(private wsdl: ConexionesService) {
+  constructor(private wsdl: NovedadesDtiService) {
     this.busqueda = '';
     this.items = [];
 

@@ -44,6 +44,6 @@ export class PanelSeleccionComponent implements OnInit {
 
   irANovedades() {
     this.navbarService.setModo('novedades');
-    this.router.navigate(['/pages/pagina_en_desarrollo']);
+    this.router.navigate(['/pages/lst_novedadesDTI']);
   }
 }

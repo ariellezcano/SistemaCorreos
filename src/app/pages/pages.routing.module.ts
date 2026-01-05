@@ -21,6 +21,8 @@ import { LstConexionesComponent } from './lst/lst-conexiones/lst-conexiones.comp
 import { AbmConexionesComponent } from './frm-abm/abm-conexiones/abm-conexiones.component';
 import { LstSolicitudReclamoComponent } from './lst/lst-solicitud-reclamo/lst-solicitud-reclamo.component';
 import { AbmSolicitudReclamoComponent } from './frm-abm/abm-solicitud-reclamo/abm-solicitud-reclamo.component';
+import { LstNovedadesDTIComponent } from './lst/lst-novedades-dti/lst-novedades-dti.component';
+import { AbmNovedadesDtiComponent } from './frm-abm/abm-novedades-dti/abm-novedades-dti.component';
 
 const routes: Routes = [
   {
@@ -48,7 +50,10 @@ const routes: Routes = [
       { path: 'abm_conexiones/:id', component: AbmConexionesComponent },
       { path: 'lst_solicitudReclamo', component: LstSolicitudReclamoComponent },
       { path: 'abm_solicitudReclamo/:id', component: AbmSolicitudReclamoComponent },
+      { path: 'lst_novedadesDTI', component: LstNovedadesDTIComponent },
+      { path: 'abm_novedadesDTI/:id', component: AbmNovedadesDtiComponent },
 
+      
     ],
   },
 ];

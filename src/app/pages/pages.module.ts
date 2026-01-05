@@ -40,6 +40,12 @@ import { AbmConexionesComponent } from './frm-abm/abm-conexiones/abm-conexiones.
 import { FilSolicitudReclamoComponent } from './filtros/fil-solicitud-reclamo/fil-solicitud-reclamo.component';
 import { AbmSolicitudReclamoComponent } from './frm-abm/abm-solicitud-reclamo/abm-solicitud-reclamo.component';
 import { LstSolicitudReclamoComponent } from './lst/lst-solicitud-reclamo/lst-solicitud-reclamo.component';
+import { LstNovedadesDTIComponent } from './lst/lst-novedades-dti/lst-novedades-dti.component';
+import { LstTiponovedadComponent } from './lst/lst-tiponovedad/lst-tiponovedad.component';
+import { AbmTiponovedadComponent } from './frm-abm/abm-tiponovedad/abm-tiponovedad.component';
+import { AbmNovedadesDtiComponent } from './frm-abm/abm-novedades-dti/abm-novedades-dti.component';
+import { FilNovedadesDtiComponent } from './filtros/fil-novedades-dti/fil-novedades-dti.component';
+import { FilTipoNovedadComponent } from './filtros/fil-tipo-novedad/fil-tipo-novedad.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +84,12 @@ import { LstSolicitudReclamoComponent } from './lst/lst-solicitud-reclamo/lst-so
     FilSolicitudReclamoComponent,
     AbmSolicitudReclamoComponent,
     LstSolicitudReclamoComponent,
+    LstNovedadesDTIComponent,
+    LstTiponovedadComponent,
+    AbmTiponovedadComponent,
+    AbmNovedadesDtiComponent,
+    FilNovedadesDtiComponent,
+    FilTipoNovedadComponent,
 
   ],
   imports: [

@@ -1,19 +1,19 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { Conexion } from 'src/app/modelos/index.models';
-import { ConexionesService } from 'src/app/services/index.service';
+import { TipoNovedad } from 'src/app/modelos/index.models';
+import { TipoNovedadService } from 'src/app/services/index.service';
 
 @Component({
-  selector: 'app-fil-conexiones',
-  templateUrl: './fil-conexiones.component.html',
-  styleUrls: ['./fil-conexiones.component.scss'],
+  selector: 'app-fil-tipo-novedad',
+  templateUrl: './fil-tipo-novedad.component.html',
+  styleUrls: ['./fil-tipo-novedad.component.scss'],
 })
-export class FilConexionesComponent implements OnInit {
-  
-  @Output() emmit: EventEmitter<Conexion[]> = new EventEmitter();
+export class FilTipoNovedadComponent implements OnInit {
+ 
+  @Output() emmit: EventEmitter<TipoNovedad[]> = new EventEmitter();
 
   busqueda: any;
-  items: Conexion[];
+  items: TipoNovedad[];
 
   paginaAnterior!: number;
   anterior: boolean;
@@ -25,7 +25,7 @@ export class FilConexionesComponent implements OnInit {
   public limit: any;
   public limits: Number[] = [10, 20, 30];
 
-  constructor(private wsdl: ConexionesService) {
+  constructor(private wsdl: TipoNovedadService) {
     this.busqueda = '';
     this.items = [];
 

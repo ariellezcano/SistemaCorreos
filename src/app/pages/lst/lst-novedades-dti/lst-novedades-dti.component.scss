@@ -1,0 +1,28 @@
+.sistemas-card {
+  border: none;
+}
+
+.sistemas-header {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+  color: #fff;
+}
+
+.estado-badge {
+  padding: 0.45em 0.9em;
+  border-radius: 50rem;
+  font-weight: 500;
+}
+
+.estado-ok {
+  background-color: #198754;
+  color: #fff;
+}
+
+.estado-dev {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.empty-state {
+  min-height: 180px;
+}
