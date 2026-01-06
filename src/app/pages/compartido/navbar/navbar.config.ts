@@ -43,5 +43,14 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
       { label: 'Conexiones', route: '/pages/lst_conexiones' },
       { label: 'Solicitudes / Reclamos', route: '/pages/lst_solicitudReclamo' }
     ]
-  }
+  },
+
+  novedades: {
+    titulo: 'NOVEDADES DIARIAS - DTI',
+    links: [
+      { label: 'Novedades', route: '/pages/lst_novedadesDTI' },
+      { label: 'Tipos de Novedades', route: '/pages/lst_tipoNovedad' }
+    ]
+  },
+
 };

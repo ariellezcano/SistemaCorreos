@@ -1,7 +1,7 @@
 export class NovedadesDTI {
     idNovedad!: number;
-    unidad!: number;
-    nombreUnidad!: string;
+    unidad: number | null = null;
+    nombreUnidad: string | null = null;
     fechaNovedad!: any;
     tipoNovedad!: number;
     novedad!: string;

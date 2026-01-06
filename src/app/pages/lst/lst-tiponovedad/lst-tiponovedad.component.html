@@ -1,1 +1,94 @@
-<p>lst-tiponovedad works!</p>
+<div class="card sistemas-card shadow-sm rounded-4 my-4">
+  <!-- CABECERA -->
+  <div
+    class="card-header sistemas-header d-flex justify-content-between align-items-center px-4 py-3"
+  >
+    <div class="d-flex align-items-center gap-2">
+      <i class="bi bi-tags-fill fs-4"></i>
+      <h5 class="m-0 fw-semibold">Listado de Tipos de Novedad</h5>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-light fw-semibold rounded-pill px-4 shadow-sm"
+      (click)="linkear(0)"
+    >
+      <i class="bi bi-plus-circle-fill me-2"></i>
+      Nuevo Tipo
+    </button>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="px-4 pt-4">
+    <app-fil-tipo-novedad
+      class="w-100"
+      (emmit)="doFound($event)"
+    ></app-fil-tipo-novedad>
+  </div>
+
+  <!-- TABLA -->
+  <div class="table-responsive mt-3">
+    <table class="table table-hover align-middle mb-0 sistemas-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th class="text-center">Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- LISTADO -->
+        <tr *ngFor="let item of items">
+          <td class="fw-semibold text-primary">
+            {{ item.nombre }}
+          </td>
+
+          <!-- ACCIONES -->
+          <td class="text-center">
+            <button
+              class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
+              title="Editar"
+              (click)="linkear(item.idTipoNovedad)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button
+              class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+              title="Eliminar"
+              (click)="eliminar(item.idTipoNovedad)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+        <!-- EMPTY STATE -->
+        <tr *ngIf="items.length === 0">
+          <td colspan="2">
+            <div
+              class="empty-state d-flex flex-column align-items-center justify-content-center py-5"
+            >
+              <i class="bi bi-tags fs-1 mb-3 text-muted"></i>
+
+              <h6 class="fw-semibold mb-1">
+                No hay tipos de novedad registrados
+              </h6>
+
+              <p class="text-muted mb-3 text-center">
+                Aún no se cargaron tipos de novedad.<br />
+                Podés comenzar agregando uno nuevo.
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- OBSERVACIONES -->
+  <div class="px-4 py-3 border-top small text-muted" *ngIf="items.length">
+    <strong>Observaciones:</strong>
+    los tipos de novedad se utilizan en el registro de novedades.
+  </div>
+</div>

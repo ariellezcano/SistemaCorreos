@@ -36,6 +36,7 @@ export class TipoNovedadService {
   }
 
   update(id: number, evento: any) {
+    console.log("datos", evento)
     return this.http.put(this.api + '/' + id, evento);
   }
 

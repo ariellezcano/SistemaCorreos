@@ -1,1 +1,48 @@
-<p>abm-tiponovedad works!</p>
+<div class="container my-5">
+  <div class="card shadow-lg border-0 sistemas-abm-card">
+    <!-- CABECERA -->
+    <div
+      class="card-header bg-primary text-white d-flex align-items-center rounded-top px-4 py-3"
+    >
+      <h4 class="m-0 fw-semibold">
+        <i class="bi bi-tags me-2"></i>
+        {{ editando ? 'Editar' : 'Nuevo' }} Tipo de Novedad
+      </h4>
+    </div>
+
+    <hr class="m-0" />
+
+    <!-- FORM -->
+    <div class="card-body bg-light px-4 py-4">
+      <form (ngSubmit)="guardar()" #form="ngForm">
+        <div class="mb-4">
+          <label class="form-label fw-semibold">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombre"
+            [(ngModel)]="item.nombre"
+            required
+          />
+        </div>
+
+        <!-- BOTONES -->
+        <div class="text-end">
+          <button
+            type="submit"
+            class="btn btn-success me-2 px-4"
+            [disabled]="!form.valid"
+          >
+            <i class="bi bi-save me-2"></i>
+            {{ editando ? 'Actualizar' : 'Guardar' }}
+          </button>
+
+          <button class="btn btn-secondary px-4" type="button" (click)="back()">
+            <i class="bi bi-x-circle me-2"></i>
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
