@@ -15,7 +15,6 @@
     <!-- FORMULARIO -->
     <div class="card-body bg-light px-4 py-4">
       <form (ngSubmit)="guardar()" #formNovedad="ngForm" class="row g-3">
-
         <!-- FECHA -->
         <div class="col-md-3">
           <label class="form-label fw-semibold">Fecha</label>
@@ -50,8 +49,8 @@
             [(ngModel)]="item.tipoNovedad"
             required
           >
-            <option value="">Seleccione...</option>
-            <option *ngFor="let t of tiposNovedad" [value]="t.id">
+            <option [ngValue]="null">Seleccione...</option>
+            <option *ngFor="let t of tiposNovedad" [ngValue]="t.idTipoNovedad">
               {{ t.nombre }}
             </option>
           </select>
@@ -59,7 +58,9 @@
 
         <!-- NOVEDAD -->
         <div class="col-md-12">
-          <label class="form-label fw-semibold">Descripción de la Novedad</label>
+          <label class="form-label fw-semibold"
+            >Descripción de la Novedad</label
+          >
           <textarea
             class="form-control"
             rows="4"
@@ -77,19 +78,14 @@
             [disabled]="!formNovedad.valid"
           >
             <i class="bi bi-save me-2"></i>
-            {{ editando ? 'Actualizar' : 'Guardar' }}
+            {{ editando ? "Actualizar" : "Guardar" }}
           </button>
 
-          <button
-            type="button"
-            class="btn btn-secondary px-4"
-            (click)="back()"
-          >
+          <button type="button" class="btn btn-secondary px-4" (click)="back()">
             <i class="bi bi-x-circle me-2"></i>
             Cancelar
           </button>
         </div>
-
       </form>
     </div>
   </div>

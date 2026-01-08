@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { firstValueFrom } from 'rxjs';
-import { NovedadesDTI, Unidad } from 'src/app/modelos/index.models';
+import { NovedadesDTI, TipoNovedad, Unidad } from 'src/app/modelos/index.models';
 import { NovedadesDtiService, TipoNovedadService } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
 
@@ -17,7 +17,8 @@ export class AbmNovedadesDtiComponent implements OnInit {
   editando = false;
   id!: number;
 
-  tiposNovedad: any[] = [];
+  tiposNovedad: TipoNovedad[] = [];
+  tipoNov: TipoNovedad;
 
   constructor(
     private wsdl: NovedadesDtiService,
@@ -26,6 +27,7 @@ export class AbmNovedadesDtiComponent implements OnInit {
     private url: ActivatedRoute
   ) {
     this.item = new NovedadesDTI();
+    this.tipoNov = new TipoNovedad();
   }
 
   ngOnInit(): void {
@@ -46,9 +48,10 @@ export class AbmNovedadesDtiComponent implements OnInit {
   }
 
   async cargarTipos() {
-    const data = await firstValueFrom(this.tiposSrv.getList(1,15));
+    const data = await firstValueFrom(this.tiposSrv.getList(1,30));
     const result = JSON.parse(JSON.stringify(data));
-    this.tiposNovedad = result.dato;
+    //console.log("tipos", result)
+    this.tiposNovedad = result.data;
   }
 
   async obtenerId() {
