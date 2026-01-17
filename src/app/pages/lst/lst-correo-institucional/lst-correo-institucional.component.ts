@@ -180,6 +180,10 @@ export class LstCorreoInstitucionalComponent implements OnInit {
     this.route.navigateByUrl('pages/plataformas/' + id);
   }
 
+  cambiarTitular(id?: Number) {
+    this.route.navigateByUrl('pages/cambiarTitular/' + id);
+  }
+  
   back() {
     this.route.navigate(['principal']);
   }

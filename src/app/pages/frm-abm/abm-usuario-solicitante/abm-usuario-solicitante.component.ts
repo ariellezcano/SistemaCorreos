@@ -107,7 +107,7 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
       this.item.usuarioCrea = Number(Utils.getSession('user'));
       const data = await firstValueFrom(this.wsdl.insert(this.item));
       const result = JSON.parse(JSON.stringify(data));
-
+      console.log("error1", result)
       if (result.code === '201') {
         Swal.fire({
           position: 'top-end',
@@ -121,6 +121,7 @@ export class AbmUsuarioSolicitanteComponent implements OnInit {
         Swal.fire('Atención', result.message, 'warning');
       }
     } catch (error) {
+      console.log("error", error)
       Swal.fire({
         title: 'Error al crear registro, verifique!',
         icon: 'error',

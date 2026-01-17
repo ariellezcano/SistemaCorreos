@@ -72,7 +72,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
               this.wsdl.delete(id, usuarioBaja)
             );
             const Json = JSON.parse(JSON.stringify(res));
-
+            console.log("eliminar", Json)
             if (Json.code === '200') {
               this.fil.filter();
 
@@ -83,7 +83,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
               );
             }
           } catch (err) {
-            //console.error('Error al eliminar:', err);
+            console.error('Error al eliminar:', err);
             swalWithBootstrapButtons.fire(
               'Error',
               'No se pudo eliminar el registro.',

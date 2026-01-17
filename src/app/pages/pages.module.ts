@@ -46,6 +46,7 @@ import { AbmTiponovedadComponent } from './frm-abm/abm-tiponovedad/abm-tiponoved
 import { AbmNovedadesDtiComponent } from './frm-abm/abm-novedades-dti/abm-novedades-dti.component';
 import { FilNovedadesDtiComponent } from './filtros/fil-novedades-dti/fil-novedades-dti.component';
 import { FilTipoNovedadComponent } from './filtros/fil-tipo-novedad/fil-tipo-novedad.component';
+import { AbmCambioTitularComponent } from './frm-abm/abm-cambio-titular/abm-cambio-titular.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { FilTipoNovedadComponent } from './filtros/fil-tipo-novedad/fil-tipo-nov
     AbmNovedadesDtiComponent,
     FilNovedadesDtiComponent,
     FilTipoNovedadComponent,
+    AbmCambioTitularComponent,
 
   ],
   imports: [
