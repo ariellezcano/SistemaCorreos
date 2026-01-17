@@ -1,12 +1,10 @@
 <div class="card filtro-panel shadow-sm my-4">
-
   <div class="row align-items-end g-4">
 
     <!-- Registros -->
     <div class="col-md-2">
       <label class="form-label filtro-label">Registros por página</label>
       <select
-        (change)="filter()"
         class="form-select filtro-input"
         [(ngModel)]="limit"
       >
@@ -14,12 +12,31 @@
       </select>
     </div>
 
+    <!-- Fecha desde -->
+    <div class="col-md-2">
+      <label class="form-label filtro-label">Fecha desde</label>
+      <input
+        type="date"
+        class="form-control filtro-input text-center"
+        [(ngModel)]="fechaDesde"
+      />
+    </div>
+
+    <!-- Fecha hasta -->
+    <div class="col-md-2">
+      <label class="form-label filtro-label">Fecha hasta</label>
+      <input
+        type="date"
+        class="form-control filtro-input text-center"
+        [(ngModel)]="fechaHasta"
+      />
+    </div>
+
     <!-- Navegación -->
-    <div class="col-md-5">
+    <div class="col-md-3">
       <label class="form-label filtro-label text-center w-100">Navegación</label>
 
       <div class="filtro-nav-container">
-
         <button
           class="btn btn-outline-primary filtro-nav-btn"
           [disabled]="paginaActual <= 1"
@@ -40,25 +57,40 @@
         >
           <i class="bi bi-chevron-right"></i>
         </button>
-
       </div>
     </div>
 
     <!-- Buscar -->
-    <div class="col-md-5">
+    <div class="col-md-3">
       <label class="form-label filtro-label">Buscar</label>
       <div class="input-group filtro-buscar">
         <input
           type="text"
           class="form-control filtro-input text-center"
           [(ngModel)]="busqueda"
-          (ngModelChange)="filter()"
           placeholder="Unidad, Novedad, Tipo de Novedad"
         />
         <span class="input-group-text filtro-buscar-icon">
           <i class="bi bi-search"></i>
         </span>
       </div>
+    </div>
+
+    <!-- BOTONES -->
+    <div class="col-md-12 d-flex justify-content-end gap-3 mt-2">
+      <button
+        class="btn btn-primary px-4 rounded-pill shadow-sm"
+        (click)="filter()"
+      >
+        <i class="bi bi-funnel me-1"></i> Aplicar filtros
+      </button>
+
+      <button
+        class="btn btn-outline-secondary px-4 rounded-pill shadow-sm"
+        (click)="limpiarFiltros()"
+      >
+        <i class="bi bi-x-circle me-1"></i> Limpiar
+      </button>
     </div>
 
   </div>
