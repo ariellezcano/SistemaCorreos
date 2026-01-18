@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Persona, UsuarioSolicitante } from 'src/app/modelos/index.models';
 import { CorreoInstitucionalService } from 'src/app/services/componentes/correo-institucional.service';
 
 @Component({
@@ -20,7 +21,18 @@ export class AbmCambioTitularComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.url.snapshot.params['id'];
     this.modoEditar = !!this.id;
+
+    this.obtenerCorreoPorId();
   }
+
+  obtenerCorreoPorId() {
+    // Llamada a API por idCorreo
+    // this.correo = response;
+  }
+
+  titularSeleccionado(item: Persona){}
+
+guardarCambio(){}
 
   back() {
     this.route.navigate(['pages/lst_correoInstitucional']);

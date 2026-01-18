@@ -11,25 +11,27 @@
 
     <!-- CORREO INSTITUCIONAL -->
     <div class="card-body bg-light border-bottom">
-      <div class="row g-3">
+       <!-- [(ngModel)]="correo.correoInstitucional" -->
+        <div class="row g-3">
         <div class="col-md-6">
           <label class="form-label fw-semibold">Correo Institucional</label>
           <input
             type="text"
             class="form-control"
             readonly
-            [(ngModel)]="correo.correoInstitucional"
+           
             name="correoInstitucional"
           />
         </div>
 
         <div class="col-md-6">
           <label class="form-label fw-semibold">Tipo de Correo</label>
+          <!-- [(ngModel)]="correo.tipoCorreo" -->
           <input
             type="text"
             class="form-control"
             readonly
-            [(ngModel)]="correo.tipoCorreo"
+            
             name="tipoCorreo"
           />
         </div>

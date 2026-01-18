@@ -181,9 +181,9 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   }
 
   cambiarTitular(id?: Number) {
-    this.route.navigateByUrl('pages/cambiarTitular/' + id);
+    this.route.navigateByUrl('pages/abm_cambiarTitular/' + id);
   }
-  
+
   back() {
     this.route.navigate(['principal']);
   }
