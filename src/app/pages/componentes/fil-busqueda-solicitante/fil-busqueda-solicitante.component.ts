@@ -22,8 +22,8 @@ export class FilBusquedaSolicitanteComponent implements OnInit {
     public result: any;
     public rol: any;
   
-    public nombre: string = 'Estadistísticas Policiales (SUED)';
-    public url: string = 'https://10.125.31.214/sued/';
+    public nombre: string = 'Sistema de Gestión DTI';
+    public url: string = 'https://policiadigital.chaco.gob.ar/gestionDTI/#/';
     public activoSistema: boolean = true;
   
     item: Usuarios;

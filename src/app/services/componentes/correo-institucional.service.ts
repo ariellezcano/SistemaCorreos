@@ -44,9 +44,14 @@ export class CorreoInstitucionalService {
 
 
   getId(id: number) {
-    console.log('servicio', id);
+    //console.log('servicio', id);
     return this.http.get(this.api + '/' + id);
   }
+
+  getIdCorreo(idCorreo: number) {
+    return this.http.get(this.api + '/correo/' + idCorreo);
+  }
+ 
 
   insert(evento: any) {
     return this.http.post(this.api, evento);
@@ -56,13 +61,6 @@ export class CorreoInstitucionalService {
     return this.http.put(`${this.api}`, item);
   }
 
-  //   patchJerarquia(id: number, jerarquia: string) {
-  //   return this.http.patch(`${this.api}/UsuarioSolicitante/jerarquia`, {
-  //     id,
-  //     jerarquia,
-  //   });
-  // }
-
   patch(id: number, actaRecibida: any, fechaRecepcion: any) {
     return this.http.patch(`${this.api}/${id}`, {
       actaRecibida,
@@ -70,12 +68,8 @@ export class CorreoInstitucionalService {
     });
   }
 
-  // patch(id: number, evento: any) {
-  //   return this.http.patch(this.api + '/' + id, evento);
-  // }
-
   delete(id: number, usuarioBaja: number) {
-    console.log('servicio:', id, usuarioBaja);
+    //console.log('servicio:', id, usuarioBaja);
     return this.http.delete(`${this.api}/${id},${usuarioBaja}`);
   }
 }
