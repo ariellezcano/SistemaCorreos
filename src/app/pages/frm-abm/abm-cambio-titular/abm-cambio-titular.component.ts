@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { CorreoBasicoDTO } from 'src/app/modelos/componentes/relacionModelos/correoBasicoDTO';
 import { Persona, UsuarioSolicitante } from 'src/app/modelos/index.models';
 import { CorreoInstitucionalService } from 'src/app/services/componentes/correo-institucional.service';
+import { UsuarioSolicitanteService } from 'src/app/services/index.service';
 
 @Component({
   selector: 'app-abm-cambio-titular',
@@ -35,19 +36,18 @@ export class AbmCambioTitularComponent implements OnInit {
 
   async obtenerCorreoPorId() {
     try {
-      console.log("id",this.id)
+      //console.log("id",this.id)
       let consulta = await firstValueFrom(
         this.wsdl.getIdCorreo(Number(this.id)),
       );
       const result = JSON.parse(JSON.stringify(consulta));
       if (result.code == '200') {
-        console.log('resultado', result.dato);
+        //console.log('resultado', result.dato);
         this.itemCorreo = result.dato;
         //this.editando = true;
       }
     } catch (error) {}
   }
-
 
   titularSeleccionado(data: any) {
     //console.log('data', data);
@@ -63,7 +63,17 @@ export class AbmCambioTitularComponent implements OnInit {
     }
   }
 
-  guardarCambio() {}
+
+  guardarCambio() {
+    this.wsdl.updateCorreoSolicitante(this.correo, this.solicitante).subscribe({
+      next: (res: any) => {
+        console.log('Actualizado correctamente', res);
+      },
+      error: (err) => {
+        console.error('Error al actualizar', err);
+      },
+    });
+  }
 
   back() {
     this.route.navigate(['pages/lst_correos_institucionales']);

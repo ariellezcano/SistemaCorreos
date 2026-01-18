@@ -16,32 +16,30 @@ export class CorreoInstitucionalService {
   }
 
   getList(
-  pagina: number,
-  cantidad: number,
-  busqueda?: string,
-  fechaDesde?: string,
-  fechaHasta?: string,
-  tipoCorreo?: string
-) {
-  const params: any = {
-    pagina: pagina.toString(),
-    tamanoPagina: cantidad.toString(),
-    nombre: busqueda ?? '',
-    fechaDesde: fechaDesde ?? '',
-    fechaHasta: fechaHasta ?? ''
-  };
+    pagina: number,
+    cantidad: number,
+    busqueda?: string,
+    fechaDesde?: string,
+    fechaHasta?: string,
+    tipoCorreo?: string,
+  ) {
+    const params: any = {
+      pagina: pagina.toString(),
+      tamanoPagina: cantidad.toString(),
+      nombre: busqueda ?? '',
+      fechaDesde: fechaDesde ?? '',
+      fechaHasta: fechaHasta ?? '',
+    };
 
-  // 👇 Solo se envía si corresponde (Personal / Dependencia)
-  if (tipoCorreo) {
-    params.tipoCorreo = tipoCorreo;
+    // 👇 Solo se envía si corresponde (Personal / Dependencia)
+    if (tipoCorreo) {
+      params.tipoCorreo = tipoCorreo;
+    }
+
+    return this.http.get<Results<UsuarioCorreoDto>>(`${this.api}/Listar`, {
+      params,
+    });
   }
-
-  return this.http.get<Results<UsuarioCorreoDto>>(`${this.api}/Listar`, {
-    params,
-  });
-}
-
-
 
   getId(id: number) {
     //console.log('servicio', id);
@@ -51,7 +49,6 @@ export class CorreoInstitucionalService {
   getIdCorreo(idCorreo: number) {
     return this.http.get(this.api + '/correo/' + idCorreo);
   }
- 
 
   insert(evento: any) {
     return this.http.post(this.api, evento);
@@ -71,5 +68,14 @@ export class CorreoInstitucionalService {
   delete(id: number, usuarioBaja: number) {
     //console.log('servicio:', id, usuarioBaja);
     return this.http.delete(`${this.api}/${id},${usuarioBaja}`);
+  }
+
+  updateCorreoSolicitante(correo: any, solicitante: any) {
+    const body = {
+      correo: correo,
+      solicitante: solicitante,
+    };
+
+    return this.http.put(`${this.api}/actualizar-correo-solicitante`, body);
   }
 }
