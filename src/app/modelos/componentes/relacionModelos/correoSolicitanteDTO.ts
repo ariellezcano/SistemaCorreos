@@ -1,11 +1,12 @@
-import { Correo } from '../correo';
-import { UsuarioSolicitante } from './../usuario_solicitante';
+import { Correo } from "../correo";
+import { UsuarioSolicitante } from "../usuario_solicitante";
+
 export class CorreoSolicitanteDTO {
-  Correo: Correo;
-  UsuarioSolicitante: UsuarioSolicitante;
+  correo: Correo;
+  solicitante: UsuarioSolicitante;
 
   constructor() {
-    this.Correo = new Correo();
-    this.UsuarioSolicitante = new UsuarioSolicitante();
+    this.correo = new Correo();
+    this.solicitante = new UsuarioSolicitante();
   }
 }

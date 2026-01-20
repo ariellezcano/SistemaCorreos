@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CorreoSolicitanteDTO } from 'src/app/modelos/componentes/relacionModelos/correoSolicitanteDTO';
 import { UsuarioCorreoDto } from 'src/app/modelos/componentes/relacionModelos/usuarioCorreoDto';
 import { Correo } from 'src/app/modelos/index.models';
 import { Results } from 'src/app/modelos/results';
@@ -70,12 +71,19 @@ export class CorreoInstitucionalService {
     return this.http.delete(`${this.api}/${id},${usuarioBaja}`);
   }
 
-  updateCorreoSolicitante(correo: any, solicitante: any) {
-    const body = {
-      correo: correo,
-      solicitante: solicitante,
-    };
+  // updateCorreoSolicitante(correo: any, solicitante: any) {
+  //   const body = {
+  //     correo: correo,
+  //     solicitante: solicitante,
+  //   };
 
-    return this.http.put(`${this.api}/actualizar-correo-solicitante`, body);
-  }
+  //   return this.http.put(`${this.api}/actualizar-correo-solicitante`, body);
+  // }
+
+  updateCorreoSolicitante(dto: CorreoSolicitanteDTO) {
+  return this.http.put(
+    `${this.api}/actualizar-correo-solicitante`,
+    dto
+  );
+}
 }
