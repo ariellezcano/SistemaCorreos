@@ -38,7 +38,7 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
   },
 
   insumos: {
-    titulo: 'STOCK DE LA UNIDAD',
+    titulo: 'CONTROL DE INSUMOS',
     links: [
       { label: 'Marcas', route: '/pages/lst_marcas' },
       { label: 'Modelos', route: '/pages/lst_modelos' }
