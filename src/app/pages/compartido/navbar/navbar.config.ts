@@ -37,6 +37,14 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     ]
   },
 
+  insumos: {
+    titulo: 'STOCK DE LA UNIDAD',
+    links: [
+      { label: 'Marcas', route: '/pages/lst_marcas' },
+      { label: 'Modelos', route: '/pages/lst_modelos' }
+    ]
+  },
+
   conexiones: {
     titulo: 'CONEXIONES Y RECLAMOS SERVICIO DE INTERNET',
     links: [

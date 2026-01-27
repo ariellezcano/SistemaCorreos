@@ -38,9 +38,8 @@ export class PanelSeleccionComponent implements OnInit {
   }
 
   irAInsumos() {
-    //this.navbarService.setModo('insumos');
-    this.navbarService.setModo('principal');
-    this.router.navigate(['/pages/pagina_en_desarrollo']);
+    this.navbarService.setModo('insumos');
+    this.router.navigate(['/pages/lst_marcas']);
   }
 
   irANovedades() {

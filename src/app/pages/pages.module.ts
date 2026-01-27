@@ -47,6 +47,9 @@ import { AbmNovedadesDtiComponent } from './frm-abm/abm-novedades-dti/abm-noveda
 import { FilNovedadesDtiComponent } from './filtros/fil-novedades-dti/fil-novedades-dti.component';
 import { FilTipoNovedadComponent } from './filtros/fil-tipo-novedad/fil-tipo-novedad.component';
 import { AbmCambioTitularComponent } from './frm-abm/abm-cambio-titular/abm-cambio-titular.component';
+import { LstMarcaComponent } from './lst/lst-marca/lst-marca.component';
+import { FilMarcaComponent } from './filtros/fil-marca/fil-marca.component';
+import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +95,9 @@ import { AbmCambioTitularComponent } from './frm-abm/abm-cambio-titular/abm-camb
     FilNovedadesDtiComponent,
     FilTipoNovedadComponent,
     AbmCambioTitularComponent,
+    LstMarcaComponent,
+    FilMarcaComponent,
+    AbmMarcaComponent,
 
   ],
   imports: [
