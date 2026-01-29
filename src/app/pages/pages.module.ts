@@ -50,6 +50,9 @@ import { AbmCambioTitularComponent } from './frm-abm/abm-cambio-titular/abm-camb
 import { LstMarcaComponent } from './lst/lst-marca/lst-marca.component';
 import { FilMarcaComponent } from './filtros/fil-marca/fil-marca.component';
 import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
+import { LstModeloComponent } from './lst/lst-modelo/lst-modelo.component';
+import { FilModeloComponent } from './filtros/fil-modelo/fil-modelo.component';
+import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +101,9 @@ import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
     LstMarcaComponent,
     FilMarcaComponent,
     AbmMarcaComponent,
+    LstModeloComponent,
+    FilModeloComponent,
+    AbmModeloComponent,
 
   ],
   imports: [
