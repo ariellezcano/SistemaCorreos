@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { Modelo } from 'src/app/modelos/componentes/modelo';
+import { MarcaModeloDTO } from 'src/app/modelos/componentes/relacionModelos/marcaModeloDTO';
 
 @Component({
   selector: 'app-fil-modelo',
@@ -7,10 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilModeloComponent implements OnInit {
 
-   @Output() emmit: EventEmitter<Marca[]> = new EventEmitter();
+   @Output() emmit: EventEmitter<MarcaModeloDTO[]> = new EventEmitter();
      
        busqueda: any;
-       items: Marca[];
+       items: MarcaModeloDTO[];
      
        paginaAnterior!: number;
        anterior: boolean;
@@ -22,7 +25,7 @@ export class FilModeloComponent implements OnInit {
        public limit: any;
        public limits: Number[] = [10, 20, 30];
      
-       constructor(private wsdl: MarcaService) {
+       constructor(private wsdl: ModeloService) {
          this.busqueda = '';
          this.items = [];
      

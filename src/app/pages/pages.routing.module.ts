@@ -28,6 +28,8 @@ import { AbmTiponovedadComponent } from './frm-abm/abm-tiponovedad/abm-tiponoved
 import { AbmCambioTitularComponent } from './frm-abm/abm-cambio-titular/abm-cambio-titular.component';
 import { LstMarcaComponent } from './lst/lst-marca/lst-marca.component';
 import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
+import { LstModeloComponent } from './lst/lst-modelo/lst-modelo.component';
+import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
 
 const routes: Routes = [
   {
@@ -62,6 +64,8 @@ const routes: Routes = [
       { path: 'abm_cambiarTitular/:id', component: AbmCambioTitularComponent },
       { path: 'lst_marcas', component: LstMarcaComponent },
       { path: 'abm_marcas/:id', component: AbmMarcaComponent },
+      { path: 'lst_modelos', component: LstModeloComponent },
+      { path: 'abm_modelos/:id', component: AbmModeloComponent },
     ],
   },
 ];
