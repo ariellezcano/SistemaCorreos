@@ -13,3 +13,5 @@ export {SolicitudReclamoService} from './componentes/solicitud-reclamo.service';
 export {TipoNovedadService} from './componentes/tipo-novedad.service';
 export {NovedadesDtiService} from './componentes/novedades-dti.service';
 export {MarcaService} from './componentes/marca.service';
+export {ModeloService} from './componentes/modelo.service';
+
