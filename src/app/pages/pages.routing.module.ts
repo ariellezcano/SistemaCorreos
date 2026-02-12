@@ -30,6 +30,10 @@ import { LstMarcaComponent } from './lst/lst-marca/lst-marca.component';
 import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
 import { LstModeloComponent } from './lst/lst-modelo/lst-modelo.component';
 import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
+import { LstTipoEquipoComponent } from './lst/lst-tipo-equipo/lst-tipo-equipo.component';
+import { AbmTipoEquipoComponent } from './frm-abm/abm-tipo-equipo/abm-tipo-equipo.component';
+import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
+import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.component';
 
 const routes: Routes = [
   {
@@ -66,6 +70,10 @@ const routes: Routes = [
       { path: 'abm_marcas/:id', component: AbmMarcaComponent },
       { path: 'lst_modelos', component: LstModeloComponent },
       { path: 'abm_modelos/:id', component: AbmModeloComponent },
+      { path: 'lst_tipoEquipo', component: LstTipoEquipoComponent },
+      { path: 'abm_tipoEquipo/:id', component: AbmTipoEquipoComponent },
+      { path: 'lst_proveedor', component: LstProveedorComponent },
+      { path: 'abm_proveedor/:id', component: AbmProveedorComponent },
     ],
   },
 ];

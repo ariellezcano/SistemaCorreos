@@ -2,9 +2,9 @@ export class TipoEquipo {
 
     idTipoEquipo!: number;
     nombre!: string;
-    activo!: boolean;
+    activo: boolean;
 
     constructor(){
-
+        this.activo = true;
     }
 }

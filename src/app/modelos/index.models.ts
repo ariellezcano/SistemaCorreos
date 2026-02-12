@@ -13,3 +13,4 @@ export {SolicitudReclamo} from './componentes/solicitudReclamo';
 export {NovedadesDTI} from './componentes/novedades-dti';
 export {TipoNovedad} from './componentes/tipo-novedad';
 export {TipoEquipo} from './componentes/tipoEquipo';
+export {Proveedor} from './componentes/proveedor';

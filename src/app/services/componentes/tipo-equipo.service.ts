@@ -39,9 +39,12 @@ export class TipoEquipoService {
   }
 
   //EDITAR
-update(item: any) {
-  return this.http.put(`${this.api}`, item);
-}
+  update(item: any) {
+    return this.http.put(`${this.api}`, item);
+  }
 
-
+  //ELIMINAR
+  delete(id: number) {
+    return this.http.delete(`${this.api}/${id}`);
+  }
 }

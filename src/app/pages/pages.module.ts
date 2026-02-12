@@ -53,6 +53,12 @@ import { AbmMarcaComponent } from './frm-abm/abm-marca/abm-marca.component';
 import { LstModeloComponent } from './lst/lst-modelo/lst-modelo.component';
 import { FilModeloComponent } from './filtros/fil-modelo/fil-modelo.component';
 import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
+import { FilTipoEquipoComponent } from './filtros/fil-tipo-equipo/fil-tipo-equipo.component';
+import { AbmTipoEquipoComponent } from './frm-abm/abm-tipo-equipo/abm-tipo-equipo.component';
+import { LstTipoEquipoComponent } from './lst/lst-tipo-equipo/lst-tipo-equipo.component';
+import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
+import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.component';
+import { FilProveedorComponent } from './filtros/fil-proveedor/fil-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +110,12 @@ import { AbmModeloComponent } from './frm-abm/abm-modelo/abm-modelo.component';
     LstModeloComponent,
     FilModeloComponent,
     AbmModeloComponent,
+    FilTipoEquipoComponent,
+    AbmTipoEquipoComponent,
+    LstTipoEquipoComponent,
+    LstProveedorComponent,
+    AbmProveedorComponent,
+    FilProveedorComponent,
 
   ],
   imports: [

@@ -41,7 +41,9 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     titulo: 'CONTROL DE INSUMOS',
     links: [
       { label: 'Marcas', route: '/pages/lst_marcas' },
-      { label: 'Modelos', route: '/pages/lst_modelos' }
+      { label: 'Modelos', route: '/pages/lst_modelos' },
+      { label: 'Tipos de Insumos', route: '/pages/lst_tipoEquipo' },
+      { label: 'Proveedores', route: '/pages/lst_proveedor' }
     ]
   },
 
