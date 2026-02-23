@@ -14,3 +14,4 @@ export {NovedadesDTI} from './componentes/novedades-dti';
 export {TipoNovedad} from './componentes/tipo-novedad';
 export {TipoEquipo} from './componentes/tipoEquipo';
 export {Proveedor} from './componentes/proveedor';
+export {Equipamiento} from './componentes/equipamiento';
