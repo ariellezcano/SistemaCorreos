@@ -59,6 +59,9 @@ import { LstTipoEquipoComponent } from './lst/lst-tipo-equipo/lst-tipo-equipo.co
 import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
 import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.component';
 import { FilProveedorComponent } from './filtros/fil-proveedor/fil-proveedor.component';
+import { FilEquipamientosComponent } from './filtros/fil-equipamientos/fil-equipamientos.component';
+import { AbmEquipamientosComponent } from './frm-abm/abm-equipamientos/abm-equipamientos.component';
+import { LstEquipamientosComponent } from './lst/lst-equipamientos/lst-equipamientos.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +119,9 @@ import { FilProveedorComponent } from './filtros/fil-proveedor/fil-proveedor.com
     LstProveedorComponent,
     AbmProveedorComponent,
     FilProveedorComponent,
+    AbmEquipamientosComponent,
+    LstEquipamientosComponent,
+    FilEquipamientosComponent
 
   ],
   imports: [

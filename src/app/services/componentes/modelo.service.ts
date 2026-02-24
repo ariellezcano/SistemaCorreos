@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Modelo } from 'src/app/modelos/componentes/modelo';
+import { MarcaModeloDTO } from 'src/app/modelos/componentes/relacionModelos/marcaModeloDTO';
 import { Results } from 'src/app/modelos/results';
 import { environment } from 'src/environments/environment';
 
@@ -36,7 +37,7 @@ export class ModeloService {
        OBTENER POR ID
     ======================= */
   getId(id: number) {
-    return this.http.get<Results<Modelo>>(`${this.api}/Obtener/${id}`);
+    return this.http.get<Results<Modelo>>(`${this.api}/${id}`);
   }
 
   /* =======================
@@ -59,5 +60,13 @@ export class ModeloService {
 
   delete(id: number) {
     return this.http.delete(`${this.api}/${id}`);
+  }
+
+  /* =======================
+       COMBO
+    ======================= */
+
+  combo() {
+    return this.http.get<MarcaModeloDTO[]>(`${this.api}/Combo`);
   }
 }

@@ -15,4 +15,5 @@ export {NovedadesDtiService} from './componentes/novedades-dti.service';
 export {MarcaService} from './componentes/marca.service';
 export {ModeloService} from './componentes/modelo.service';
 export {TipoEquipoService} from './componentes/tipo-equipo.service';
+export {EquipamientoService} from './componentes/equipamiento.service';
 

@@ -1,10 +1,13 @@
-export class Equipamiento {
-
+export class EquipamientoDTO {
     idEquipo!: number;
-    modelo: number | null = null;
+    marca!: string;
+    modelo!: number;
+    nombreModelo!: string;
     nroSerie!: string;
-    tipoEquipo: number| null = null;
+    tipoEquipo!: number;
+    nombreTipoEquipo!: string;
     proveedor!: number;
+    nombreProveedor!: string;
     id!: string;
     estado!: string; //entregado / en stock
     nroInventario!: number;

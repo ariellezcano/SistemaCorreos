@@ -43,7 +43,8 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
       { label: 'Marcas', route: '/pages/lst_marcas' },
       { label: 'Modelos', route: '/pages/lst_modelos' },
       { label: 'Tipos de Insumos', route: '/pages/lst_tipoEquipo' },
-      { label: 'Proveedores', route: '/pages/lst_proveedor' }
+      { label: 'Proveedores', route: '/pages/lst_proveedor' },
+      { label: 'Equipamientos', route: '/pages/lst_equipamientos' }
     ]
   },
 

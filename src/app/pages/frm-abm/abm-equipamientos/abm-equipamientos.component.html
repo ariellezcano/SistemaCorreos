@@ -1,0 +1,193 @@
+<div class="container-fluid my-5 px-5">
+  <div class="card modelos-card shadow-lg border-0 rounded-4 overflow-hidden">
+
+    <!-- CABECERA -->
+    <div
+      class="card-header d-flex justify-content-between align-items-center py-3"
+      style="
+        background: linear-gradient(90deg, #0d6efd, #0b5ed7);
+        color: #f8f9fa;
+        border-bottom: 4px solid #ff9800;
+      "
+    >
+      <h3 class="m-0 fw-bold d-flex align-items-center">
+        <i class="bi bi-pc-display-horizontal me-2" style="color: #ffe9c2"></i>
+        {{ id > 0 ? 'Editar Equipamiento' : 'Nuevo Equipamiento' }}
+      </h3>
+
+      <button
+        class="btn btn-light rounded-pill px-4 fw-semibold"
+        (click)="back()"
+      >
+        <i class="bi bi-arrow-left me-2"></i>
+        Volver
+      </button>
+    </div>
+
+    <!-- CUERPO -->
+    <div class="card-body bg-light py-4">
+      <form #frm="ngForm" (ngSubmit)="guardar()" novalidate>
+
+        <div class="row g-4">
+
+          <!-- ID -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              Código (id) <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control rounded-pill px-4"
+              name="id"
+              [(ngModel)]="item.id"
+              required
+              
+              placeholder="Ingrese el código identificador"
+            />
+          </div>
+
+          <!-- MODELO -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              Modelo <span class="text-danger">*</span>
+            </label>
+            <select
+              class="form-select rounded-pill px-4"
+              name="modelo"
+              [(ngModel)]="item.modelo"
+              required
+            >
+              <option value="">Seleccione modelo</option>
+              <option *ngFor="let m of modelo" [value]="m.idModelo">
+                {{ m.marca }} - {{ m.modelo }}
+              </option>
+            </select>
+          </div>
+
+          <!-- TIPO EQUIPO -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              Tipo de Equipo <span class="text-danger">*</span>
+            </label>
+            <select
+              class="form-select rounded-pill px-4"
+              name="tipoEquipo"
+              [(ngModel)]="item.tipoEquipo"
+              required
+            >
+              <option value="">Seleccione tipo</option>
+              <option *ngFor="let t of tipoEquipo" [value]="t.idTipoEquipo">
+                {{ t.nombre }}
+              </option>
+            </select>
+          </div>
+
+          <!-- PROVEEDOR -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              Proveedor <span class="text-danger">*</span>
+            </label>
+            <select
+              class="form-select rounded-pill px-4"
+              name="proveedor"
+              [(ngModel)]="item.proveedor"
+              required
+            >
+              <option value="">Seleccione proveedor</option>
+              <option *ngFor="let p of proveedor" [value]="p.idProveedor">
+                {{ p.nombre }}
+              </option>
+            </select>
+          </div>
+
+          <!-- NRO SERIE -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              N° Serie
+            </label>
+            <input
+              type="text"
+              class="form-control rounded-pill px-4"
+              name="nroSerie"
+              [(ngModel)]="item.nroSerie"
+              placeholder="Ingrese número de serie"
+            />
+          </div>
+
+          <!-- NRO INVENTARIO -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              N° Inventario
+            </label>
+            <input
+              type="number"
+              class="form-control rounded-pill px-4"
+              name="nroInventario"
+              [(ngModel)]="item.nroInventario"
+            />
+          </div>
+
+          <!-- ORDEN COMPRA -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              Orden de Compra
+            </label>
+            <input
+              type="text"
+              class="form-control rounded-pill px-4"
+              name="ordenCompra"
+              [(ngModel)]="item.ordenCompra"
+            />
+          </div>
+
+          <!-- ESTADO -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">
+              Estado <span class="text-danger">*</span>
+            </label>
+            <select
+              class="form-select rounded-pill px-4"
+              name="estado"
+              [(ngModel)]="item.estado"
+              required
+            >
+              <option value="en stock">En Stock</option>
+              <option value="entregado">Entregado</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- ACCIONES -->
+        <div class="d-flex justify-content-end gap-3 mt-5">
+          <button
+            type="button"
+            class="btn btn-outline-secondary rounded-pill px-4"
+            (click)="back()"
+          >
+            <i class="bi bi-x-circle me-2"></i>
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary rounded-pill px-5 fw-semibold"
+            [disabled]="frm.invalid"
+          >
+            <i class="bi bi-check-circle me-2"></i>
+            {{ id > 0 ? 'Actualizar' : 'Guardar' }}
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- FOOTER -->
+    <div
+      class="card-footer text-muted small bg-white border-top fw-semibold py-3"
+    >
+      Los campos marcados con * son obligatorios
+    </div>
+
+  </div>
+</div>

@@ -34,6 +34,8 @@ import { LstTipoEquipoComponent } from './lst/lst-tipo-equipo/lst-tipo-equipo.co
 import { AbmTipoEquipoComponent } from './frm-abm/abm-tipo-equipo/abm-tipo-equipo.component';
 import { LstProveedorComponent } from './lst/lst-proveedor/lst-proveedor.component';
 import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.component';
+import { LstEquipamientosComponent } from './lst/lst-equipamientos/lst-equipamientos.component';
+import { AbmEquipamientosComponent } from './frm-abm/abm-equipamientos/abm-equipamientos.component';
 
 const routes: Routes = [
   {
@@ -74,6 +76,8 @@ const routes: Routes = [
       { path: 'abm_tipoEquipo/:id', component: AbmTipoEquipoComponent },
       { path: 'lst_proveedor', component: LstProveedorComponent },
       { path: 'abm_proveedor/:id', component: AbmProveedorComponent },
+      { path: 'lst_equipamientos', component: LstEquipamientosComponent },
+      { path: 'abm_equipamiento/:id', component: AbmEquipamientosComponent },
     ],
   },
 ];

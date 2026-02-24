@@ -1,0 +1,141 @@
+<div class="card sistemas-card shadow-sm rounded-4 my-4">
+  <!-- CABECERA -->
+  <div
+    class="card-header sistemas-header d-flex justify-content-between align-items-center px-4 py-3"
+  >
+    <div class="d-flex align-items-center gap-3">
+  <div class="icon-header">
+    <i class="bi bi-pc-display-horizontal"></i>
+  </div>
+
+  <h5 class="m-0 fw-semibold">Listado de Equipamiento</h5>
+</div>
+
+    <button
+      type="button"
+      class="btn btn-light fw-semibold rounded-pill px-4 shadow-sm"
+      (click)="linkear(0)"
+    >
+      <i class="bi bi-plus-circle-fill me-2"></i>
+      Nuevo Equipamiento
+    </button>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="px-4 pt-4">
+    <app-fil-equipamientos
+      (emmit)="doFound($event)"
+      class="w-100"
+    ></app-fil-equipamientos>
+  </div>
+
+  <!-- TABLA -->
+  <div class="table-responsive mt-3">
+    <table class="table table-hover align-middle mb-0 sistemas-table">
+      <thead>
+        <tr>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>N° Serie</th>
+          <th>Tipo</th>
+          <th>Proveedor</th>
+          <th class="text-center">Inventario</th>
+          <th>Orden Compra</th>
+          <th class="text-center">Estado</th>
+          <th class="text-center">Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- LISTADO -->
+        <tr *ngFor="let item of items">
+          <td class="fw-semibold text-primary">
+            {{ item.marca }}
+          </td>
+
+          <td>
+            {{ item.nombreModelo }}
+          </td>
+
+          <td class="font-monospace">
+            {{ item.nroSerie }}
+          </td>
+
+          <td>
+            {{ item.nombreTipoEquipo }}
+          </td>
+
+          <td>
+            {{ item.nombreProveedor }}
+          </td>
+
+          <td class="text-center fw-semibold">
+            {{ item.nroInventario }}
+          </td>
+
+          <td>
+            {{ item.ordenCompra || '—' }}
+          </td>
+
+          <!-- ESTADO -->
+          <td class="text-center">
+            <span
+              class="badge estado-badge"
+              [ngClass]="{
+                'estado-ok': item.estado === 'en stock',
+                'estado-dev': item.estado === 'entregado'
+              }"
+            >
+              {{ item.estado }}
+            </span>
+          </td>
+
+          <!-- ACCIONES -->
+          <td class="text-center">
+            <button
+              class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
+              title="Editar"
+              (click)="linkear(item.idEquipo)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <button
+              class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+              title="Eliminar"
+              (click)="eliminar(item.idEquipo)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+
+        <!-- EMPTY STATE -->
+        <tr *ngIf="items.length === 0">
+          <td colspan="9">
+            <div
+              class="empty-state d-flex flex-column align-items-center justify-content-center py-5"
+            >
+              <i class="bi bi-pc-display fs-1 mb-3 text-muted"></i>
+
+              <h6 class="fw-semibold mb-1">
+                No hay equipamiento registrado
+              </h6>
+
+              <p class="text-muted mb-3 text-center">
+                Aún no se cargaron equipos en el sistema.<br />
+                Podés comenzar agregando uno nuevo.
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="px-4 py-3 border-top small text-muted" *ngIf="items.length">
+    <strong>Observaciones:</strong>
+    el estado indica si el equipo se encuentra en stock o entregado.
+  </div>
+</div>

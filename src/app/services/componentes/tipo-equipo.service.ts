@@ -47,4 +47,9 @@ export class TipoEquipoService {
   delete(id: number) {
     return this.http.delete(`${this.api}/${id}`);
   }
+
+  //COMBO
+  combo() {
+    return this.http.get<TipoEquipo[]>(`${this.api}/Combo`);
+  }
 }
