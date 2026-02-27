@@ -91,6 +91,7 @@ export class AbmAsignacionEquipoComponent implements OnInit {
   }
 
   async crear() {
+    this.item.equipamiento = Number(this.id);
     try {
       const data = await firstValueFrom(this.wsdl.insert(this.item));
       const result = JSON.parse(JSON.stringify(data));
