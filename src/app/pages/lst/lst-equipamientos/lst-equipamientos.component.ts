@@ -34,6 +34,10 @@ export class LstEquipamientosComponent implements OnInit {
     linkear(id?: Number) {
       this.route.navigateByUrl('pages/abm_equipamiento/' + id);
     }
+
+    linkearAsignacion(id: Number) {
+      this.route.navigateByUrl('pages/abm_asignacion/' + id);
+    }
   
     // back() {
     //   this.route.navigate(['pages/lst_equipamientos']);

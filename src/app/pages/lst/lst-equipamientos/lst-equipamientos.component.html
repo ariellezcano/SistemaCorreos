@@ -4,12 +4,12 @@
     class="card-header sistemas-header d-flex justify-content-between align-items-center px-4 py-3"
   >
     <div class="d-flex align-items-center gap-3">
-  <div class="icon-header">
-    <i class="bi bi-pc-display-horizontal"></i>
-  </div>
+      <div class="icon-header">
+        <i class="bi bi-pc-display-horizontal"></i>
+      </div>
 
-  <h5 class="m-0 fw-semibold">Listado de Equipamiento</h5>
-</div>
+      <h5 class="m-0 fw-semibold">Listado de Equipamiento</h5>
+    </div>
 
     <button
       type="button"
@@ -74,7 +74,7 @@
           </td>
 
           <td>
-            {{ item.ordenCompra || '—' }}
+            {{ item.ordenCompra || "—" }}
           </td>
 
           <!-- ESTADO -->
@@ -83,15 +83,23 @@
               class="badge estado-badge"
               [ngClass]="{
                 'estado-ok': item.estado === 'en stock',
-                'estado-dev': item.estado === 'entregado'
+                'estado-dev': item.estado === 'entregado',
               }"
             >
               {{ item.estado }}
             </span>
           </td>
+          <!-- ASIGNAR -->
 
-          <!-- ACCIONES -->
           <td class="text-center">
+            <button
+              class="btn btn-sm btn-success rounded-pill"
+              (click)="linkearAsignacion(item.idEquipo)"
+            >
+              <i class="bi bi-box-arrow-in-right me-1"></i>
+              Asignar
+            </button>
+            &nbsp;
             <button
               class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
               title="Editar"
@@ -118,9 +126,7 @@
             >
               <i class="bi bi-pc-display fs-1 mb-3 text-muted"></i>
 
-              <h6 class="fw-semibold mb-1">
-                No hay equipamiento registrado
-              </h6>
+              <h6 class="fw-semibold mb-1">No hay equipamiento registrado</h6>
 
               <p class="text-muted mb-3 text-center">
                 Aún no se cargaron equipos en el sistema.<br />

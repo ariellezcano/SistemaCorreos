@@ -62,6 +62,7 @@ import { FilProveedorComponent } from './filtros/fil-proveedor/fil-proveedor.com
 import { FilEquipamientosComponent } from './filtros/fil-equipamientos/fil-equipamientos.component';
 import { AbmEquipamientosComponent } from './frm-abm/abm-equipamientos/abm-equipamientos.component';
 import { LstEquipamientosComponent } from './lst/lst-equipamientos/lst-equipamientos.component';
+import { AbmAsignacionEquipoComponent } from './frm-abm/abm-asignacion-equipo/abm-asignacion-equipo.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import { LstEquipamientosComponent } from './lst/lst-equipamientos/lst-equipamie
     FilProveedorComponent,
     AbmEquipamientosComponent,
     LstEquipamientosComponent,
-    FilEquipamientosComponent
+    FilEquipamientosComponent,
+    AbmAsignacionEquipoComponent
 
   ],
   imports: [

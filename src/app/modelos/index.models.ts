@@ -1,3 +1,4 @@
+import { DetalleEntrega } from './componentes/detalleEntrega';
 export {Persona} from './componentes/persona';
 export {Usuarios} from './componentes/usuarios';
 export {Roles} from './componentes/roles';
@@ -15,3 +16,4 @@ export {TipoNovedad} from './componentes/tipo-novedad';
 export {TipoEquipo} from './componentes/tipoEquipo';
 export {Proveedor} from './componentes/proveedor';
 export {Equipamiento} from './componentes/equipamiento';
+export {DetalleEntrega} from './componentes/detalleEntrega';
