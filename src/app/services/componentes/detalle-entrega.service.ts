@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DetalleEntregaDto } from 'src/app/modelos/componentes/relacionModelos/detalleEntregaDTO';
 import { DetalleEntrega } from 'src/app/modelos/index.models';
 import { Results } from 'src/app/modelos/results';
 import { environment } from 'src/environments/environment';
@@ -24,6 +25,7 @@ export class DetalleEntregaService {
   }
 
   obtenerPorId(id: number) {
-    return this.http.get<Results<DetalleEntrega>>(`${this.apiUrl}/${id}`);
+    return this.http.get<Results<DetalleEntregaDto>>(`${this.apiUrl}/${id}`);
   }
+
 }

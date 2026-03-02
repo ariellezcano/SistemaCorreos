@@ -92,30 +92,66 @@
           <!-- ASIGNAR -->
 
           <td class="text-center">
-            <button
-              class="btn btn-sm btn-success rounded-pill"
-              (click)="linkearAsignacion(item.idEquipo)"
-            >
-              <i class="bi bi-box-arrow-in-right me-1"></i>
-              Asignar
-            </button>
-            &nbsp;
-            <button
-              class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
-              title="Editar"
-              (click)="linkear(item.idEquipo)"
-            >
-              <i class="bi bi-pencil-square"></i>
-            </button>
 
-            <button
-              class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
-              title="Eliminar"
-              (click)="eliminar(item.idEquipo)"
-            >
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
+  <!-- ========================= -->
+  <!-- CUANDO ESTA EN STOCK -->
+  <!-- ========================= -->
+  <ng-container *ngIf="item.estado === 'en stock'; else entregadoBlock">
+
+    <button
+      class="btn btn-sm btn-success rounded-pill"
+      (click)="linkearAsignacion(item.idEquipo)"
+    >
+      <i class="bi bi-box-arrow-in-right me-1"></i>
+      Asignar
+    </button>
+
+  </ng-container>
+
+  <!-- ========================= -->
+  <!-- CUANDO ESTA ENTREGADO -->
+  <!-- ========================= -->
+  <ng-template #entregadoBlock>
+
+    <button
+      class="btn btn-sm btn-info rounded-pill me-2"
+      (click)="verDetalle(item.idEquipo)"
+    >
+      <i class="bi bi-eye me-1"></i>
+      Ver Detalle
+    </button>
+
+    <button
+      class="btn btn-sm btn-warning rounded-pill"
+      (click)="desvincular(item.idEquipo)"
+    >
+      <i class="bi bi-arrow-counterclockwise me-1"></i>
+      Desvincular
+    </button>
+
+  </ng-template>
+
+  &nbsp;
+
+  <!-- EDITAR -->
+  <button
+    class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
+    title="Editar"
+    (click)="linkear(item.idEquipo)"
+  >
+    <i class="bi bi-pencil-square"></i>
+  </button>
+
+  <!-- ELIMINAR -->
+  <button
+    class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+    title="Eliminar"
+    (click)="eliminar(item.idEquipo)"
+  >
+    <i class="bi bi-trash"></i>
+  </button>
+
+</td>
         </tr>
 
         <!-- EMPTY STATE -->

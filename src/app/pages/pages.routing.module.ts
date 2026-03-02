@@ -37,6 +37,7 @@ import { AbmProveedorComponent } from './frm-abm/abm-proveedor/abm-proveedor.com
 import { LstEquipamientosComponent } from './lst/lst-equipamientos/lst-equipamientos.component';
 import { AbmEquipamientosComponent } from './frm-abm/abm-equipamientos/abm-equipamientos.component';
 import { AbmAsignacionEquipoComponent } from './frm-abm/abm-asignacion-equipo/abm-asignacion-equipo.component';
+import { FrmDetalleEntregaComponent } from './frm-abm/frm-detalle-entrega/frm-detalle-entrega.component';
 
 const routes: Routes = [
   {
@@ -80,6 +81,7 @@ const routes: Routes = [
       { path: 'lst_equipamientos', component: LstEquipamientosComponent },
       { path: 'abm_equipamiento/:id', component: AbmEquipamientosComponent },
       { path: 'abm_asignacion/:id', component: AbmAsignacionEquipoComponent },
+      { path: 'detalle_entrega/:id', component: FrmDetalleEntregaComponent },
     ],
   },
 ];

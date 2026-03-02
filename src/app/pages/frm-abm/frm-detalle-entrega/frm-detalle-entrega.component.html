@@ -1,0 +1,87 @@
+<div class="container mt-4">
+
+  <!-- Header -->
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex align-items-center gap-3">
+      <div class="p-3 rounded-3 bg-primary bg-opacity-10">
+        <i class="bi bi-box-seam fs-4 text-primary"></i>
+      </div>
+      <div>
+        <h5 class="m-0 fw-bold text-dark">Detalle de Entrega</h5>
+        <small class="text-muted">Información completa de la asignación</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card -->
+  <div class="card border-0 shadow rounded-4 overflow-hidden">
+
+    <!-- Barra superior -->
+    <div class="bg-primary" style="height: 6px;"></div>
+
+    <div class="card-body p-4" style="background-color:#f8fbff;">
+
+      <div class="row g-4">
+
+        <!-- Equipamiento -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold text-primary small">
+            Equipamiento
+          </label>
+          <div class="form-control border-0 rounded-3 shadow-sm bg-white">
+            {{ detalle?.nombreMarca }} -
+            {{ detalle?.nombreModelo }}
+            <span class="text-muted">
+              | Serie: {{ detalle?.nroSerie }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Destino -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold text-primary small">
+            Destino
+          </label>
+          <div class="form-control border-0 rounded-3 shadow-sm bg-white">
+            {{ detalle?.nombreDestino }}
+          </div>
+        </div>
+
+        <!-- Fecha -->
+        <div class="col-md-6">
+          <label class="form-label fw-semibold text-primary small">
+            Fecha de Entrega
+          </label>
+          <div class="form-control border-0 rounded-3 shadow-sm bg-white">
+            {{ detalle?.fechaEntrega | date: 'dd/MM/yyyy' }}
+          </div>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="col-12">
+          <label class="form-label fw-semibold text-primary small">
+            Observaciones
+          </label>
+          <div class="form-control border-0 rounded-3 shadow-sm bg-white"
+               style="min-height: 100px;">
+            {{ detalle?.observaciones || 'Sin observaciones registradas' }}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="d-flex justify-content-end mt-4 pt-3 border-top">
+        <button 
+          class="btn btn-primary rounded-pill px-4 shadow-sm"
+          (click)="volver()"
+        >
+          <i class="bi bi-arrow-left me-2"></i>
+          Volver
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<br>

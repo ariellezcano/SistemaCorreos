@@ -59,4 +59,12 @@ export class EquipamientoService {
   eliminar(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/Eliminar/${id}`);
   }
+
+  // ===============================
+  // DESVINCULAR EQUIPAMIENTO
+  // ===============================
+  desvincular(idEquipo: number) {
+    return this.http.put(`${this.apiUrl}/Desvincular/${idEquipo}`, {});
+  }
+
 }
