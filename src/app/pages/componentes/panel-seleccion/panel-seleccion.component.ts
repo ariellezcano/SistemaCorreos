@@ -39,7 +39,7 @@ export class PanelSeleccionComponent implements OnInit {
 
   irAInsumos() {
     this.navbarService.setModo('insumos');
-    this.router.navigate(['/pages/lst_marcas']);
+    this.router.navigate(['/pages/lst_equipamientos']);
   }
 
   irANovedades() {
