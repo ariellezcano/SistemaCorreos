@@ -17,7 +17,7 @@
 
       <button
         class="btn btn-light rounded-pill px-4 fw-semibold"
-        routerLink="/modelos"
+        (click)="back()"
       >
         <i class="bi bi-arrow-left me-2"></i>
         Volver
@@ -67,14 +67,14 @@
 
         <!-- ACCIONES -->
         <div class="d-flex justify-content-end gap-3 mt-5">
-          <button
+          <!-- <button
             type="button"
             class="btn btn-outline-secondary rounded-pill px-4"
             (click)="back()"
           >
             <i class="bi bi-x-circle me-2"></i>
             Cancelar
-          </button>
+          </button> -->
 
           <button
             type="submit"
