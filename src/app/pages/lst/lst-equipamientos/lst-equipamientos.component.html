@@ -39,6 +39,7 @@
           <th>N° Serie</th>
           <th>Tipo</th>
           <th>Proveedor</th>
+          <th>Destino</th>
           <th class="text-center">Inventario</th>
           <th>Orden Compra</th>
           <th class="text-center">Estado</th>
@@ -69,6 +70,11 @@
             {{ item.nombreProveedor }}
           </td>
 
+          <!-- DESTINO -->
+          <td>
+            {{ item.nombreDestino || "—" }}
+          </td>
+
           <td class="text-center fw-semibold">
             {{ item.nroInventario }}
           </td>
@@ -89,74 +95,66 @@
               {{ item.estado }}
             </span>
           </td>
-          <!-- ASIGNAR -->
 
+          <!-- ACCIONES -->
           <td class="text-center">
+            <!-- CUANDO ESTA EN STOCK -->
+            <ng-container
+              *ngIf="item.estado === 'en stock'; else entregadoBlock"
+            >
+              <button
+                class="btn btn-sm btn-success rounded-pill"
+                (click)="linkearAsignacion(item.idEquipo)"
+              >
+                <i class="bi bi-box-arrow-in-right me-1"></i>
+                Asignar
+              </button>
+            </ng-container>
 
-  <!-- ========================= -->
-  <!-- CUANDO ESTA EN STOCK -->
-  <!-- ========================= -->
-  <ng-container *ngIf="item.estado === 'en stock'; else entregadoBlock">
+            <!-- CUANDO ESTA ENTREGADO -->
+            <ng-template #entregadoBlock>
+              <button
+                class="btn btn-sm btn-info rounded-pill me-2"
+                (click)="verDetalle(item.idEquipo)"
+              >
+                <i class="bi bi-eye me-1"></i>
+                Ver Detalle
+              </button>
 
-    <button
-      class="btn btn-sm btn-success rounded-pill"
-      (click)="linkearAsignacion(item.idEquipo)"
-    >
-      <i class="bi bi-box-arrow-in-right me-1"></i>
-      Asignar
-    </button>
+              <button
+                class="btn btn-sm btn-warning rounded-pill"
+                (click)="desvincular(item.idEquipo)"
+              >
+                <i class="bi bi-arrow-counterclockwise me-1"></i>
+                Desvincular
+              </button>
+            </ng-template>
 
-  </ng-container>
+            &nbsp;
 
-  <!-- ========================= -->
-  <!-- CUANDO ESTA ENTREGADO -->
-  <!-- ========================= -->
-  <ng-template #entregadoBlock>
+            <!-- EDITAR -->
+            <button
+              class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
+              title="Editar"
+              (click)="linkear(item.idEquipo)"
+            >
+              <i class="bi bi-pencil-square"></i>
+            </button>
 
-    <button
-      class="btn btn-sm btn-info rounded-pill me-2"
-      (click)="verDetalle(item.idEquipo)"
-    >
-      <i class="bi bi-eye me-1"></i>
-      Ver Detalle
-    </button>
-
-    <button
-      class="btn btn-sm btn-warning rounded-pill"
-      (click)="desvincular(item.idEquipo)"
-    >
-      <i class="bi bi-arrow-counterclockwise me-1"></i>
-      Desvincular
-    </button>
-
-  </ng-template>
-
-  &nbsp;
-
-  <!-- EDITAR -->
-  <button
-    class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
-    title="Editar"
-    (click)="linkear(item.idEquipo)"
-  >
-    <i class="bi bi-pencil-square"></i>
-  </button>
-
-  <!-- ELIMINAR -->
-  <button
-    class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
-    title="Eliminar"
-    (click)="eliminar(item.idEquipo)"
-  >
-    <i class="bi bi-trash"></i>
-  </button>
-
-</td>
+            <!-- ELIMINAR -->
+            <button
+              class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+              title="Eliminar"
+              (click)="eliminar(item.idEquipo)"
+            >
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
         </tr>
 
         <!-- EMPTY STATE -->
         <tr *ngIf="items.length === 0">
-          <td colspan="9">
+          <td colspan="10">
             <div
               class="empty-state d-flex flex-column align-items-center justify-content-center py-5"
             >

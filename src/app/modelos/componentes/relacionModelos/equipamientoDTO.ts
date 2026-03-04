@@ -12,6 +12,8 @@ export class EquipamientoDTO {
     estado!: string; //entregado / en stock
     nroInventario!: number;
     ordenCompra!: string;
+    destino!: number;
+    nombreDestino!: string;
     activo: boolean;
 
     constructor(){
