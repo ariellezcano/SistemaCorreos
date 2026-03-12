@@ -46,7 +46,7 @@
         <!-- LISTADO -->
         <tr *ngFor="let item of items">
           <td>
-            {{ item.fecha | date: 'dd/MM/yyyy' }}
+            {{ item.fecha | date: "dd/MM/yyyy" }}
           </td>
 
           <td class="text-center fw-semibold">
@@ -62,7 +62,7 @@
           </td>
 
           <td>
-            {{ item.anchoBandaSol || '—' }}
+            {{ item.anchoBandaSol || "—" }}
           </td>
 
           <!-- ESTADO -->
@@ -71,7 +71,8 @@
               class="badge estado-badge"
               [ngClass]="{
                 'estado-ok': item.estado === 'cumplido',
-                'estado-dev': item.estado === 'pendiente'
+                'estado-dev': item.estado === 'pendiente',
+                'estado-des': item.estado === 'desestimado'
               }"
             >
               {{ item.estado | titlecase }}
@@ -84,7 +85,7 @@
               class="badge"
               [ngClass]="item.activo ? 'bg-success' : 'bg-secondary'"
             >
-              {{ item.activo ? 'Sí' : 'No' }}
+              {{ item.activo ? "Sí" : "No" }}
             </span>
           </td>
 
@@ -116,9 +117,7 @@
             >
               <i class="bi bi-clipboard-x fs-1 mb-3 text-muted"></i>
 
-              <h6 class="fw-semibold mb-1">
-                No hay solicitudes registradas
-              </h6>
+              <h6 class="fw-semibold mb-1">No hay solicitudes registradas</h6>
 
               <p class="text-muted mb-0 text-center">
                 Todavía no se cargaron solicitudes o reclamos.
