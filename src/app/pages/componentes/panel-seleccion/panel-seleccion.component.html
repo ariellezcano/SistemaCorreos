@@ -7,7 +7,7 @@
   <div class="row g-4">
 
     <!-- USUARIOS -->
-    <div class="col-md-6 col-lg-4">
+    <div class="col-md-6 col-lg-4" *ngIf="rol === 'DEVELOPER' || rol === 'MANAGER'">
       <div class="dashboard-card" (click)="irAUsuarios()">
         <div class="icon bg-secondary">
           <i class="bi bi-people-fill"></i>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavbarService } from 'src/app/services/navbar.service';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-panel-seleccion',
@@ -8,9 +9,22 @@ import { NavbarService } from 'src/app/services/navbar.service';
   styleUrls: ['./panel-seleccion.component.scss'],
 })
 export class PanelSeleccionComponent implements OnInit {
-  constructor(private router: Router, private navbarService: NavbarService) {}
+  
+  constructor(
+    private router: Router,
+    private navbarService: NavbarService,
+  ) {}
 
-  ngOnInit(): void {}
+  rol: string = '';
+
+  ngOnInit(): void {
+    const personalString = Utils.getSession('personal');
+
+    if (personalString) {
+      const personal = JSON.parse(personalString);
+      this.rol = personal.rol;
+    }
+  }
 
   irAUsuarios() {
     this.navbarService.setModo('usuarios');
