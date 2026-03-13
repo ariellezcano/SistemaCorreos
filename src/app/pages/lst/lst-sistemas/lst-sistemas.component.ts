@@ -19,12 +19,24 @@ export class LstSistemasComponent implements OnInit {
   item: Sistemas;
   items: Sistemas[];
 
-  constructor(private wsdl: SistemasService, private route: Router) {
+  rol: string = '';
+
+  constructor(
+    private wsdl: SistemasService,
+    private route: Router,
+  ) {
     this.item = new Sistemas();
     this.items = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const personalString = Utils.getSession('personal');
+
+    if (personalString) {
+      const personal = JSON.parse(personalString);
+      this.rol = personal.rol;
+    }
+  }
 
   doFound(event: Sistemas[]) {
     console.log('llegue', event);
@@ -58,10 +70,7 @@ export class LstSistemasComponent implements OnInit {
 
   async eliminacion(plataforma: number) {
     try {
-
-      const data = await firstValueFrom(
-        this.wsdl.delete(plataforma)
-      );
+      const data = await firstValueFrom(this.wsdl.delete(plataforma));
       const result = JSON.parse(JSON.stringify(data));
 
       if (result.code === '200') {
@@ -79,5 +88,17 @@ export class LstSistemasComponent implements OnInit {
         });
       }
     }
+  }
+
+  puedeEditar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEliminar(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }
 }
