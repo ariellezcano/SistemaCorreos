@@ -1,12 +1,10 @@
 <div class="container my-5">
   <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
     <!-- HEADER -->
     <div
       class="card-header text-white d-flex justify-content-between align-items-center rounded-top"
-      style="
-        background: linear-gradient(90deg, #0a4aa1, #0d6efd);
-        border-bottom: 4px solid #ff9800;
-      "
+      style="background: linear-gradient(90deg,#0a4aa1,#0d6efd); border-bottom:4px solid #ff9800;"
     >
       <h4 class="m-0 d-flex align-items-center">
         <i class="bi bi-envelope-fill me-2"></i>
@@ -16,18 +14,21 @@
 
     <!-- FILTRO -->
     <div class="card-body bg-light">
-      <div
-        class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3 w-100"
-      >
+
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3 w-100">
+
         <app-fil-correos-institucionales
           (emmit)="doFound($event)"
           class="flex-grow-1"
         ></app-fil-correos-institucionales>
+
       </div>
 
-      <!-- LISTADO -->
+      <!-- TABLA -->
       <div class="table-responsive rounded-4 shadow-sm bg-white">
+
         <table class="table table-hover align-middle mb-0">
+
           <thead class="table-primary text-center">
             <tr>
               <th>Nombre</th>
@@ -46,7 +47,9 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let item of items; index as i">
+
+            <tr *ngFor="let item of items">
+
               <td>{{ item.nombre }}</td>
               <td>{{ item.apellido }}</td>
               <td>{{ item.dni }}</td>
@@ -54,21 +57,26 @@
               <td>{{ item.unidad }}</td>
               <td>{{ item.correoInstitucional }}</td>
 
-              <!-- CONTRASEÑA SEGÚN ROL -->
+              <!-- CONTRASEÑA -->
               <td>
-                <ng-container *ngIf="rol === 'MANAGER'; else oculto">
-                  <span class="text-primary fw-semibold">{{
-                    item.contrasenia
-                  }}</span>
+
+                <ng-container *ngIf="puedeVerContrasenia(); else oculto">
+
+                  <span class="text-primary fw-semibold">
+                    {{ item.contrasenia }}
+                  </span>
+
                 </ng-container>
 
                 <ng-template #oculto>
                   <span class="text-muted fst-italic">******</span>
                 </ng-template>
+
               </td>
 
               <!-- TIPO -->
               <td class="text-center">
+
                 <span
                   class="badge px-3 py-2 text-white fw-semibold"
                   [style.background-color]="
@@ -76,22 +84,24 @@
                       ? '#198754'
                       : '#0d6efd'
                   "
-                  style="border-radius: 12px"
+                  style="border-radius:12px"
                 >
+
                   <i
                     class="bi"
                     [ngClass]="{
-                      'bi-person-badge':
-                        item.tipoCorreo === 'Personal Institucional',
-                      'bi-building':
-                        item.tipoCorreo === 'Institucional Dependencia'
+                      'bi-person-badge': item.tipoCorreo === 'Personal Institucional',
+                      'bi-building': item.tipoCorreo === 'Institucional Dependencia'
                     }"
                   ></i>
+
                   {{ " " + item.tipoCorreo }}
+
                 </span>
+
               </td>
 
-              <!-- HABILITADO -->
+              <!-- HABILITACION -->
               <td
                 class="text-center fw-semibold"
                 [ngClass]="{
@@ -99,14 +109,16 @@
                   'text-warning': !item.fechaHabilitacion
                 }"
               >
+
                 {{
                   item.fechaHabilitacion
                     ? (item.fechaHabilitacion | date : "dd/MM/yyyy")
                     : "No fue habilitado"
                 }}
+
               </td>
 
-              <!-- NOTIFICADO -->
+              <!-- NOTIFICACION -->
               <td
                 class="text-center fw-semibold"
                 [ngClass]="{
@@ -114,30 +126,39 @@
                   'text-danger': !item.fechaNotificacion
                 }"
               >
+
                 {{
                   item.fechaNotificacion
                     ? (item.fechaNotificacion | date : "dd/MM/yyyy")
                     : "No fue notificado"
                 }}
+
               </td>
 
+              <!-- ACTA -->
               <td class="text-center">
+
                 <span
                   class="badge px-3 py-2"
                   [class.bg-success]="item.actaRecibida"
                   [class.bg-danger]="!item.actaRecibida"
                 >
+
                   {{ item.actaRecibida ? "Sí" : "No" }}
+
                 </span>
+
               </td>
 
               <!-- ACCIONES -->
               <td class="text-center">
+
                 <!-- DETALLE -->
                 <button
                   class="btn btn-sm btn-outline-primary rounded-pill me-2 px-3"
                   title="Agregar detalle"
                   (click)="abrirModalDetalle(item)"
+                  [disabled]="!puedeOperar()"
                 >
                   <i class="bi bi-journal-text"></i>
                 </button>
@@ -145,56 +166,63 @@
                 <!-- PLATAFORMA -->
                 <button
                   class="btn btn-sm rounded-pill px-3"
-                  style="background-color: #0d6efd; color: white"
+                  style="background-color:#0d6efd;color:white"
                   title="Plataforma"
                   *ngIf="item.tipoCorreo !== 'Institucional Dependencia'"
                   (click)="linkear(item.idCorreo)"
+                  [disabled]="!puedeOperar()"
                 >
                   <i class="bi bi-hdd-network"></i>
                 </button>
-                
+
                 <!-- CAMBIAR TITULAR -->
                 <button
                   class="btn btn-sm rounded-pill px-3"
-                  style="background-color: #198754; color: white"
+                  style="background-color:#198754;color:white"
                   title="Cambiar titular"
                   *ngIf="item.tipoCorreo === 'Institucional Dependencia'"
                   (click)="cambiarTitular(item.idCorreo)"
+                  [disabled]="!puedeOperar()"
                 >
                   <i class="bi bi-person-lines-fill"></i>
                 </button>
 
               </td>
+
             </tr>
 
             <!-- SIN REGISTROS -->
             <tr *ngIf="items.length === 0">
+
               <td colspan="12" class="py-5">
-                <div
-                  class="d-flex flex-column align-items-center text-secondary"
-                >
+
+                <div class="d-flex flex-column align-items-center text-secondary">
+
                   <div
                     class="rounded-circle mb-3 d-flex justify-content-center align-items-center"
-                    style="
-                      width: 70px;
-                      height: 70px;
-                      background: rgba(13, 110, 253, 0.1);
-                      border: 2px dashed #0d6efd;
-                    "
+                    style="width:70px;height:70px;background:rgba(13,110,253,0.1);border:2px dashed #0d6efd;"
                   >
                     <i class="bi bi-inbox fs-1 text-primary"></i>
                   </div>
 
                   <h5 class="fw-semibold mb-1">Sin resultados</h5>
+
                   <p class="text-muted m-0">
                     No hay correos registrados para mostrar.
                   </p>
+
                 </div>
+
               </td>
+
             </tr>
+
           </tbody>
+
         </table>
+
       </div>
+
     </div>
 
     <!-- FOOTER -->
@@ -203,6 +231,7 @@
     >
       Total: {{ items.length }} registros
     </div>
+
   </div>
 </div>
 
@@ -216,12 +245,14 @@
 >
   <div class="modal-dialog modal-md">
     <div class="modal-content rounded-4 border-0 shadow-lg">
+
       <!-- HEADER -->
       <div class="modal-header bg-primary text-white rounded-top">
         <h5 class="modal-title" id="modalDetalleLabel">
-          <i class="bi bi-file-earmark-text-fill me-2"></i> Nuevo Detalle de
-          Acta
+          <i class="bi bi-file-earmark-text-fill me-2"></i>
+          Nuevo Detalle de Acta
         </h5>
+
         <button
           type="button"
           class="btn-close btn-close-white"
@@ -230,14 +261,18 @@
         ></button>
       </div>
 
-      <!-- BODY -->
+      <!-- FORM -->
       <form
         class="needs-validation"
         novalidate
         (ngSubmit)="crearDetalle()"
         #formDetalle="ngForm"
       >
+
+        <!-- BODY -->
         <div class="modal-body bg-light">
+
+          <!-- ACTA -->
           <div class="form-check form-switch mb-3">
             <input
               class="form-check-input"
@@ -247,13 +282,18 @@
               [(ngModel)]="itemDetalle.actaRecibida"
               name="actaRecibida"
             />
+
             <label class="form-check-label fw-semibold" for="actaRecibida">
               ¿Acta recibida?
             </label>
           </div>
 
+          <!-- FECHA -->
           <div class="mb-3">
-            <label class="form-label fw-semibold">Fecha de Recepción</label>
+            <label class="form-label fw-semibold">
+              Fecha de Recepción
+            </label>
+
             <input
               type="date"
               class="form-control"
@@ -261,12 +301,17 @@
               name="fechaRecepcion"
               required
             />
-            <div class="invalid-feedback">Seleccione una fecha válida.</div>
+
+            <div class="invalid-feedback">
+              Seleccione una fecha válida
+            </div>
           </div>
+
         </div>
 
         <!-- FOOTER -->
         <div class="modal-footer bg-white border-top">
+
           <button
             type="button"
             class="btn btn-secondary"
@@ -274,11 +319,19 @@
           >
             Cancelar
           </button>
-          <button type="submit" class="btn btn-primary">
-            <i class="bi bi-save-fill me-2"></i> Guardar
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            <i class="bi bi-save-fill me-2"></i>
+            Guardar
           </button>
+
         </div>
+
       </form>
+
     </div>
   </div>
 </div>

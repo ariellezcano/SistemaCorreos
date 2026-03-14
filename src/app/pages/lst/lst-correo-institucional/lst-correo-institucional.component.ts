@@ -253,4 +253,29 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   abmCorreo(id: number) {
     this.route.navigate(['pages/agregar_correo/' + id]);
   }
+
+
+   /* =========================
+     PERMISOS POR ROL
+  ========================= */
+
+  puedeOperar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEliminar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER'
+    );
+  }
+
+  puedeVerContrasenia(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
+  }
+
 }
