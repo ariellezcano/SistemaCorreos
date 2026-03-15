@@ -5,6 +5,7 @@ import { TipoNovedadService } from 'src/app/services/index.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { firstValueFrom } from 'rxjs';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-tiponovedad',
@@ -17,13 +18,28 @@ export class LstTiponovedadComponent implements OnInit {
 
   item: TipoNovedad;
   items: TipoNovedad[];
+  rol: string = '';
 
-  constructor(private wsdl: TipoNovedadService, private route: Router) {
+  constructor(
+    private wsdl: TipoNovedadService,
+    private route: Router,
+  ) {
     this.item = new TipoNovedad();
     this.items = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
+  }
 
   doFound(event: TipoNovedad[]) {
     //console.log('llegue', event);
@@ -75,5 +91,21 @@ export class LstTiponovedadComponent implements OnInit {
         });
       }
     }
+  }
+
+  /* =========================
+   PERMISOS
+========================= */
+
+  puedeOperar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEliminar(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }
 }

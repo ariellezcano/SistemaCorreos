@@ -1,6 +1,5 @@
 <div class="container-fluid my-5 px-5">
   <div class="card proveedor-card shadow-lg border-0 rounded-4 overflow-hidden">
-
     <!-- CABECERA -->
     <div
       class="card-header d-flex justify-content-between align-items-center py-3"
@@ -16,6 +15,7 @@
       </h3>
 
       <button
+        *ngIf="puedeOperar()"
         class="btn btn-light rounded-pill px-4 fw-semibold"
         (click)="linkear(0)"
       >
@@ -26,7 +26,6 @@
 
     <!-- CUERPO -->
     <div class="card-body bg-light py-4">
-
       <!-- FILTROS -->
       <div class="d-flex flex-wrap align-items-end gap-3 mb-4">
         <app-fil-proveedor
@@ -49,7 +48,6 @@
           <tbody>
             <!-- FILAS -->
             <tr *ngFor="let item of items">
-
               <td class="fw-semibold">
                 {{ item.nombre }}
               </td>
@@ -59,12 +57,13 @@
                   class="badge px-3 py-2"
                   [ngClass]="item.activo ? 'bg-success' : 'bg-secondary'"
                 >
-                  {{ item.activo ? 'Activo' : 'Inactivo' }}
+                  {{ item.activo ? "Activo" : "Inactivo" }}
                 </span>
               </td>
 
               <td class="text-center">
                 <button
+                  *ngIf="puedeOperar()"
                   class="btn btn-sm btn-outline-primary rounded-pill px-3 me-2"
                   title="Editar"
                   (click)="linkear(item.idProveedor)"
@@ -73,6 +72,7 @@
                 </button>
 
                 <button
+                  *ngIf="puedeEliminar()"
                   class="btn btn-sm btn-outline-danger rounded-pill px-3"
                   title="Eliminar"
                   (click)="eliminar(item.idProveedor)"
@@ -94,11 +94,9 @@
                 </p>
               </td>
             </tr>
-
           </tbody>
         </table>
       </div>
-
     </div>
 
     <!-- FOOTER -->
@@ -107,6 +105,5 @@
     >
       Total: {{ items.length }} registros
     </div>
-
   </div>
 </div>

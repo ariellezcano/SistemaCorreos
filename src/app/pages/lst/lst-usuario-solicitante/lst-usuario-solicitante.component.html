@@ -63,10 +63,11 @@
               <td>{{ item.dni }}</td>
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.nombreUnidad }}</td>
-              <td>{{ item.fechaSolEcom | date : "dd/MM/yyyy" }}</td>
+              <td>{{ item.fechaSolEcom | date: "dd/MM/yyyy" }}</td>
 
               <td class="text-center">
                 <button
+                  *ngIf="puedeOperar()"
                   class="btn btn-sm btn-outline-info"
                   title="Asignar correo"
                   (click)="abmCorreo(item.id)"
@@ -75,6 +76,7 @@
                 </button>
                 &nbsp;
                 <button
+                  *ngIf="puedeOperar()"
                   class="btn btn-sm btn-outline-primary me-2"
                   title="Editar Jerarquía o Unidad"
                   data-bs-toggle="modal"
@@ -84,6 +86,7 @@
                   <i class="bi bi-pencil-square"></i>
                 </button>
                 <button
+                  *ngIf="puedeEliminar()"
                   class="btn btn-sm btn-outline-danger"
                   title="Eliminar"
                   (click)="eliminar(item.id)"

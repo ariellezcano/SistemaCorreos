@@ -5,6 +5,7 @@ import { NovedadesDTO } from 'src/app/modelos/componentes/relacionModelos/noveda
 import { NovedadesDtiService } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
 import { FilNovedadesDtiComponent } from '../../filtros/fil-novedades-dti/fil-novedades-dti.component';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-novedades-dti',
@@ -15,12 +16,27 @@ export class LstNovedadesDTIComponent implements OnInit {
   @ViewChild(FilNovedadesDtiComponent, { static: false })
   fil!: FilNovedadesDtiComponent;
 
-  ngOnInit() {}
+  rol: string = '';
+  ngOnInit() {
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
+  }
 
   items: NovedadesDTO[];
   item: NovedadesDTO;
 
-  constructor(private wsdl: NovedadesDtiService, private route: Router) {
+  constructor(
+    private wsdl: NovedadesDtiService,
+    private route: Router,
+  ) {
     this.item = new NovedadesDTO();
     this.items = [];
   }
@@ -70,5 +86,21 @@ export class LstNovedadesDTIComponent implements OnInit {
         });
       }
     }
+  }
+
+  /* =========================
+   PERMISOS
+========================= */
+
+  puedeOperar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEliminar(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }
 }

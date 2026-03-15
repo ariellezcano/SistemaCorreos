@@ -24,14 +24,27 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
   items: UsuarioSolicitante[];
   usuarioSeleccionado: any = {};
   idSeleccionado!: number;
+  rol: string = '';
 
-  constructor(private wsdl: UsuarioSolicitanteService, private route: Router) {
+  constructor(
+    private wsdl: UsuarioSolicitanteService,
+    private route: Router,
+  ) {
     this.item = new UsuarioSolicitante();
     this.items = [];
   }
 
   ngOnInit(): void {
-    //this.rol = JSON.parse(''+ Utils.getSession('personal')).rol;
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
   }
 
   abmAgregarNuevo(id: number) {
@@ -66,20 +79,19 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
       .then(async (result) => {
         if (result.isConfirmed) {
           try {
-            
             let usuarioBaja = Number(Utils.getSession('user'));
             const res: any = await firstValueFrom(
-              this.wsdl.delete(id, usuarioBaja)
+              this.wsdl.delete(id, usuarioBaja),
             );
             const Json = JSON.parse(JSON.stringify(res));
-            console.log("eliminar", Json)
+            console.log('eliminar', Json);
             if (Json.code === '200') {
               this.fil.filter();
 
               swalWithBootstrapButtons.fire(
                 'Eliminado exitosamente!',
                 'Tu registro ya no existe.',
-                'success'
+                'success',
               );
             }
           } catch (err) {
@@ -87,7 +99,7 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
             swalWithBootstrapButtons.fire(
               'Error',
               'No se pudo eliminar el registro.',
-              'error'
+              'error',
             );
           }
         }
@@ -129,51 +141,50 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
   }
 
   async actualizarJerarquia() {
-  const id = this.usuarioSeleccionado?.id;
-  const nuevaJerarquia = this.usuarioSeleccionado?.jerarquia;
-  const unidad = this.item?.unidadDpte;
-  const nombreUnidad = this.item?.nombreUnidad;
+    const id = this.usuarioSeleccionado?.id;
+    const nuevaJerarquia = this.usuarioSeleccionado?.jerarquia;
+    const unidad = this.item?.unidadDpte;
+    const nombreUnidad = this.item?.nombreUnidad;
 
-  if (!id || !nuevaJerarquia) {
-    Swal.fire('Atención', 'Debe seleccionar una jerarquía válida', 'warning');
-    return;
-  }
-
-  if (!unidad || !nombreUnidad) {
-    Swal.fire('Atención', 'Debe seleccionar una unidad válida', 'warning');
-    return;
-  }
-
-  try {
-    const data = await firstValueFrom(
-      this.wsdl.patchJerarquia(
-        id,
-        nuevaJerarquia,
-        unidad,          // ✅ ahora es number
-        nombreUnidad     // ✅ ahora es string
-      )
-    );
-
-    const result = JSON.parse(JSON.stringify(data));
-
-    if (result.code === '200') {
-      Swal.fire({
-        icon: 'success',
-        title: 'Datos actualizados correctamente',
-        timer: 1500,
-        showConfirmButton: false,
-      });
-
-      this.cerrarModalJerarquia();
-      this.fil.filter();
-    } else {
-      Swal.fire('Atención', result.message, 'warning');
+    if (!id || !nuevaJerarquia) {
+      Swal.fire('Atención', 'Debe seleccionar una jerarquía válida', 'warning');
+      return;
     }
-  } catch (error) {
-    Swal.fire('Error', 'No se pudo actualizar los datos', 'error');
-  }
-}
 
+    if (!unidad || !nombreUnidad) {
+      Swal.fire('Atención', 'Debe seleccionar una unidad válida', 'warning');
+      return;
+    }
+
+    try {
+      const data = await firstValueFrom(
+        this.wsdl.patchJerarquia(
+          id,
+          nuevaJerarquia,
+          unidad, // ✅ ahora es number
+          nombreUnidad, // ✅ ahora es string
+        ),
+      );
+
+      const result = JSON.parse(JSON.stringify(data));
+
+      if (result.code === '200') {
+        Swal.fire({
+          icon: 'success',
+          title: 'Datos actualizados correctamente',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+
+        this.cerrarModalJerarquia();
+        this.fil.filter();
+      } else {
+        Swal.fire('Atención', result.message, 'warning');
+      }
+    } catch (error) {
+      Swal.fire('Error', 'No se pudo actualizar los datos', 'error');
+    }
+  }
 
   cerrarModalJerarquia() {
     const modalElement = document.getElementById('modalJerarquia');
@@ -209,5 +220,17 @@ export class LstUsuarioSolicitanteComponent implements OnInit {
 
   abmCorreo(id: number) {
     this.route.navigate(['pages/agregar_correo/' + id]);
+  }
+
+  puedeOperar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEliminar(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }
 }

@@ -19,13 +19,28 @@ export class LstPlataformasComponent implements OnInit {
 
   item: PlataformaCorreoDto;
   items: PlataformaCorreoDto[];
+  rol: string = '';
 
-  constructor(private wsdl: PlataformaService, private route: Router) {
+  constructor(
+    private wsdl: PlataformaService,
+    private route: Router,
+  ) {
     this.item = new PlataformaCorreoDto();
     this.items = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
+  }
 
   doFound(event: PlataformaCorreoDto[]) {
     //console.log('llegue');
@@ -61,8 +76,10 @@ export class LstPlataformasComponent implements OnInit {
     try {
       // capturar el idUsuarioBaja
       let usuarioBaja = Number(Utils.getSession('user'));
-      
-      const data = await firstValueFrom(this.wsdl.delete(plataforma, usuarioBaja));
+
+      const data = await firstValueFrom(
+        this.wsdl.delete(plataforma, usuarioBaja),
+      );
       const result = JSON.parse(JSON.stringify(data));
 
       if (result.code === '200') {
@@ -80,5 +97,17 @@ export class LstPlataformasComponent implements OnInit {
         });
       }
     }
+  }
+
+  puedeOperar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEliminar(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }
 }

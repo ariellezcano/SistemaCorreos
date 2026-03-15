@@ -9,10 +9,12 @@
     </div>
 
     <button
-      type="button"
-      class="btn btn-light fw-semibold rounded-pill px-4 shadow-sm"
-      (click)="linkear(0)"
-    >
+  *ngIf="puedeOperar()"
+  type="button"
+  class="btn btn-light fw-semibold rounded-pill px-4 shadow-sm"
+  (click)="linkear(0)"
+>
+
       <i class="bi bi-plus-circle-fill me-2"></i>
       Nueva Solicitud
     </button>
@@ -92,18 +94,22 @@
           <!-- ACCIONES -->
           <td class="text-center">
             <button
-              class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
-              title="Editar"
-              (click)="linkear(item.idSolicitud)"
-            >
+  *ngIf="puedeOperar()"
+  class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
+  title="Editar"
+  (click)="linkear(item.idSolicitud)"
+>
+
               <i class="bi bi-pencil-square"></i>
             </button>
 
             <button
-              class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
-              title="Eliminar"
-              (click)="eliminar(item.idSolicitud)"
-            >
+  *ngIf="puedeEliminar()"
+  class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+  title="Eliminar"
+  (click)="eliminar(item.idSolicitud)"
+>
+
               <i class="bi bi-trash"></i>
             </button>
           </td>

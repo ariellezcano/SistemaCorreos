@@ -10,6 +10,7 @@ import {
 } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
 import { FilReclamosComponent } from '../../filtros/fil-reclamos/fil-reclamos.component';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-reclamos',
@@ -27,17 +28,29 @@ export class LstReclamosComponent implements OnInit {
 
   idPlataformaSeleccionada!: number;
   idReclamoSeleccionado!: number;
+  rol: string = '';
 
   constructor(
     private wsdl: ReclamoService,
     private wsdlPlataforma: PlataformaService,
-    private route: Router
+    private route: Router,
   ) {
     this.item = new Reclamos();
     this.items = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
+  }
 
   doFound(data: UsuarioReclamoDTO[]) {
     this.items = data;
@@ -62,8 +75,8 @@ export class LstReclamosComponent implements OnInit {
           this.item.estado,
           this.item.fechaSolucion,
           this.item.observacion,
-          this.item.activo
-        )
+          this.item.activo,
+        ),
       );
       const result = JSON.parse(JSON.stringify(data));
 
@@ -87,8 +100,8 @@ export class LstReclamosComponent implements OnInit {
       const data = await firstValueFrom(
         this.wsdlPlataforma.patchEstado(
           this.idPlataformaSeleccionada,
-          this.item.estado
-        )
+          this.item.estado,
+        ),
       );
       const result = JSON.parse(JSON.stringify(data));
 
@@ -117,5 +130,25 @@ export class LstReclamosComponent implements OnInit {
 
   nuevoReclamo() {
     this.route.navigate(['/pages/abm_reclamos']);
+  }
+
+  /* =========================
+   PERMISOS POR ROL
+========================= */
+
+  puedeOperar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEditarReclamo(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
   }
 }

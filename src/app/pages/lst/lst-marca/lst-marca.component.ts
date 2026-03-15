@@ -5,6 +5,7 @@ import { MarcaService } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
 import { FilMarcaComponent } from '../../filtros/fil-marca/fil-marca.component';
 import { Router } from '@angular/router';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-marca',
@@ -18,6 +19,8 @@ export class LstMarcaComponent implements OnInit {
   item: Marca;
   items: Marca[];
 
+  rol: string = '';
+
   constructor(
     private wsdl: MarcaService,
     private route: Router,
@@ -26,7 +29,18 @@ export class LstMarcaComponent implements OnInit {
     this.items = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
+  }
 
   doFound(event: Marca[]) {
     this.items = event;
@@ -61,8 +75,8 @@ export class LstMarcaComponent implements OnInit {
     try {
       const data = await firstValueFrom(this.wsdl.delete(id));
       const result = JSON.parse(JSON.stringify(data));
-      console.log("resultado", result)
-      if (result.code === "200") {
+      console.log('resultado', result);
+      if (result.code === '200') {
         Swal.fire('Operación realizada...', '', 'success');
         this.back();
         this.fil.filter();
@@ -77,5 +91,21 @@ export class LstMarcaComponent implements OnInit {
         });
       }
     }
+  }
+
+  /* =========================
+   PERMISOS
+========================= */
+
+  puedeOperar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEliminar(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }
 }

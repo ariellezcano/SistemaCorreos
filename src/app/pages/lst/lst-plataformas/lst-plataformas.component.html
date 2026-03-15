@@ -178,22 +178,29 @@
 
               <!-- ACCIONES -->
               <td class="text-center">
-                <button
-                  class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
-                  title="Editar"
-                  (click)="linkear(item.idCorreo)"
-                >
-                  <i class="bi bi-pencil-square"></i>
-                </button>
 
-                <button
-                  class="btn btn-sm btn-outline-danger rounded-pill px-3"
-                  title="Eliminar"
-                  (click)="eliminar(item.idPlataforma)"
-                >
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
+  <!-- EDITAR -->
+  <button
+    *ngIf="puedeOperar()"
+    class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
+    title="Editar"
+    (click)="linkear(item.idCorreo)"
+  >
+    <i class="bi bi-pencil-square"></i>
+  </button>
+
+  <!-- ELIMINAR -->
+  <button
+    *ngIf="puedeEliminar()"
+    class="btn btn-sm btn-outline-danger rounded-pill px-3"
+    title="Eliminar"
+    (click)="eliminar(item.idPlataforma)"
+  >
+    <i class="bi bi-trash"></i>
+  </button>
+
+</td>
+
             </tr>
 
             <!-- SI NO HAY REGISTROS -->

@@ -5,6 +5,7 @@ import { Conexion } from 'src/app/modelos/index.models';
 import { ConexionesService } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
 import { FilConexionesComponent } from '../../filtros/fil-conexiones/fil-conexiones.component';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-conexiones',
@@ -17,13 +18,27 @@ export class LstConexionesComponent implements OnInit {
 
   item: Conexion;
   items: Conexion[];
-
-  constructor(private wsdl: ConexionesService, private route: Router) {
+  rol: string = '';
+  constructor(
+    private wsdl: ConexionesService,
+    private route: Router,
+  ) {
     this.item = new Conexion();
     this.items = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
+  }
 
   doFound(event: Conexion[]) {
     //console.log('llegue', event);
@@ -75,5 +90,21 @@ export class LstConexionesComponent implements OnInit {
         });
       }
     }
+  }
+
+  /* =========================
+   PERMISOS
+========================= */
+
+  puedeOperar(): boolean {
+    return (
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER' ||
+      this.rol === 'ADMINISTRADOR'
+    );
+  }
+
+  puedeEliminar(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }
 }
