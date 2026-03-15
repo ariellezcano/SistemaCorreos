@@ -17,3 +17,4 @@ export {TipoEquipo} from './componentes/tipoEquipo';
 export {Proveedor} from './componentes/proveedor';
 export {Equipamiento} from './componentes/equipamiento';
 export {DetalleEntrega} from './componentes/detalleEntrega';
+export {Mantenimiento} from './componentes/mantenimiento';

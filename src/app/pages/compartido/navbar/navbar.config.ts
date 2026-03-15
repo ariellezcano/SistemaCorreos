@@ -33,7 +33,8 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
   sistemas: {
     titulo: 'SISTEMAS INTERNOS POLICIALES',
     links: [
-      { label: 'Sistemas', route: '/pages/lst_sistemas' }
+      { label: 'Sistemas', route: '/pages/lst_sistemas' },
+      { label: 'Mantenimiento Preventivo', route: '/pages/lst_mantenimiento' }
     ]
   },
 

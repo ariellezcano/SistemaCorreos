@@ -64,6 +64,9 @@ import { AbmEquipamientosComponent } from './frm-abm/abm-equipamientos/abm-equip
 import { LstEquipamientosComponent } from './lst/lst-equipamientos/lst-equipamientos.component';
 import { AbmAsignacionEquipoComponent } from './frm-abm/abm-asignacion-equipo/abm-asignacion-equipo.component';
 import { FrmDetalleEntregaComponent } from './frm-abm/frm-detalle-entrega/frm-detalle-entrega.component';
+import { FilMantenimientoComponent } from './filtros/fil-mantenimiento/fil-mantenimiento.component';
+import { LstMantenimientoComponent } from './lst/lst-mantenimiento/lst-mantenimiento.component';
+import { AbmMantenimientoComponent } from './frm-abm/abm-mantenimiento/abm-mantenimiento.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +129,9 @@ import { FrmDetalleEntregaComponent } from './frm-abm/frm-detalle-entrega/frm-de
     FilEquipamientosComponent,
     AbmAsignacionEquipoComponent,
     FrmDetalleEntregaComponent,
+    FilMantenimientoComponent,
+    LstMantenimientoComponent,
+    AbmMantenimientoComponent,
   ],
   imports: [
     CommonModule,

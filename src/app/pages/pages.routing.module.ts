@@ -39,6 +39,8 @@ import { AbmEquipamientosComponent } from './frm-abm/abm-equipamientos/abm-equip
 import { AbmAsignacionEquipoComponent } from './frm-abm/abm-asignacion-equipo/abm-asignacion-equipo.component';
 import { FrmDetalleEntregaComponent } from './frm-abm/frm-detalle-entrega/frm-detalle-entrega.component';
 import { AuthGuard } from './compartido/guards/auth.guard';
+import { LstMantenimientoComponent } from './lst/lst-mantenimiento/lst-mantenimiento.component';
+import { AbmMantenimientoComponent } from './frm-abm/abm-mantenimiento/abm-mantenimiento.component';
 
 const routes: Routes = [
   {
@@ -83,6 +85,8 @@ const routes: Routes = [
       { path: 'abm_equipamiento/:id', component: AbmEquipamientosComponent, canActivate: [AuthGuard] },
       { path: 'abm_asignacion/:id', component: AbmAsignacionEquipoComponent, canActivate: [AuthGuard] },
       { path: 'detalle_entrega/:id', component: FrmDetalleEntregaComponent, canActivate: [AuthGuard] },
+      { path: 'lst_mantenimiento', component: LstMantenimientoComponent, canActivate: [AuthGuard] },
+      { path: 'abm_mantenimiento/:id', component: AbmMantenimientoComponent, canActivate: [AuthGuard] },
     ],
   },
 ];
