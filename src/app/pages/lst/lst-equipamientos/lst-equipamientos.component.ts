@@ -5,6 +5,7 @@ import { EquipamientoService } from 'src/app/services/componentes/equipamiento.s
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { firstValueFrom } from 'rxjs';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-lst-equipamientos',
@@ -17,6 +18,7 @@ export class LstEquipamientosComponent implements OnInit {
 
   item: EquipamientoDTO;
   items: EquipamientoDTO[];
+  rol: string = '';
 
   constructor(
     private wsdl: EquipamientoService,
@@ -26,7 +28,18 @@ export class LstEquipamientosComponent implements OnInit {
     this.items = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const personal = Utils.getSession('personal');
+
+    if (personal) {
+      try {
+        const obj = JSON.parse(personal);
+        this.rol = obj.rol || '';
+      } catch {
+        this.rol = '';
+      }
+    }
+  }
 
   doFound(event: EquipamientoDTO[]) {
     //console.log('llegue', event);
@@ -44,7 +57,6 @@ export class LstEquipamientosComponent implements OnInit {
   verDetalle(idEquipo: number) {
     this.route.navigateByUrl('pages/detalle_entrega/' + idEquipo);
   }
-
 
   async eliminar(registro: number) {
     Swal.fire({
@@ -92,12 +104,43 @@ export class LstEquipamientosComponent implements OnInit {
 
     const data = await firstValueFrom(this.wsdl.desvincular(idEquipo));
     const result = JSON.parse(JSON.stringify(data));
-      console.log("desvincular", result)
-      if (result.code === '200') {
-        this.fil.filter();
-      } else {
-        alert(result.message);
-      }
-    ;
+    console.log('desvincular', result);
+    if (result.code === '200') {
+      this.fil.filter();
+    } else {
+      alert(result.message);
+    }
+  }
+
+  /* =========================
+   PERMISOS
+========================= */
+
+  puedeCrear(): boolean {
+    return (
+      this.rol === 'ADMINISTRADOR' ||
+      this.rol === 'MANAGER' ||
+      this.rol === 'DEVELOPER'
+    );
+  }
+
+  puedeAsignar(): boolean {
+    return this.puedeCrear();
+  }
+
+  puedeVerDetalle(): boolean {
+    return this.puedeCrear();
+  }
+
+  puedeEditar(): boolean {
+    return this.puedeCrear();
+  }
+
+  puedeEliminar(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
+  }
+
+  puedeDesvincular(): boolean {
+    return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }
 }
