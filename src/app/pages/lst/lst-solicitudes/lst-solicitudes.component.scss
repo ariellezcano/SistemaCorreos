@@ -1,0 +1,82 @@
+/* =========================
+   CARD
+========================= */
+
+.sistemas-card {
+  border: none;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.sistemas-header {
+  background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+  color: #fff;
+}
+
+.icon-header {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* =========================
+   TABLA
+========================= */
+
+.sistemas-table thead th {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6c757d;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.sistemas-table tbody tr {
+  transition: all 0.15s ease;
+}
+
+.sistemas-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* =========================
+   BADGES ESTADO
+========================= */
+
+.estado-badge {
+  padding: 0.45em 0.9em;
+  border-radius: 50rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state i {
+  opacity: 0.5;
+}
+
+.empty-state h6 {
+  font-size: 1rem;
+}
+
+.empty-state p {
+  font-size: 0.9rem;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn-sm {
+  font-size: 0.8rem;
+}

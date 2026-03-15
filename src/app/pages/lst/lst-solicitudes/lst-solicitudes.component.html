@@ -1,0 +1,152 @@
+<div class="card sistemas-card shadow-sm rounded-4 my-4">
+
+  <!-- CABECERA -->
+  <div
+    class="card-header sistemas-header d-flex justify-content-between align-items-center px-4 py-3"
+  >
+    <div class="d-flex align-items-center gap-3">
+      <div class="icon-header">
+        <i class="bi bi-envelope-paper"></i>
+      </div>
+
+      <h5 class="m-0 fw-semibold">Listado de Solicitudes</h5>
+    </div>
+
+    <button
+  *ngIf="puedeCrear()"
+  type="button"
+  class="btn btn-light fw-semibold rounded-pill px-4 shadow-sm"
+  (click)="linkear(0)"
+>
+      <i class="bi bi-plus-circle-fill me-2"></i>
+      Nueva Solicitud
+    </button>
+  </div>
+
+  <!-- FILTRO -->
+   <!-- FILTROS -->
+  <div class="px-4 pt-4">
+    <app-fil-solicitudes
+      (emmit)="doFound($event)"
+      class="w-100"
+    ></app-fil-solicitudes>
+  </div>
+
+  <!-- TABLA -->
+  <div class="table-responsive mt-3">
+
+    <table class="table table-hover align-middle mb-0 sistemas-table">
+
+      <thead>
+        <tr>
+          <th>N° Nota</th>
+          <th>Unidad</th>
+          <th>Detalle</th>
+          <th class="text-center">Estado</th>
+          <th class="text-center">Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <!-- LISTADO -->
+        <tr *ngFor="let item of items">
+
+          <td class="fw-semibold text-primary">
+            {{ item.nroNota }}
+          </td>
+
+          <td>
+            {{ item.nombreUnidad }}
+          </td>
+
+          <td>
+            {{ item.detalleSol }}
+          </td>
+
+          <!-- ESTADO -->
+          <td class="text-center">
+
+            <span
+              class="badge estado-badge"
+              [ngClass]="{
+                'bg-warning': item.estado === 'Pendiente',
+                'bg-primary': item.estado === 'En desarrollo',
+                'bg-success': item.estado === 'Finalizado',
+                'bg-danger': item.estado === 'Rechazado'
+              }"
+            >
+              {{ item.estado }}
+            </span>
+
+          </td>
+
+          <!-- ACCIONES -->
+          <td class="text-center">
+
+            <!-- EDITAR -->
+            <button
+  *ngIf="puedeEditar()"
+  class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
+  title="Editar"
+  (click)="linkear(item.idSolicitud)"
+>
+              <i class="bi bi-pencil-square"></i>
+            </button>
+
+            <!-- ELIMINAR -->
+            <button
+  *ngIf="puedeEliminar()"
+  class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+  title="Eliminar"
+  (click)="eliminar(item.idSolicitud)"
+>
+              <i class="bi bi-trash"></i>
+            </button>
+
+          </td>
+
+        </tr>
+
+        <!-- EMPTY STATE -->
+        <tr *ngIf="items.length === 0">
+
+          <td colspan="5">
+
+            <div
+              class="empty-state d-flex flex-column align-items-center justify-content-center py-5"
+            >
+
+              <i class="bi bi-inbox fs-1 mb-3 text-muted"></i>
+
+              <h6 class="fw-semibold mb-1">
+                No hay solicitudes registradas
+              </h6>
+
+              <p class="text-muted mb-3 text-center">
+                Aún no se cargaron solicitudes en el sistema.<br />
+                Podés comenzar agregando una nueva.
+              </p>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div
+    class="px-4 py-3 border-top small text-muted"
+    *ngIf="items.length"
+  >
+    <strong>Observación:</strong>
+    el estado indica el progreso actual de la solicitud.
+  </div>
+
+</div>

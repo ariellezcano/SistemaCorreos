@@ -67,6 +67,9 @@ import { FrmDetalleEntregaComponent } from './frm-abm/frm-detalle-entrega/frm-de
 import { FilMantenimientoComponent } from './filtros/fil-mantenimiento/fil-mantenimiento.component';
 import { LstMantenimientoComponent } from './lst/lst-mantenimiento/lst-mantenimiento.component';
 import { AbmMantenimientoComponent } from './frm-abm/abm-mantenimiento/abm-mantenimiento.component';
+import { FilSolicitudesComponent } from './filtros/fil-solicitudes/fil-solicitudes.component';
+import { AbmSolicitudesComponent } from './frm-abm/abm-solicitudes/abm-solicitudes.component';
+import { LstSolicitudesComponent } from './lst/lst-solicitudes/lst-solicitudes.component';
 
 @NgModule({
   declarations: [
@@ -132,6 +135,9 @@ import { AbmMantenimientoComponent } from './frm-abm/abm-mantenimiento/abm-mante
     FilMantenimientoComponent,
     LstMantenimientoComponent,
     AbmMantenimientoComponent,
+    FilSolicitudesComponent,
+    AbmSolicitudesComponent,
+    LstSolicitudesComponent,
   ],
   imports: [
     CommonModule,
