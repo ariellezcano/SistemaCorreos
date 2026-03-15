@@ -17,4 +17,5 @@ export {ModeloService} from './componentes/modelo.service';
 export {TipoEquipoService} from './componentes/tipo-equipo.service';
 export {EquipamientoService} from './componentes/equipamiento.service';
 export {DetalleEntregaService} from './componentes/detalle-entrega.service';
+export {SolicitudesService} from './componentes/solicitudes.service';
 
