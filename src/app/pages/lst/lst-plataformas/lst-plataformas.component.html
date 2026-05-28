@@ -37,8 +37,7 @@
           <thead class="table-primary text-center align-middle">
             <tr>
               <!-- <th>#</th> -->
-              <th>Nombre</th>
-              <th>Apellido</th>
+              <th>Apellido y Nombre</th>
               <th>DNI</th>
               <th>Jerarquía</th>
               <th>Unidad</th>
@@ -58,8 +57,7 @@
             <!-- FILAS -->
             <tr *ngFor="let item of items; index as i">
               <!-- <td class="fw-semibold text-center">{{ item.idCorreo }}</td> -->
-              <td>{{ item.nombre }}</td>
-              <td>{{ item.apellido }}</td>
+              <td>{{ item.apellido }}, {{ item.nombre }}</td>
               <td>{{ item.dni }}</td>
               <td>{{ item.jerarquia }}</td>
               <td>{{ item.unidad }}</td>

@@ -102,6 +102,8 @@ export class AbmSolicitudesComponent implements OnInit {
         const data = await firstValueFrom(this.wsdl.insert(this.item));
         const result = JSON.parse(JSON.stringify(data));
   
+        console.log("respuesta", result)
+
         if (result.code === '201') {
           Swal.fire({
             title: 'FELICITACIONES!',
