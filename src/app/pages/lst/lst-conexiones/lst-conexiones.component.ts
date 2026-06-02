@@ -92,6 +92,47 @@ export class LstConexionesComponent implements OnInit {
     }
   }
 
+  async consultarConexion(ip: string) {
+    try {
+      Swal.fire({
+        title: 'Consultando conexión...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading(),
+      });
+
+      const data = await firstValueFrom(this.wsdl.obtenerEstadoRouter(ip));
+
+      const result = JSON.parse(JSON.stringify(data));
+      console.log(result)
+
+      Swal.fire({
+        icon: result.estado === 'ONLINE' ? 'success' : 'error',
+        title:
+          result.estado === 'ONLINE' ? 'Conexión Activa' : 'Conexión Inactiva',
+        html: `
+        <div style="text-align:left">
+          <p><strong>IP:</strong> ${result.ip}</p>
+          <p><strong>Estado:</strong> ${result.estado}</p>
+          <p><strong>Latencia:</strong> ${result.latencia} ms</p>
+          <p><strong>Fecha:</strong> ${new Date(
+            result.fechaConsulta,
+          ).toLocaleString('es-AR')}</p>
+        </div>
+      `,
+        confirmButtonText: 'Aceptar',
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'No fue posible consultar el estado de la conexión.',
+        confirmButtonText: 'Aceptar',
+      });
+
+      console.error(error);
+    }
+  }
+
   /* =========================
    PERMISOS
 ========================= */

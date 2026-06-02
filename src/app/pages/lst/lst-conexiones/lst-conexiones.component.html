@@ -9,11 +9,11 @@
     </div>
 
     <button
-  *ngIf="puedeOperar()"
-  type="button"
-  class="btn btn-light fw-semibold rounded-pill px-4 shadow-sm"
-  (click)="linkear(0)"
->
+      *ngIf="puedeOperar()"
+      type="button"
+      class="btn btn-light fw-semibold rounded-pill px-4 shadow-sm"
+      (click)="linkear(0)"
+    >
       <i class="bi bi-plus-circle-fill me-2"></i>
       Nueva Conexión
     </button>
@@ -78,17 +78,11 @@
 
           <!-- IPs -->
           <td class="text-center">
-            <span
-              class="badge bg-light text-dark border me-1"
-              title="IP ECOM"
-            >
-              E: {{ item.ipEcom || '—' }}
+            <span class="badge bg-light text-dark border me-1" title="IP ECOM">
+              E: {{ item.ipEcom || "—" }}
             </span>
-            <span
-              class="badge bg-light text-dark border"
-              title="IP LAN CRIA"
-            >
-              L: {{ item.ipLanCria || '—' }}
+            <span class="badge bg-light text-dark border" title="IP LAN CRIA">
+              L: {{ item.ipLanCria || "—" }}
             </span>
           </td>
 
@@ -101,29 +95,36 @@
                 'estado-dev': !item.activo
               }"
             >
-              {{ item.activo ? 'Activa' : 'Inactiva' }}
+              {{ item.activo ? "Activa" : "Inactiva" }}
             </span>
           </td>
 
           <!-- ACCIONES -->
           <td class="text-center">
             <button
-  *ngIf="puedeOperar()"
-  class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
-  title="Editar"
-  (click)="linkear(item.idConexion)"
->
+              class="btn btn-info btn-sm rounded-pill px-3 shadow-sm me-2"
+              title="Consultar Estado Red"
+              (click)="consultarConexion(item.ipEcom)"
+              [disabled]="!item.ipEcom"
+            >
+              <i class="bi bi-wifi"></i>
+            </button>
 
+            <button
+              *ngIf="puedeOperar()"
+              class="btn btn-primary btn-sm rounded-pill px-3 shadow-sm me-2"
+              title="Editar"
+              (click)="linkear(item.idConexion)"
+            >
               <i class="bi bi-pencil-square"></i>
             </button>
 
             <button
-  *ngIf="puedeEliminar()"
-  class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
-  title="Eliminar"
-  (click)="eliminar(item.idConexion)"
->
-
+              *ngIf="puedeEliminar()"
+              class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm"
+              title="Eliminar"
+              (click)="eliminar(item.idConexion)"
+            >
               <i class="bi bi-trash"></i>
             </button>
           </td>
@@ -137,9 +138,7 @@
             >
               <i class="bi bi-router fs-1 mb-3 text-muted"></i>
 
-              <h6 class="fw-semibold mb-1">
-                No hay conexiones registradas
-              </h6>
+              <h6 class="fw-semibold mb-1">No hay conexiones registradas</h6>
 
               <p class="text-muted mb-3 text-center">
                 Aún no se cargaron conexiones de red.<br />
