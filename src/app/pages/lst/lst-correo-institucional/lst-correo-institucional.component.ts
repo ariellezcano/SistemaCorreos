@@ -9,6 +9,8 @@ import * as bootstrap from 'bootstrap';
 import { DetalleCorreoService } from 'src/app/services/index.service';
 import { DetalleCorreo } from 'src/app/modelos/index.models';
 import { Utils } from 'src/app/utils/utils';
+import { ReportesService } from 'src/app/services/componentes/reportes.service';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-lst-correo-institucional',
@@ -34,6 +36,7 @@ export class LstCorreoInstitucionalComponent implements OnInit {
   constructor(
     private wsdl: CorreoInstitucionalService,
     private wsdlDetalle: DetalleCorreoService,
+    private wsdlReporte: ReportesService,
     private route: Router
   ) {
     this.item = new UsuarioCorreoDto();
@@ -109,6 +112,39 @@ export class LstCorreoInstitucionalComponent implements OnInit {
         }
       });
   }
+
+  async generarActa(item: UsuarioCorreoDto) {
+
+  try {
+
+    const pdf = await firstValueFrom(
+      this.wsdlReporte.generarActaCorreo(item)
+    );
+
+    const blob = new Blob(
+      [pdf],
+      {
+        type: 'application/pdf'
+      }
+    );
+
+    const url = window.URL.createObjectURL(blob);
+
+    window.open(url, '_blank');
+
+  } catch (error) {
+
+    console.error(error);
+
+    Notiflix.Report.failure(
+      'Error',
+      'No se pudo generar el acta',
+      'Aceptar'
+    );
+
+  }
+
+}
 
   async editar(item: any) {
     try {
