@@ -79,6 +79,7 @@ export class AbmConexionesComponent implements OnInit {
     'Machagai',
     'Villa Río Bermejito',
     'Pampa Almirón',
+    'El Sauzalito'
   ];
 
   guardar() {
