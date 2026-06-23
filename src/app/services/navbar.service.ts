@@ -9,7 +9,8 @@ export type NavbarModo =
   | 'correos'
   | 'conexiones'
   | 'insumos'
-  | 'novedades';
+  | 'novedades'
+  | 'reportes';
 
 @Injectable({ providedIn: 'root' })
 export class NavbarService {

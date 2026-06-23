@@ -40,3 +40,13 @@
   margin: 0;
 }
 
+.row > div {
+  display: flex;
+}
+
+.dashboard-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

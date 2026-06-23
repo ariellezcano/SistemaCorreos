@@ -43,6 +43,8 @@ import { LstMantenimientoComponent } from './lst/lst-mantenimiento/lst-mantenimi
 import { AbmMantenimientoComponent } from './frm-abm/abm-mantenimiento/abm-mantenimiento.component';
 import { LstSolicitudesComponent } from './lst/lst-solicitudes/lst-solicitudes.component';
 import { AbmSolicitudesComponent } from './frm-abm/abm-solicitudes/abm-solicitudes.component';
+import { PanelSeleccionReportesComponent } from './componentes/panel-seleccion-reportes/panel-seleccion-reportes.component';
+import { AbmGeneracionReciboComponent } from './frm-abm/reportes/abm-generacion-recibo/abm-generacion-recibo.component';
 
 const routes: Routes = [
   {
@@ -50,51 +52,224 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       { path: '', redirectTo: 'principal', pathMatch: 'full' }, // Agregá esto
-      { path: 'principal', component: PanelSeleccionComponent, canActivate: [AuthGuard] },
-      { path: 'pagina_en_desarrollo', component: PanelEnDesarrolloComponent, canActivate: [AuthGuard] },
-      { path: 'lst_usuario', component: LstUsuariosComponent, canActivate: [AuthGuard] },
-      { path: 'habilitar_usuario', component: PanelHabilitacionComponent, canActivate: [AuthGuard] },
-      { path: 'lst_usuario_solicitante', component: LstUsuarioSolicitanteComponent, canActivate: [AuthGuard] },
-      { path: 'agregar_solicitante', component: AbmUsuarioSolicitanteComponent, canActivate: [AuthGuard] },
-      { path: 'agregar_solicitante/:id', component: AbmUsuarioSolicitanteComponent, canActivate: [AuthGuard] },
-      { path: 'agregar_correo/:id', component: AbmCorreoInstitucionalComponent, canActivate: [AuthGuard] },
-      { path: 'lst_correos_institucionales', component: LstCorreoInstitucionalComponent, canActivate: [AuthGuard] },
-      { path: 'plataformas/:id', component: AbmPlataformaComponent, canActivate: [AuthGuard] },
-      { path: 'lst_plataforma', component: LstPlataformasComponent, canActivate: [AuthGuard] },
-      { path: 'abm_plataforma/:id', component: AbmActualizacionplataformaComponent, canActivate: [AuthGuard] },
-      { path: 'lst_reclamos', component: LstReclamosComponent, canActivate: [AuthGuard] },
-      { path: 'abm_reclamos', component: AbmReclamosComponent, canActivate: [AuthGuard] },
-      { path: 'lst_sistemas', component: LstSistemasComponent, canActivate: [AuthGuard] },
-      { path: 'abm_sistemas/:id', component: AbmSistemasComponent, canActivate: [AuthGuard] },
-      { path: 'lst_conexiones', component: LstConexionesComponent, canActivate: [AuthGuard] },
-      { path: 'abm_conexiones/:id', component: AbmConexionesComponent, canActivate: [AuthGuard] },
-      { path: 'lst_solicitudReclamo', component: LstSolicitudReclamoComponent, canActivate: [AuthGuard] },
-      { path: 'abm_solicitudReclamo/:id', component: AbmSolicitudReclamoComponent, canActivate: [AuthGuard] },
-      { path: 'lst_novedadesDTI', component: LstNovedadesDTIComponent, canActivate: [AuthGuard] },
-      { path: 'abm_novedadesDTI/:id', component: AbmNovedadesDtiComponent, canActivate: [AuthGuard] },
-      { path: 'lst_tipoNovedad', component: LstTiponovedadComponent, canActivate: [AuthGuard] },
-      { path: 'abm_tipoNovedad/:id', component: AbmTiponovedadComponent, canActivate: [AuthGuard] },
-      { path: 'abm_cambiarTitular/:id', component: AbmCambioTitularComponent, canActivate: [AuthGuard] },
-      { path: 'lst_marcas', component: LstMarcaComponent, canActivate: [AuthGuard] },
-      { path: 'abm_marcas/:id', component: AbmMarcaComponent, canActivate: [AuthGuard] },
-      { path: 'lst_modelos', component: LstModeloComponent, canActivate: [AuthGuard] },
-      { path: 'abm_modelos/:id', component: AbmModeloComponent, canActivate: [AuthGuard] },
-      { path: 'lst_tipoEquipo', component: LstTipoEquipoComponent, canActivate: [AuthGuard] },
-      { path: 'abm_tipoEquipo/:id', component: AbmTipoEquipoComponent, canActivate: [AuthGuard] },
-      { path: 'lst_proveedor', component: LstProveedorComponent, canActivate: [AuthGuard] },
-      { path: 'abm_proveedor/:id', component: AbmProveedorComponent, canActivate: [AuthGuard] },
-      { path: 'lst_equipamientos', component: LstEquipamientosComponent, canActivate: [AuthGuard] },
-      { path: 'abm_equipamiento/:id', component: AbmEquipamientosComponent, canActivate: [AuthGuard] },
-      { path: 'abm_asignacion/:id', component: AbmAsignacionEquipoComponent, canActivate: [AuthGuard] },
-      { path: 'detalle_entrega/:id', component: FrmDetalleEntregaComponent, canActivate: [AuthGuard] },
-      { path: 'lst_mantenimiento', component: LstMantenimientoComponent, canActivate: [AuthGuard] },
-      { path: 'abm_mantenimiento/:id', component: AbmMantenimientoComponent, canActivate: [AuthGuard] },
-      { path: 'lst_solicitudes', component: LstSolicitudesComponent, canActivate: [AuthGuard] },
-      { path: 'abm_solicitudes/:id', component: AbmSolicitudesComponent, canActivate: [AuthGuard] },
+      {
+        path: 'principal',
+        component: PanelSeleccionComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'pagina_en_desarrollo',
+        component: PanelEnDesarrolloComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_usuario',
+        component: LstUsuariosComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'habilitar_usuario',
+        component: PanelHabilitacionComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_usuario_solicitante',
+        component: LstUsuarioSolicitanteComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'agregar_solicitante',
+        component: AbmUsuarioSolicitanteComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'agregar_solicitante/:id',
+        component: AbmUsuarioSolicitanteComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'agregar_correo/:id',
+        component: AbmCorreoInstitucionalComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_correos_institucionales',
+        component: LstCorreoInstitucionalComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'plataformas/:id',
+        component: AbmPlataformaComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_plataforma',
+        component: LstPlataformasComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_plataforma/:id',
+        component: AbmActualizacionplataformaComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_reclamos',
+        component: LstReclamosComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_reclamos',
+        component: AbmReclamosComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_sistemas',
+        component: LstSistemasComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_sistemas/:id',
+        component: AbmSistemasComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_conexiones',
+        component: LstConexionesComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_conexiones/:id',
+        component: AbmConexionesComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_solicitudReclamo',
+        component: LstSolicitudReclamoComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_solicitudReclamo/:id',
+        component: AbmSolicitudReclamoComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_novedadesDTI',
+        component: LstNovedadesDTIComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_novedadesDTI/:id',
+        component: AbmNovedadesDtiComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_tipoNovedad',
+        component: LstTiponovedadComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_tipoNovedad/:id',
+        component: AbmTiponovedadComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_cambiarTitular/:id',
+        component: AbmCambioTitularComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_marcas',
+        component: LstMarcaComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_marcas/:id',
+        component: AbmMarcaComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_modelos',
+        component: LstModeloComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_modelos/:id',
+        component: AbmModeloComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_tipoEquipo',
+        component: LstTipoEquipoComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_tipoEquipo/:id',
+        component: AbmTipoEquipoComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_proveedor',
+        component: LstProveedorComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_proveedor/:id',
+        component: AbmProveedorComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_equipamientos',
+        component: LstEquipamientosComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_equipamiento/:id',
+        component: AbmEquipamientosComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_asignacion/:id',
+        component: AbmAsignacionEquipoComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'detalle_entrega/:id',
+        component: FrmDetalleEntregaComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_mantenimiento',
+        component: LstMantenimientoComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_mantenimiento/:id',
+        component: AbmMantenimientoComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'lst_solicitudes',
+        component: LstSolicitudesComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_solicitudes/:id',
+        component: AbmSolicitudesComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'panel_reportes',
+        component: PanelSeleccionReportesComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'panel_recibo',
+        component: AbmGeneracionReciboComponent,
+        canActivate: [AuthGuard],
+      },
     ],
   },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)], // ✅ forChild, no forRoot

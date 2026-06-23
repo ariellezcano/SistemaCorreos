@@ -66,4 +66,12 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     ]
   },
 
+  reportes: {
+    titulo: 'REPORTES DEL SISTEMA',
+    links: [
+      //{ label: 'Reporte de Prendas', route: '/pages/lst_reporte_entrega' },
+      // { label: 'Solicitudes / Reclamos', route: '/pages/lst_solicitudReclamo' }
+    ]
+  },
+
 };

@@ -1,0 +1,142 @@
+/* ==========================================
+   CARD PRINCIPAL
+========================================== */
+
+.datos-entrega-card {
+  border-radius: 18px;
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.entrega-header {
+  background: linear-gradient(
+    135deg,
+    #0d6efd 0%,
+    #0b5ed7 100%
+  );
+  border: none;
+  padding: 1rem 1.5rem;
+}
+
+.header-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.5rem;
+}
+
+/* ==========================================
+   SECCIONES
+========================================== */
+
+.section-box {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 14px;
+  padding: 18px;
+  height: 100%;
+  transition: all 0.25s ease;
+}
+
+.section-box:hover {
+  border-color: #0d6efd;
+  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.08);
+}
+
+/* ==========================================
+   TITULOS DE SECCION
+========================================== */
+
+.section-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+
+  display: flex;
+  align-items: center;
+}
+
+.section-title.warning {
+  color: #fd7e14;
+}
+
+.section-title.success {
+  color: #198754;
+}
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+.custom-input,
+.form-control,
+.form-select {
+  border-radius: 10px;
+  min-height: 45px;
+  border: 1px solid #ced4da;
+  transition: all 0.2s ease;
+}
+
+.custom-input:focus,
+.form-control:focus,
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+/* ==========================================
+   INFORMACION SELECCIONADA
+========================================== */
+
+.selected-info {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* ==========================================
+   BOTONES
+========================================== */
+
+.btn {
+  border-radius: 10px;
+  font-weight: 600;
+  min-width: 160px;
+}
+
+.btn-primary,
+.btn-secondary {
+  transition: all 0.25s ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   ANIMACION
+========================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

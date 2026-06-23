@@ -60,4 +60,9 @@ export class PanelSeleccionComponent implements OnInit {
     this.navbarService.setModo('novedades');
     this.router.navigate(['/pages/lst_novedadesDTI']);
   }
+
+  irAReportes() {
+    this.navbarService.setModo('reportes');
+    this.router.navigate(['/pages/panel_reportes']);
+  }
 }

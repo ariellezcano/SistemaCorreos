@@ -70,6 +70,8 @@ import { AbmMantenimientoComponent } from './frm-abm/abm-mantenimiento/abm-mante
 import { FilSolicitudesComponent } from './filtros/fil-solicitudes/fil-solicitudes.component';
 import { AbmSolicitudesComponent } from './frm-abm/abm-solicitudes/abm-solicitudes.component';
 import { LstSolicitudesComponent } from './lst/lst-solicitudes/lst-solicitudes.component';
+import { PanelSeleccionReportesComponent } from './componentes/panel-seleccion-reportes/panel-seleccion-reportes.component';
+import { AbmGeneracionReciboComponent } from './frm-abm/reportes/abm-generacion-recibo/abm-generacion-recibo.component';
 
 @NgModule({
   declarations: [
@@ -138,6 +140,8 @@ import { LstSolicitudesComponent } from './lst/lst-solicitudes/lst-solicitudes.c
     FilSolicitudesComponent,
     AbmSolicitudesComponent,
     LstSolicitudesComponent,
+    PanelSeleccionReportesComponent,
+    AbmGeneracionReciboComponent,
   ],
   imports: [
     CommonModule,
