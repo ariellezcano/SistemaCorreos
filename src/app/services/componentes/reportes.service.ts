@@ -19,4 +19,14 @@ export class ReportesService {
       responseType: 'blob',
     });
   }
+
+  consultar(filtro: any) {
+    return this.http.post(`${this.api}/Consultar`, filtro);
+  }
+
+  generarRecibo(filtro: any): Observable<Blob> {
+    return this.http.post(`${this.api}/GenerarPdf`, filtro, {
+      responseType: 'blob',
+    });
+  }
 }

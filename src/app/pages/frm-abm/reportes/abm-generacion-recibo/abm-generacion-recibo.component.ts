@@ -1,3 +1,4 @@
+import { ReportesService } from 'src/app/services/componentes/reportes.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,13 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./abm-generacion-recibo.component.scss'],
 })
 export class AbmGeneracionReciboComponent implements OnInit {
-
   fechaEntrega: any;
   unidad: number;
   nombreUnidad: string = '';
 
-  constructor(private route: Router,) {
-    this.unidad = 0
+  constructor(
+    private route: Router,
+    private reportesService: ReportesService,
+  ) {
+    this.unidad = 0;
   }
 
   ngOnInit(): void {}
@@ -24,22 +27,28 @@ export class AbmGeneracionReciboComponent implements OnInit {
     this.unidad = unidad.id;
 
     this.nombreUnidad = unidad.nombre;
-
   }
 
   generarRecibo() {
+    const filtro = {
+      fechaEntrega: this.fechaEntrega,
+      unidad: this.nombreUnidad,
+    };
 
-  const filtro = {
-    fechaEntrega: this.fechaEntrega,
-    idUnidad: this.unidad
-  };
+    this.reportesService.generarRecibo(filtro).subscribe({
+      next: (blob: Blob) => {
+        const url = window.URL.createObjectURL(blob);
 
-  //this.reportesService.generarRecibo(filtro);
-}
-
+        window.open(url, '_blank');
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 
   back() {
     this.route.navigate(['pages/panel_reportes']);
   }
-
+  
 }
