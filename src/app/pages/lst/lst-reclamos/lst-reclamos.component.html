@@ -44,7 +44,7 @@
               <th>MIMINSEG</th>
               <th>Fecha Reclamo</th>
               <th>Estado</th>
-              <th>Fecha Solución</th>
+              <th>Fecha Resolución</th>
               <th>Observación</th>
               <th class="text-center">Acciones</th>
             </tr>
@@ -94,8 +94,12 @@
                 <span
                   class="badge px-3 py-2"
                   [ngClass]="{
-                    'bg-danger text-dark': item.estadoReclamo === 'Reclamado',
-                    'bg-success': item.estadoReclamo === 'Solucionado'
+                    'bg-danger': item.estadoReclamo === 'Reclamado',
+
+                    'bg-success': item.estadoReclamo === 'Solucionado',
+
+                    'bg-primary':
+                      item.estadoReclamo === 'Baja Preventiva SIFCOP'
                   }"
                 >
                   {{ item.estadoReclamo }}
@@ -202,7 +206,7 @@
         <form #formEdit="ngForm">
           <div class="row g-3">
             <div class="col-md-6">
-              <label class="form-label fw-semibold">Fecha Solución</label>
+              <label class="form-label fw-semibold">Fecha de Resolución</label>
               <input
                 type="date"
                 class="form-control"
@@ -221,6 +225,9 @@
                 required
               >
                 <option value="Solucionado">Solucionado</option>
+                <option value="Baja Preventiva SIFCOP">
+                  Baja Preventiva SIFCOP
+                </option>
               </select>
             </div>
 

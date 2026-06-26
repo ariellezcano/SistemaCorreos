@@ -120,15 +120,17 @@
               <!-- ESTADO SOLICITUD -->
               <td class="text-center">
                 <span
-                  class="badge px-3 py-2"
-                  [ngClass]="{
-                    'bg-info text-dark': item.estadoSolicitud === 'Solicitado',
-                    'bg-success': item.estadoSolicitud === 'Alta',
-                    'bg-danger text-dark': item.estadoSolicitud === 'Reclamado'
-                  }"
-                >
-                  {{ item.estadoSolicitud }}
-                </span>
+    class="badge px-3 py-2"
+    [ngClass]="{
+      'bg-info text-dark': item.estadoSolicitud === 'Solicitado',
+      'bg-success': item.estadoSolicitud === 'Alta',
+      'bg-danger': item.estadoSolicitud === 'Reclamado',
+      'badge-baja-preventiva':
+        item.estadoSolicitud === 'Baja Preventiva SIFCOP'
+    }"
+  >
+    {{ item.estadoSolicitud }}
+  </span>
               </td>
 
               <!-- ALTA -->

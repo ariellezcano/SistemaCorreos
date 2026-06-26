@@ -94,39 +94,44 @@ export class LstReclamosComponent implements OnInit {
   }
 
   async editarPlataforma() {
-    this.item.estado = 'Alta';
 
-    try {
-      const data = await firstValueFrom(
-        this.wsdlPlataforma.patchEstado(
-          this.idPlataformaSeleccionada,
-          this.item.estado,
-        ),
-      );
-      const result = JSON.parse(JSON.stringify(data));
+  let estadoPlataforma = 'Alta';
 
-      if (result?.code === '200') {
-        // 🔴 CERRAR MODAL
-        if (this.modalRef) {
-          this.modalRef.hide();
-        }
+  if (this.item.estado === 'Baja Preventiva SIFCOP') {
+    estadoPlataforma = 'Baja Preventiva SIFCOP';
+  }
 
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Modificación realizada',
-          showConfirmButton: false,
-          timer: 1500,
-        });
+  try {
+    const data = await firstValueFrom(
+      this.wsdlPlataforma.patchEstado(
+        this.idPlataformaSeleccionada,
+        estadoPlataforma,
+      ),
+    );
+
+    const result = JSON.parse(JSON.stringify(data));
+
+    if (result?.code === '200') {
+      if (this.modalRef) {
+        this.modalRef.hide();
       }
-    } catch (error) {
+
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Modificación realizada',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  } catch (error) {
       Swal.fire({
         title: 'Error al modificar la plataforma',
         text: 'Ocurrió un error inesperado',
         icon: 'error',
       });
-    }
   }
+}
 
   nuevoReclamo() {
     this.route.navigate(['/pages/abm_reclamos']);

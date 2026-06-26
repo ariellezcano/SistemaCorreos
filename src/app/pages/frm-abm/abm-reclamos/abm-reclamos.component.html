@@ -125,8 +125,13 @@
             [ngClass]="{
               'bg-warning text-dark':
                 itemPlataforma.estadoCorreo === 'Solicitado',
+
               'bg-success': itemPlataforma.estadoCorreo === 'Alta',
-              'bg-danger': itemPlataforma.estadoCorreo === 'Reclamado'
+
+              'bg-danger': itemPlataforma.estadoCorreo === 'Reclamado',
+
+              'bg-primary':
+                itemPlataforma.estadoCorreo === 'Baja Preventiva SIFCOP'
             }"
           >
             {{ itemPlataforma.estadoCorreo }}
