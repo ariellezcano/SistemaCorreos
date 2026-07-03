@@ -7,6 +7,7 @@ import { PlataformaService } from 'src/app/services/index.service';
 import Swal from 'sweetalert2';
 import { FilPlataformasComponent } from '../../filtros/fil-plataformas/fil-plataformas.component';
 import { Utils } from 'src/app/utils/utils';
+import { ReportesService } from 'src/app/services/componentes/reportes.service';
 
 @Component({
   selector: 'app-lst-plataformas',
@@ -16,7 +17,7 @@ import { Utils } from 'src/app/utils/utils';
 export class LstPlataformasComponent implements OnInit {
   @ViewChild(FilPlataformasComponent, { static: false })
   fil!: FilPlataformasComponent;
-
+  cargandoPdf: boolean = false;
   item: PlataformaCorreoDto;
   items: PlataformaCorreoDto[];
   rol: string = '';
@@ -24,6 +25,7 @@ export class LstPlataformasComponent implements OnInit {
   constructor(
     private wsdl: PlataformaService,
     private route: Router,
+    private reportesService: ReportesService,
   ) {
     this.item = new PlataformaCorreoDto();
     this.items = [];
@@ -98,6 +100,30 @@ export class LstPlataformasComponent implements OnInit {
       }
     }
   }
+
+  imprimirActa(idPlataforma: number) {
+  this.cargandoPdf = true;
+
+  this.reportesService.imprimirActa(idPlataforma).subscribe({
+    next: (pdf: Blob) => {
+      const blob = new Blob([pdf], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Acta_${idPlataforma}.pdf`;
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+
+      this.cargandoPdf = false;
+    },
+    error: () => {
+      this.cargandoPdf = false;
+      alert('Error al generar el acta');
+    },
+  });
+}
 
   puedeOperar(): boolean {
     return (

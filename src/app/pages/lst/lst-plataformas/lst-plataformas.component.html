@@ -52,7 +52,10 @@
               <th class="text-center">Acciones</th>
             </tr>
           </thead>
-
+          <!-- <div *ngIf="cargandoPdf" class="text-center my-3">
+            <div class="spinner-border text-primary" role="status"></div>
+            <div class="mt-2 text-muted">Generando acta...</div>
+          </div> -->
           <tbody>
             <!-- FILAS -->
             <tr *ngFor="let item of items; index as i">
@@ -115,22 +118,22 @@
                 </span>
               </td>
 
-              <td>{{ item.fechaSolicitud | date : "dd/MM/yyyy" }}</td>
+              <td>{{ item.fechaSolicitud | date: "dd/MM/yyyy" }}</td>
 
               <!-- ESTADO SOLICITUD -->
               <td class="text-center">
                 <span
-    class="badge px-3 py-2"
-    [ngClass]="{
-      'bg-info text-dark': item.estadoSolicitud === 'Solicitado',
-      'bg-success': item.estadoSolicitud === 'Alta',
-      'bg-danger': item.estadoSolicitud === 'Reclamado',
-      'badge-baja-preventiva':
-        item.estadoSolicitud === 'Baja Preventiva SIFCOP'
-    }"
-  >
-    {{ item.estadoSolicitud }}
-  </span>
+                  class="badge px-3 py-2"
+                  [ngClass]="{
+                    'bg-info text-dark': item.estadoSolicitud === 'Solicitado',
+                    'bg-success': item.estadoSolicitud === 'Alta',
+                    'bg-danger': item.estadoSolicitud === 'Reclamado',
+                    'badge-baja-preventiva':
+                      item.estadoSolicitud === 'Baja Preventiva SIFCOP'
+                  }"
+                >
+                  {{ item.estadoSolicitud }}
+                </span>
               </td>
 
               <!-- ALTA -->
@@ -141,7 +144,7 @@
                     else sinAlta
                   "
                 >
-                  {{ item.fechaAlta | date : "dd/MM/yyyy" }}
+                  {{ item.fechaAlta | date: "dd/MM/yyyy" }}
                 </span>
 
                 <ng-template #sinAlta>
@@ -163,7 +166,7 @@
                     else sinNotif
                   "
                 >
-                  {{ item.fechaNotif | date : "dd/MM/yyyy" }}
+                  {{ item.fechaNotif | date: "dd/MM/yyyy" }}
                 </span>
 
                 <ng-template #sinNotif>
@@ -178,29 +181,35 @@
 
               <!-- ACCIONES -->
               <td class="text-center">
+                <!-- EDITAR -->
+                <button
+                  *ngIf="puedeOperar()"
+                  class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
+                  title="Editar"
+                  (click)="linkear(item.idCorreo)"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <!-- IMPRIMIR ACTA -->
+                <button
+                  class="btn btn-sm btn-outline-success rounded-pill px-3 me-2"
+                  title="Imprimir Acta"
+                  (click)="imprimirActa(item.idPlataforma)"
+                  [disabled]="cargandoPdf"
+                >
+                  <i class="bi bi-file-earmark-pdf"></i>
+                </button>
 
-  <!-- EDITAR -->
-  <button
-    *ngIf="puedeOperar()"
-    class="btn btn-sm btn-outline-primary me-2 rounded-pill px-3"
-    title="Editar"
-    (click)="linkear(item.idCorreo)"
-  >
-    <i class="bi bi-pencil-square"></i>
-  </button>
-
-  <!-- ELIMINAR -->
-  <button
-    *ngIf="puedeEliminar()"
-    class="btn btn-sm btn-outline-danger rounded-pill px-3"
-    title="Eliminar"
-    (click)="eliminar(item.idPlataforma)"
-  >
-    <i class="bi bi-trash"></i>
-  </button>
-
-</td>
-
+                <!-- ELIMINAR -->
+                <button
+                  *ngIf="puedeEliminar()"
+                  class="btn btn-sm btn-outline-danger rounded-pill px-3"
+                  title="Eliminar"
+                  (click)="eliminar(item.idPlataforma)"
+                >
+                  <i class="bi bi-trash"></i>
+                </button>
+              </td>
             </tr>
 
             <!-- SI NO HAY REGISTROS -->

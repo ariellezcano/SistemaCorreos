@@ -29,4 +29,11 @@ export class ReportesService {
       responseType: 'blob',
     });
   }
+
+  // ✅ NUEVO: Imprimir Acta (GET devuelve PDF)
+  imprimirActa(idPlataforma: number): Observable<Blob> {
+    return this.http.get(`${this.api}/ImprimirActa/${idPlataforma}`, {
+      responseType: 'blob',
+    });
+  }
 }
