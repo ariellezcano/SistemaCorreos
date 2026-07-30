@@ -14,5 +14,4 @@ export class Usuario_repo {
         this.persona = new Persona();
         this.civil = new Civil();
     }
-
 }
