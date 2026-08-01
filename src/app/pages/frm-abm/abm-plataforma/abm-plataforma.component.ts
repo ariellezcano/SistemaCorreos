@@ -116,8 +116,8 @@ export class AbmPlataformaComponent implements OnInit {
   async crear() {
     
     this.item.correoInstitucional = Number(this.id);
-    this.item.usuarioSolicita = Number(Utils.getSession('user'));;
-    this.item.usuarioCrea = Number(Utils.getSession('user'));;
+    this.item.usuarioSolicita = Number(Utils.getSession('user'));
+    this.item.usuarioCrea = Number(Utils.getSession('user'));
 
     try {
       const data = await firstValueFrom(this.wsdl.insert(this.item));
