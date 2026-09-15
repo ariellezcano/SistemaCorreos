@@ -21,35 +21,24 @@ export class PersonalDTIService {
       filtro: busqueda ?? '',
     };
 
-    return this.http.get<Results<PersonalDTI>>(
-      `${this.api}/Listar`,
-      { params }
-    );
+    return this.http.get<Results<PersonalDTI>>(`${this.api}/Listar`, {
+      params,
+    });
   }
 
   getId(id: number) {
-    return this.http.get<Results<PersonalDTI>>(
-      `${this.api}/${id}`
-    );
+    return this.http.get<Results<PersonalDTI>>(`${this.api}/${id}`);
   }
 
   insert(personal: PersonalDTI) {
-    return this.http.post<Results<PersonalDTI>>(
-      this.api,
-      personal
-    );
+    return this.http.post<Results<PersonalDTI>>(this.api, personal);
   }
 
   update(id: number, personal: PersonalDTI) {
-    return this.http.put<Results<PersonalDTI>>(
-      `${this.api}/${id}`,
-      personal
-    );
+    return this.http.put<Results<PersonalDTI>>(`${this.api}/${id}`, personal);
   }
 
   delete(id: number) {
-    return this.http.delete<Results<PersonalDTI>>(
-      `${this.api}/${id}`
-    );
+    return this.http.delete<Results<PersonalDTI>>(`${this.api}/${id}`);
   }
 }

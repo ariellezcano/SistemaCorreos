@@ -49,8 +49,8 @@ export class AbmPersonalDtiComponent implements OnInit {
   async buscarPorId(): Promise<void> {
     try {
       const data: any = await firstValueFrom(this.wsdl.getId(this.id));
-
-      if (data.code === '200') {
+      const result = JSON.parse(JSON.stringify(data));
+      if (result.code === '200') {
         this.item = data.data;
 
         // Adaptamos las fechas recibidas desde .NET
@@ -106,10 +106,12 @@ export class AbmPersonalDtiComponent implements OnInit {
        */
       this.item.activo = true;
       this.item.fechaBaja = null;
+      this.item.plaza = String(this.item.plaza);
 
       const data: any = await firstValueFrom(this.wsdl.insert(this.item));
-
-      if (data.code === '201' || data.code === '200') {
+      const result = JSON.parse(JSON.stringify(data));
+      console.log("result", result);
+      if (result.code === '201' || result.code === '200') {
         await Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -142,8 +144,8 @@ export class AbmPersonalDtiComponent implements OnInit {
       const data: any = await firstValueFrom(
         this.wsdl.update(this.item.idPersonal, this.item),
       );
-
-      if (data.code === '200') {
+      const result = JSON.parse(JSON.stringify(data));
+      if (result.code === '200') {
         await Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -172,7 +174,7 @@ export class AbmPersonalDtiComponent implements OnInit {
   ===================================================== */
 
   doFound(data: any): void {
-    console.log('data recibida', data);
+    // console.log('data recibida', data);
     if (data.code === '200') {
       this.item.apellido = data.data.apellido;
 
@@ -181,6 +183,8 @@ export class AbmPersonalDtiComponent implements OnInit {
       this.item.dni = data.data.DNI;
 
       this.item.jerarquia = data.data.jerarquia;
+
+      this.item.plaza = data.data.plaza;
 
       console.log('Personal seleccionado:', this.item);
     }
