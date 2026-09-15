@@ -50,8 +50,9 @@ export class AbmPersonalDtiComponent implements OnInit {
     try {
       const data: any = await firstValueFrom(this.wsdl.getId(this.id));
       const result = JSON.parse(JSON.stringify(data));
+      console.log("result", result);
       if (result.code === '200') {
-        this.item = data.data;
+        this.item = result.dato;
 
         // Adaptamos las fechas recibidas desde .NET
         // al formato requerido por input type="date".
