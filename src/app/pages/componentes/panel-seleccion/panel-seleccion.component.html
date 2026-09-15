@@ -18,6 +18,25 @@
       </div>
     </div>
 
+    <!-- PERSONAL DTI -->
+    <div
+      class="col-md-6 col-lg-4"
+      *ngIf="
+        rol === 'DEVELOPER' || rol === 'MANAGER' || rol === 'ADMINISTRADOR'
+      "
+    >
+      <div class="dashboard-card" (click)="irAPersonalDTI()">
+        <div class="icon bg-primary">
+          <i class="bi bi-person-badge-fill"></i>
+        </div>
+        <h5>Personal DTI</h5>
+        <p>
+          Administración y gestión del personal perteneciente a la Dirección de
+          Tecnologías de la Información
+        </p>
+      </div>
+    </div>
+
     <!-- SISTEMAS -->
     <div class="col-md-6 col-lg-4">
       <div class="dashboard-card" (click)="irASistemas()">

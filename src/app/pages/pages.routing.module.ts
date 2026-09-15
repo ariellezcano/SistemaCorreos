@@ -45,6 +45,8 @@ import { LstSolicitudesComponent } from './lst/lst-solicitudes/lst-solicitudes.c
 import { AbmSolicitudesComponent } from './frm-abm/abm-solicitudes/abm-solicitudes.component';
 import { PanelSeleccionReportesComponent } from './componentes/panel-seleccion-reportes/panel-seleccion-reportes.component';
 import { AbmGeneracionReciboComponent } from './frm-abm/reportes/abm-generacion-recibo/abm-generacion-recibo.component';
+import { LstPersonalDtiComponent } from './lst/lst-personal-dti/lst-personal-dti.component';
+import { AbmPersonalDtiComponent } from './frm-abm/abm-personal-dti/abm-personal-dti.component';
 
 const routes: Routes = [
   {
@@ -265,6 +267,18 @@ const routes: Routes = [
       {
         path: 'panel_recibo',
         component: AbmGeneracionReciboComponent,
+        canActivate: [AuthGuard],
+      },
+
+      //PERSONAL DE LA DIVISION
+      {
+        path: 'lst_personal_dti',
+        component: LstPersonalDtiComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_personal_dti/:id',
+        component: AbmPersonalDtiComponent,
         canActivate: [AuthGuard],
       },
     ],

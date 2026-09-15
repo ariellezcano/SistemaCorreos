@@ -72,6 +72,10 @@ import { AbmSolicitudesComponent } from './frm-abm/abm-solicitudes/abm-solicitud
 import { LstSolicitudesComponent } from './lst/lst-solicitudes/lst-solicitudes.component';
 import { PanelSeleccionReportesComponent } from './componentes/panel-seleccion-reportes/panel-seleccion-reportes.component';
 import { AbmGeneracionReciboComponent } from './frm-abm/reportes/abm-generacion-recibo/abm-generacion-recibo.component';
+import { FilPersonalDtiComponent } from './filtros/fil-personal-dti/fil-personal-dti.component';
+import { AbmPersonalDtiComponent } from './frm-abm/abm-personal-dti/abm-personal-dti.component';
+import { LstPersonalDtiComponent } from './lst/lst-personal-dti/lst-personal-dti.component';
+import { BusquedaPersonaDtiComponent } from './componentes/busqueda-persona-dti/busqueda-persona-dti.component';
 
 @NgModule({
   declarations: [
@@ -142,6 +146,10 @@ import { AbmGeneracionReciboComponent } from './frm-abm/reportes/abm-generacion-
     LstSolicitudesComponent,
     PanelSeleccionReportesComponent,
     AbmGeneracionReciboComponent,
+    FilPersonalDtiComponent,
+    AbmPersonalDtiComponent,
+    LstPersonalDtiComponent,
+    BusquedaPersonaDtiComponent,
   ],
   imports: [
     CommonModule,

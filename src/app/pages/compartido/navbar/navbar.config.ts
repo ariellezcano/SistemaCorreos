@@ -74,4 +74,12 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     ]
   },
 
+  personal: {
+    titulo: 'PERSONAL DTI',
+    links: [
+      { label: 'Personal Policial', route: '/pages/lst_personal_dti' },
+      // { label: 'Solicitudes / Reclamos', route: '/pages/lst_solicitudReclamo' }
+    ]
+  },
+
 };

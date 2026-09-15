@@ -9,7 +9,6 @@ import { Utils } from 'src/app/utils/utils';
   styleUrls: ['./panel-seleccion.component.scss'],
 })
 export class PanelSeleccionComponent implements OnInit {
-  
   constructor(
     private router: Router,
     private navbarService: NavbarService,
@@ -59,6 +58,10 @@ export class PanelSeleccionComponent implements OnInit {
   irANovedades() {
     this.navbarService.setModo('novedades');
     this.router.navigate(['/pages/lst_novedadesDTI']);
+  }
+
+  irAPersonalDTI(): void {
+    this.router.navigate(['/pages/lst_personal_dti']);
   }
 
   irAReportes() {
