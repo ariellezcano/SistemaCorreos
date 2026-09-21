@@ -61,6 +61,7 @@ export class PanelSeleccionComponent implements OnInit {
   }
 
   irAPersonalDTI(): void {
+    this.navbarService.setModo('personal');
     this.router.navigate(['/pages/lst_personal_dti']);
   }
 

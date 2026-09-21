@@ -10,6 +10,7 @@ export type NavbarModo =
   | 'conexiones'
   | 'insumos'
   | 'novedades'
+  | 'personal'
   | 'reportes';
 
 @Injectable({ providedIn: 'root' })

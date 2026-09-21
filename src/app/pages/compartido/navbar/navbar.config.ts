@@ -10,24 +10,25 @@ export interface NavbarConfig {
 export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
   principal: {
     titulo: 'SISTEMA DE GESTION - DTI',
-    links: []
+    links: [],
   },
 
   correos: {
     titulo: 'PANEL DE CORREOS POLICIALES Y SISTEMAS NACIONALES',
     links: [
       { label: 'Solicitantes', route: '/pages/lst_usuario_solicitante' },
-      { label: 'Correo Institucional', route: '/pages/lst_correos_institucionales' },
+      {
+        label: 'Correo Institucional',
+        route: '/pages/lst_correos_institucionales',
+      },
       { label: 'Sistemas Federales', route: '/pages/lst_plataforma' },
-      { label: 'Reclamos', route: '/pages/lst_reclamos' }
-    ]
+      { label: 'Reclamos', route: '/pages/lst_reclamos' },
+    ],
   },
 
   usuarios: {
     titulo: 'USUARIOS PARA USO DEL SISTEMA',
-    links: [
-      { label: 'Usuarios', route: '/pages/lst_usuario' },
-    ]
+    links: [{ label: 'Usuarios', route: '/pages/lst_usuario' }],
   },
 
   sistemas: {
@@ -35,8 +36,8 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     links: [
       { label: 'Solicitudes de Desarrollo', route: '/pages/lst_solicitudes' },
       { label: 'Sistemas', route: '/pages/lst_sistemas' },
-      { label: 'Mantenimiento Preventivo', route: '/pages/lst_mantenimiento' }
-    ]
+      { label: 'Mantenimiento Preventivo', route: '/pages/lst_mantenimiento' },
+    ],
   },
 
   insumos: {
@@ -46,24 +47,32 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
       { label: 'Modelos', route: '/pages/lst_modelos' },
       { label: 'Tipos de Insumos', route: '/pages/lst_tipoEquipo' },
       { label: 'Proveedores', route: '/pages/lst_proveedor' },
-      { label: 'Equipamientos', route: '/pages/lst_equipamientos' }
-    ]
+      { label: 'Equipamientos', route: '/pages/lst_equipamientos' },
+    ],
   },
 
   conexiones: {
     titulo: 'CONEXIONES Y RECLAMOS SERVICIO DE INTERNET',
     links: [
       { label: 'Conexiones', route: '/pages/lst_conexiones' },
-      { label: 'Solicitudes / Reclamos', route: '/pages/lst_solicitudReclamo' }
-    ]
+      { label: 'Solicitudes / Reclamos', route: '/pages/lst_solicitudReclamo' },
+    ],
   },
 
   novedades: {
     titulo: 'NOVEDADES DIARIAS - DTI',
     links: [
       { label: 'Novedades', route: '/pages/lst_novedadesDTI' },
-      { label: 'Tipos de Novedades', route: '/pages/lst_tipoNovedad' }
-    ]
+      { label: 'Tipos de Novedades', route: '/pages/lst_tipoNovedad' },
+    ],
+  },
+
+  personal: {
+    titulo: 'PERSONAL DTI',
+    links: [
+      { label: 'Personal Policial', route: '/pages/lst_personal_dti' },
+      { label: 'Licencias', route: '/pages/abm_licencias' }
+    ],
   },
 
   reportes: {
@@ -71,15 +80,6 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     links: [
       //{ label: 'Reporte de Prendas', route: '/pages/lst_reporte_entrega' },
       // { label: 'Solicitudes / Reclamos', route: '/pages/lst_solicitudReclamo' }
-    ]
+    ],
   },
-
-  personal: {
-    titulo: 'PERSONAL DTI',
-    links: [
-      { label: 'Personal Policial', route: '/pages/lst_personal_dti' },
-      // { label: 'Solicitudes / Reclamos', route: '/pages/lst_solicitudReclamo' }
-    ]
-  },
-
 };

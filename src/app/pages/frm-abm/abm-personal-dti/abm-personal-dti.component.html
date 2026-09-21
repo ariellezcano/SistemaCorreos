@@ -88,13 +88,62 @@
         <div class="col-md-4">
           <label class="form-label fw-semibold"> Jerarquía </label>
 
+          <!-- ALTA: viene del buscador y no se modifica -->
           <input
+            *ngIf="!editando"
             readonly
             type="text"
             class="form-control"
             [(ngModel)]="item.jerarquia"
             name="jerarquia"
           />
+
+          <!-- EDICIÓN: permite seleccionar otra jerarquía -->
+          <select
+            *ngIf="editando"
+            class="form-select"
+            [(ngModel)]="item.jerarquia"
+            name="jerarquia"
+            required
+          >
+            <option value="" disabled>Seleccione una jerarquía</option>
+
+            <optgroup label="Oficiales">
+              <option value="OFICIAL SUBAYUDANTE">OFICIAL SUBAYUDANTE</option>
+
+              <option value="OFICIAL AYUDANTE">OFICIAL AYUDANTE</option>
+
+              <option value="OFICIAL AUXILIAR">OFICIAL AUXILIAR</option>
+
+              <option value="OFICIAL PRINCIPAL">OFICIAL PRINCIPAL</option>
+
+              <option value="SUBCOMISARIO">SUBCOMISARIO</option>
+
+              <option value="COMISARIO">COMISARIO</option>
+
+              <option value="COMISARIO PRINCIPAL">COMISARIO PRINCIPAL</option>
+
+              <option value="COMISARIO INSPECTOR">COMISARIO INSPECTOR</option>
+            </optgroup>
+
+            <optgroup label="Suboficiales y Agentes">
+              <option value="AGENTE">AGENTE</option>
+
+              <option value="CABO">CABO</option>
+
+              <option value="CABO 1°">CABO 1°</option>
+
+              <option value="SARGENTO">SARGENTO</option>
+
+              <option value="SARGENTO 1°">SARGENTO 1°</option>
+
+              <option value="SARGENTO AYUDANTE">SARGENTO AYUDANTE</option>
+
+              <option value="SUBOFICIAL PRINCIPAL">SUBOFICIAL PRINCIPAL</option>
+
+              <option value="SUBOFICIAL MAYOR">SUBOFICIAL MAYOR</option>
+            </optgroup>
+          </select>
         </div>
 
         <!-- NRO CREDENCIAL -->
