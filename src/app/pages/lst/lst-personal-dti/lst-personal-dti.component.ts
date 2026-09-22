@@ -118,6 +118,10 @@ export class LstPersonalDtiComponent implements OnInit {
     );
   }
 
+  verLicencias(personal: PersonalDTI) {
+    this.route.navigateByUrl('pages/abm_licencias/' + personal.idPersonal);
+  }
+
   puedeEliminar(): boolean {
     return this.rol === 'MANAGER' || this.rol === 'DEVELOPER';
   }

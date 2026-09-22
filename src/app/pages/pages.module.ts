@@ -76,6 +76,7 @@ import { FilPersonalDtiComponent } from './filtros/fil-personal-dti/fil-personal
 import { AbmPersonalDtiComponent } from './frm-abm/abm-personal-dti/abm-personal-dti.component';
 import { LstPersonalDtiComponent } from './lst/lst-personal-dti/lst-personal-dti.component';
 import { BusquedaPersonaDtiComponent } from './componentes/busqueda-persona-dti/busqueda-persona-dti.component';
+import { AbmLicenciasComponent } from './frm-abm/abm-licencias/abm-licencias.component';
 
 @NgModule({
   declarations: [
@@ -150,6 +151,7 @@ import { BusquedaPersonaDtiComponent } from './componentes/busqueda-persona-dti/
     AbmPersonalDtiComponent,
     LstPersonalDtiComponent,
     BusquedaPersonaDtiComponent,
+    AbmLicenciasComponent
   ],
   imports: [
     CommonModule,

@@ -47,6 +47,7 @@ import { PanelSeleccionReportesComponent } from './componentes/panel-seleccion-r
 import { AbmGeneracionReciboComponent } from './frm-abm/reportes/abm-generacion-recibo/abm-generacion-recibo.component';
 import { LstPersonalDtiComponent } from './lst/lst-personal-dti/lst-personal-dti.component';
 import { AbmPersonalDtiComponent } from './frm-abm/abm-personal-dti/abm-personal-dti.component';
+import { AbmLicenciasComponent } from './frm-abm/abm-licencias/abm-licencias.component';
 
 const routes: Routes = [
   {
@@ -279,6 +280,14 @@ const routes: Routes = [
       {
         path: 'abm_personal_dti/:id',
         component: AbmPersonalDtiComponent,
+        canActivate: [AuthGuard],
+      },
+
+      //LICENCIAS DEL PERSONAL
+
+      {
+        path: 'abm_licencias/:id',
+        component: AbmLicenciasComponent,
         canActivate: [AuthGuard],
       },
     ],
