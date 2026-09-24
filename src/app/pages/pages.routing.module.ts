@@ -48,6 +48,7 @@ import { AbmGeneracionReciboComponent } from './frm-abm/reportes/abm-generacion-
 import { LstPersonalDtiComponent } from './lst/lst-personal-dti/lst-personal-dti.component';
 import { AbmPersonalDtiComponent } from './frm-abm/abm-personal-dti/abm-personal-dti.component';
 import { AbmLicenciasComponent } from './frm-abm/abm-licencias/abm-licencias.component';
+import { AbmDetalleLicenciasComponent } from './frm-abm/abm-detalle-licencias/abm-detalle-licencias.component';
 
 const routes: Routes = [
   {
@@ -288,6 +289,11 @@ const routes: Routes = [
       {
         path: 'abm_licencias/:id',
         component: AbmLicenciasComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'abm_detalle_licencias/:id',
+        component: AbmDetalleLicenciasComponent,
         canActivate: [AuthGuard],
       },
     ],

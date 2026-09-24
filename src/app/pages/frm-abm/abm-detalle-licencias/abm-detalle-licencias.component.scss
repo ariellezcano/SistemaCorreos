@@ -1,0 +1,156 @@
+:host {
+  display: block;
+}
+
+
+/* ==========================================
+   TITULO
+   ========================================== */
+
+h4 {
+  font-weight: 600;
+  color: #343a40;
+}
+
+
+/* ==========================================
+   CARDS
+   ========================================== */
+
+.card {
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+
+/* ==========================================
+   RESUMEN
+   ========================================== */
+
+.resumen-card {
+  height: 100%;
+}
+
+.resumen-card h3 {
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.resumen-card small {
+  font-size: 0.85rem;
+}
+
+
+/* ==========================================
+   FORMULARIO
+   ========================================== */
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.form-control:focus,
+.form-select:focus {
+  box-shadow: none;
+}
+
+
+/* ==========================================
+   TABLA
+   ========================================== */
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+
+/* ==========================================
+   BADGES
+   ========================================== */
+
+.badge {
+  min-width: 55px;
+  padding: 0.4rem 0.55rem;
+  font-size: 0.72rem;
+}
+
+
+/* ==========================================
+   ACCIONES
+   ========================================== */
+
+.btn-group .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 35px;
+}
+
+
+/* ==========================================
+   PAGINACION
+   ========================================== */
+
+.page-link {
+  cursor: pointer;
+  min-width: 34px;
+  text-align: center;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .table {
+    min-width: 800px;
+  }
+
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 576px) {
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+}

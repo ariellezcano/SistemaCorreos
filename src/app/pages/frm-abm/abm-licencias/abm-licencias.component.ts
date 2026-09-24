@@ -242,12 +242,11 @@ export class AbmLicenciasComponent implements OnInit {
   // ==========================================
 
   verDetalle(licencia: Licencias) {
-    this.router.navigate([
-      'pages/abm_detalle_licencia',
-      this.idPersonal,
-      licencia.idLicencia,
-    ]);
-  }
+  this.router.navigate([
+    'pages/abm_detalle_licencias',
+    licencia.idLicencia
+  ]);
+}
 
   // ==========================================
   // ANULAR LICENCIA
