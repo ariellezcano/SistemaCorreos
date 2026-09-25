@@ -13,7 +13,7 @@ export class DetalleLicenciaService {
   api: string;
 
   constructor(private http: HttpClient) {
-    this.api = environment.URL + 'DetalleLicencia';
+    this.api = environment.URL + 'DetalleLicencia_';
   }
 
   // ==========================================

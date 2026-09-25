@@ -71,7 +71,7 @@ export const NAVBAR_CONFIG: Record<string, NavbarConfig> = {
     titulo: 'PERSONAL DTI',
     links: [
       { label: 'Personal Policial', route: '/pages/lst_personal_dti' },
-      { label: 'Licencias', route: '/pages/abm_licencias' }
+      // { label: 'Licencias', route: '/pages/abm_licencias' }
     ],
   },
 

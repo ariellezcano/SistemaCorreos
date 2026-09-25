@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
 
 import { DetalleLicencia } from 'src/app/modelos/componentes/detalleLicencia';
 import { Licencias } from 'src/app/modelos/componentes/licencias';
@@ -111,7 +112,7 @@ export class AbmDetalleLicenciasComponent implements OnInit {
 
       const result = JSON.parse(JSON.stringify(re));
       console.log('resultado', result);
-      
+
       if (result.code === '200') {
         this.detalles = result.data ?? [];
 
@@ -130,7 +131,7 @@ export class AbmDetalleLicenciasComponent implements OnInit {
         this.paginas = [];
       }
     } catch (error) {
-      console.error(error);
+      console.log('error', error);
 
       this.detalles = [];
 
@@ -192,6 +193,22 @@ export class AbmDetalleLicenciasComponent implements OnInit {
 
       if (result.code === '200') {
         this.item = result.dato;
+
+        if (this.item.fechaNotificacion) {
+          this.item.fechaNotificacion = moment(
+            this.item.fechaNotificacion,
+          ).isValid()
+            ? moment(this.item.fechaNotificacion).format('YYYY-MM-DD')
+            : null;
+        }
+
+        if (this.item.fechaFinalizacion) {
+          this.item.fechaFinalizacion = moment(
+            this.item.fechaFinalizacion,
+          ).isValid()
+            ? moment(this.item.fechaFinalizacion).format('YYYY-MM-DD')
+            : null;
+        }
 
         this.editando = true;
 
