@@ -152,6 +152,7 @@ export class AbmLicenciasComponent implements OnInit {
     this.item.totalDias = 0;
     this.item.estado = 'ACTIVA';
     this.item.activo = true;
+    this.item.tipoLicencia = null;
 
     this.mostrarFormulario = true;
   }
@@ -159,6 +160,11 @@ export class AbmLicenciasComponent implements OnInit {
   async guardarLicencia() {
     if (!this.item.anio || this.item.anio <= 0) {
       Swal.fire('Atención', 'Debe ingresar el año', 'warning');
+      return;
+    }
+
+    if (!this.item.tipoLicencia) {
+      Swal.fire('Atención', 'Debe seleccionar el tipo de licencia', 'warning');
       return;
     }
 
@@ -175,23 +181,45 @@ export class AbmLicenciasComponent implements OnInit {
       this.item.personal = this.idPersonal;
       this.item.activo = true;
 
-      const re = await firstValueFrom(this.wsdl.insert(this.item));
+      let re;
+
+      // ==========================================
+      // EDITAR
+      // ==========================================
+      if (this.editando) {
+        re = await firstValueFrom(
+          this.wsdl.update(this.item.idLicencia, this.item),
+        );
+      }
+
+      // ==========================================
+      // NUEVO
+      // ==========================================
+      else {
+        re = await firstValueFrom(this.wsdl.insert(this.item));
+      }
 
       const result = JSON.parse(JSON.stringify(re));
 
-      if (result.code === '201') {
+      if (result.code === '200' || result.code === '201') {
         await Swal.fire({
           icon: 'success',
-          title: 'Licencia creada correctamente',
+          title: this.editando
+            ? 'Licencia actualizada correctamente'
+            : 'Licencia creada correctamente',
           timer: 1500,
           showConfirmButton: false,
         });
 
         this.mostrarFormulario = false;
+        this.editando = false;
 
         this.item = new Licencias();
 
-        this.pagina = 1;
+        // Solo volver a página 1 cuando se crea
+        if (result.code === '201') {
+          this.pagina = 1;
+        }
 
         await this.listar();
       } else {
@@ -200,7 +228,9 @@ export class AbmLicenciasComponent implements OnInit {
     } catch (error: any) {
       console.error(error);
 
-      let mensaje = 'No se pudo crear la licencia';
+      let mensaje = this.editando
+        ? 'No se pudo actualizar la licencia'
+        : 'No se pudo crear la licencia';
 
       if (error?.error) {
         try {
@@ -221,6 +251,7 @@ export class AbmLicenciasComponent implements OnInit {
 
   cancelarFormulario() {
     this.mostrarFormulario = false;
+    this.editando = false;
     this.item = new Licencias();
   }
 
@@ -228,13 +259,25 @@ export class AbmLicenciasComponent implements OnInit {
   // EDITAR LICENCIA
   // ==========================================
 
-  editarLicencia(licencia: Licencias) {
-    /*
-     * El mismo modal de Nueva Licencia
-     * puede utilizarse para editar.
-     */
+  async editarLicencia(licencia: Licencias) {
+    try {
+      const re = await firstValueFrom(this.wsdl.getId(licencia.idLicencia));
 
-    console.log('Editar licencia:', licencia);
+      const result = JSON.parse(JSON.stringify(re));
+
+      if (result.code === '200') {
+        this.item = result.dato;
+
+        this.editando = true;
+        this.mostrarFormulario = true;
+      } else {
+        Swal.fire('Atención', result.message, 'warning');
+      }
+    } catch (error) {
+      console.error(error);
+
+      Swal.fire('Error', 'No se pudo obtener la licencia', 'error');
+    }
   }
 
   // ==========================================
@@ -242,11 +285,8 @@ export class AbmLicenciasComponent implements OnInit {
   // ==========================================
 
   verDetalle(licencia: Licencias) {
-  this.router.navigate([
-    'pages/abm_detalle_licencias',
-    licencia.idLicencia
-  ]);
-}
+    this.router.navigate(['pages/abm_detalle_licencias', licencia.idLicencia]);
+  }
 
   // ==========================================
   // ANULAR LICENCIA

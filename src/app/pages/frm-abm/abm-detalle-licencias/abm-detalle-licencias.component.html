@@ -4,12 +4,35 @@
     <div>
       <h4 class="mb-1">Detalle de Licencia</h4>
 
+      <!-- PERSONAL -->
+      <div *ngIf="licencia" class="datos-personal">
+        <i class="bi bi-person-badge me-1"></i>
+
+        <strong>
+          {{ licencia.apellidoPersonal }},
+          {{ licencia.nombrePersonal }}
+        </strong>
+
+        <span class="text-muted ms-2">
+          DNI:
+          <b>{{ licencia.dniPersonal }}</b>
+        </span>
+      </div>
+
+      <!-- LICENCIA -->
       <small class="text-muted" *ngIf="licencia">
         Expediente:
-        {{ licencia.nroExpte || "-" }}
+        <b>{{ licencia.nroExpte || "-" }}</b>
 
-        - Año:
-        {{ licencia.anio }}
+        <span class="mx-1">·</span>
+
+        Tipo:
+        <b>{{ licencia.tipoLicencia }}</b>
+
+        <span class="mx-1">·</span>
+
+        Año:
+        <b>{{ licencia.anio }}</b>
       </small>
     </div>
 
@@ -62,27 +85,47 @@
     </div>
   </div>
 
-  <!-- NUEVO -->
+  <!-- NUEVO / FRACCIONAMIENTO -->
   <div class="card shadow-sm mb-3">
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-center">
         <div>
-          <strong> Fraccionamientos </strong>
+          <strong>
+            {{
+              licencia?.tipoLicencia === "INVIERNO"
+                ? "Período de licencia"
+                : "Fraccionamientos"
+            }}
+          </strong>
 
           <div class="text-muted small">
-            Registre los períodos utilizados de la licencia.
+            {{
+              licencia?.tipoLicencia === "INVIERNO"
+                ? "La licencia de invierno se utiliza en un único período de días corridos."
+                : "Registre los períodos utilizados de la licencia."
+            }}
           </div>
         </div>
 
-        <button type="button" class="btn btn-primary" (click)="nuevo()">
+        <!-- INVIERNO: mostrar solo si todavía no tiene detalle -->
+        <!-- ANUAL: mostrar siempre -->
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="nuevo()"
+          *ngIf="licencia?.tipoLicencia !== 'INVIERNO' || detalles.length === 0"
+        >
           <i class="bi bi-plus-circle"></i>
 
-          Nuevo fraccionamiento
+          {{
+            licencia?.tipoLicencia === "INVIERNO"
+              ? "Registrar período"
+              : "Nuevo fraccionamiento"
+          }}
         </button>
       </div>
     </div>
   </div>
-
   <!-- FORMULARIO -->
   <div class="card shadow-sm mb-3" *ngIf="mostrarFormulario">
     <div class="card-header bg-light">
@@ -115,6 +158,7 @@
             [(ngModel)]="item.diasSacados"
             name="diasSacados"
             min="1"
+            [readonly]="licencia?.tipoLicencia === 'INVIERNO'"
           />
         </div>
 
@@ -126,7 +170,9 @@
             class="form-select"
             [(ngModel)]="item.diasViaje"
             name="diasViaje"
+            [disabled]="licencia?.tipoLicencia === 'INVIERNO'"
           >
+            <option [ngValue]="0">0</option>
             <option [ngValue]="2">2</option>
           </select>
         </div>
@@ -141,17 +187,6 @@
             [(ngModel)]="item.fechaFinalizacion"
             name="fechaFinalizacion"
           />
-        </div>
-
-        <!-- ESTADO -->
-        <div class="col-md-2 mb-3">
-          <label class="form-label"> Estado </label>
-
-          <select class="form-select" [(ngModel)]="item.estado" name="estado">
-            <option value="ACTIVA">ACTIVA</option>
-
-            <option value="FINALIZADA">FINALIZADA</option>
-          </select>
         </div>
       </div>
 
@@ -229,7 +264,15 @@
               </td>
 
               <!-- ESTADO -->
+              <!-- ESTADO -->
               <td class="text-center">
+                <span
+                  class="badge bg-warning text-dark"
+                  *ngIf="detalle.estado === 'PENDIENTE'"
+                >
+                  PENDIENTE
+                </span>
+
                 <span
                   class="badge bg-success"
                   *ngIf="detalle.estado === 'ACTIVA'"
@@ -242,16 +285,6 @@
                   *ngIf="detalle.estado === 'FINALIZADA'"
                 >
                   FINALIZADA
-                </span>
-
-                <span
-                  class="badge bg-warning text-dark"
-                  *ngIf="
-                    detalle.estado !== 'ACTIVA' &&
-                    detalle.estado !== 'FINALIZADA'
-                  "
-                >
-                  {{ detalle.estado }}
                 </span>
               </td>
 
@@ -343,4 +376,4 @@
     </div>
   </div>
 </div>
-<hr>
+<hr />

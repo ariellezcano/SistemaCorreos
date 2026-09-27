@@ -8,6 +8,7 @@ import { DetalleLicencia } from 'src/app/modelos/componentes/detalleLicencia';
 import { Licencias } from 'src/app/modelos/componentes/licencias';
 import { DetalleLicenciaService } from 'src/app/services/componentes/detalle-licencia.service';
 import { LicenciasService } from 'src/app/services/componentes/licencias.service';
+import { Alert } from 'bootstrap';
 
 @Component({
   selector: 'app-abm-detalle-licencias',
@@ -170,9 +171,24 @@ export class AbmDetalleLicenciasComponent implements OnInit {
 
     this.item.licencia = this.idLicencia;
 
-    this.item.diasSacados = 0;
+    // INVIERNO: se utilizan todos los días disponibles
+    if (this.licencia?.tipoLicencia === 'INVIERNO') {
+      this.item.diasSacados =
+        this.licencia.diasDisponibles ?? this.licencia.totalDias;
+    } else {
+      // ANUAL: el usuario decide cuántos días utilizar
+      this.item.diasSacados = 0;
+    }
 
-    this.item.diasViaje = 0;
+    if (this.licencia?.tipoLicencia === 'INVIERNO') {
+      this.item.diasSacados =
+        this.licencia.diasDisponibles ?? this.licencia.totalDias;
+
+      this.item.diasViaje = 0;
+    } else {
+      this.item.diasSacados = 0;
+      this.item.diasViaje = 0;
+    }
 
     this.item.estado = 'ACTIVA';
 

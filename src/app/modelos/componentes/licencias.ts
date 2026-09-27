@@ -1,15 +1,18 @@
 export class Licencias {
-  idLicencia!: number;
-  nroExpte!: string | null;
-  anio!: number;
-  totalDias!: number;
-  estado!: string | null;
-  personal!: number | null;
-  activo!: boolean;
+  idLicencia: number = 0;
+  nroExpte: string | null = null;
+  anio: number = 0;
+  totalDias: number = 0;
+  tipoLicencia: string | null = null;
+  estado: string | null = null;
+  personal: number | null = null;
+  activo: boolean = true;
 
-  // Calculados en backend
-  diasUtilizados?: number;
-  diasDisponibles?: number;
+  diasUtilizados: number = 0;
+  diasDisponibles: number = 0;
 
-  constructor() {}
+  // Datos del personal
+  nombrePersonal: string | null = null;
+  apellidoPersonal: string | null = null;
+  dniPersonal: number | null = null;
 }

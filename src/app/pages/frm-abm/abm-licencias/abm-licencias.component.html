@@ -27,7 +27,7 @@
             <input
               type="text"
               class="form-control"
-              placeholder="Expediente, año o estado..."
+              placeholder="Expediente, año, tipo o estado..."
               [(ngModel)]="busqueda"
               (keyup.enter)="buscar()"
             />
@@ -56,11 +56,13 @@
     </div>
   </div>
 
-  <!-- FORMULARIO NUEVA LICENCIA -->
+  <!-- FORMULARIO LICENCIA -->
   <div class="card shadow-sm mb-3" *ngIf="mostrarFormulario">
     <div class="card-header bg-light">
       <div class="d-flex justify-content-between align-items-center">
-        <strong> Nueva Licencia </strong>
+        <strong>
+          {{ editando ? "Editar Licencia" : "Nueva Licencia" }}
+        </strong>
 
         <button
           type="button"
@@ -84,6 +86,23 @@
             name="anio"
             min="2000"
           />
+        </div>
+
+        <!-- TIPO LICENCIA -->
+        <div class="col-md-3 mb-3">
+          <label class="form-label"> Tipo de licencia * </label>
+
+          <select
+            class="form-select"
+            [(ngModel)]="item.tipoLicencia"
+            name="tipoLicencia"
+          >
+            <option [ngValue]="null">Seleccione...</option>
+
+            <option value="ANUAL">Anual</option>
+
+            <option value="INVIERNO">Invierno</option>
+          </select>
         </div>
 
         <!-- EXPEDIENTE -->
@@ -112,19 +131,6 @@
             min="1"
           />
         </div>
-
-        <!-- <div class="col-md-3 mb-3">
-          <label class="form-label"> Días por viaje </label>
-
-          <select
-            class="form-select"
-            [(ngModel)]="item.diasViaje"
-            name="diasViaje"
-          >
-            <option [ngValue]="0">No corresponde</option>
-            <option [ngValue]="2">2 días</option>
-          </select>
-        </div> -->
       </div>
 
       <!-- BOTONES -->
@@ -143,7 +149,8 @@
           (click)="guardarLicencia()"
         >
           <i class="bi bi-save"></i>
-          Guardar
+
+          {{ editando ? "Actualizar" : "Guardar" }}
         </button>
       </div>
     </div>
@@ -158,6 +165,8 @@
             <tr>
               <th>Año</th>
 
+              <th>Tipo</th>
+
               <th>Expediente</th>
 
               <th class="text-center">Total días</th>
@@ -166,7 +175,7 @@
 
               <th class="text-center">Disponibles</th>
 
-              <th class="text-center">Estado</th>
+              <!-- <th class="text-center">Estado</th> -->
 
               <th class="text-center">Acciones</th>
             </tr>
@@ -177,6 +186,27 @@
               <!-- AÑO -->
               <td>
                 {{ licencia.anio }}
+              </td>
+
+              <!-- TIPO LICENCIA -->
+              <td>
+                <span
+                  class="badge bg-primary"
+                  *ngIf="licencia.tipoLicencia === 'ANUAL'"
+                >
+                  ANUAL
+                </span>
+
+                <span
+                  class="badge bg-info text-dark"
+                  *ngIf="licencia.tipoLicencia === 'INVIERNO'"
+                >
+                  INVIERNO
+                </span>
+
+                <span class="text-muted" *ngIf="!licencia.tipoLicencia">
+                  -
+                </span>
               </td>
 
               <!-- EXPEDIENTE -->
@@ -191,7 +221,7 @@
 
               <!-- UTILIZADOS -->
               <td class="text-center">
-                {{ licencia.diasUtilizados || 0 }}
+                {{ licencia.diasUtilizados ?? 0 }}
               </td>
 
               <!-- DISPONIBLES -->
@@ -200,7 +230,7 @@
               </td>
 
               <!-- ESTADO -->
-              <td class="text-center">
+              <!-- <td class="text-center">
                 <span
                   class="badge bg-success"
                   *ngIf="licencia.estado === 'ACTIVA'"
@@ -232,7 +262,7 @@
                 >
                   {{ licencia.estado }}
                 </span>
-              </td>
+              </td> -->
 
               <!-- ACCIONES -->
               <td class="text-center">
@@ -272,7 +302,7 @@
 
             <!-- SIN RESULTADOS -->
             <tr *ngIf="licencias.length === 0">
-              <td colspan="7" class="text-center text-muted py-4">
+              <td colspan="8" class="text-center text-muted py-4">
                 No se encontraron licencias.
               </td>
             </tr>
@@ -335,4 +365,5 @@
     </div>
   </div>
 </div>
+
 <hr />
