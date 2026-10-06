@@ -255,6 +255,12 @@ export class AbmLicenciasComponent implements OnInit {
     this.item = new Licencias();
   }
 
+  cambiarTipoLicencia() {
+    if (this.item.tipoLicencia !== 'ANUAL') {
+      this.item.avisoViaje = false;
+    }
+  }
+
   // ==========================================
   // EDITAR LICENCIA
   // ==========================================

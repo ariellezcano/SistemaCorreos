@@ -96,6 +96,7 @@
             class="form-select"
             [(ngModel)]="item.tipoLicencia"
             name="tipoLicencia"
+            (ngModelChange)="cambiarTipoLicencia()"
           >
             <option [ngValue]="null">Seleccione...</option>
 
@@ -106,7 +107,7 @@
         </div>
 
         <!-- EXPEDIENTE -->
-        <div class="col-md-4 mb-3">
+        <div class="col-md-3 mb-3">
           <label class="form-label"> Nro. Expediente </label>
 
           <input
@@ -120,7 +121,7 @@
         </div>
 
         <!-- TOTAL DIAS -->
-        <div class="col-md-3 mb-3">
+        <div class="col-md-2 mb-3">
           <label class="form-label"> Total días * </label>
 
           <input
@@ -130,6 +131,25 @@
             name="totalDias"
             min="1"
           />
+        </div>
+
+        <!-- AVISO DE VIAJE -->
+        <div class="col-md-2 mb-3" *ngIf="item.tipoLicencia === 'ANUAL'">
+          <label class="form-label d-block"> Aviso de viaje </label>
+
+          <div class="form-check form-switch mt-2">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="avisoViaje"
+              [(ngModel)]="item.avisoViaje"
+              name="avisoViaje"
+            />
+
+            <label class="form-check-label" for="avisoViaje">
+              {{ item.avisoViaje ? "Sí" : "No" }}
+            </label>
+          </div>
         </div>
       </div>
 
@@ -166,6 +186,8 @@
               <th>Año</th>
 
               <th>Tipo</th>
+
+              <th class="text-center">Aviso viaje</th>
 
               <th>Expediente</th>
 
@@ -205,6 +227,33 @@
                 </span>
 
                 <span class="text-muted" *ngIf="!licencia.tipoLicencia">
+                  -
+                </span>
+              </td>
+
+              <td class="text-center">
+                <span
+                  *ngIf="
+                    licencia.tipoLicencia === 'ANUAL' && licencia.avisoViaje
+                  "
+                  class="badge bg-success"
+                >
+                  Sí
+                </span>
+
+                <span
+                  *ngIf="
+                    licencia.tipoLicencia === 'ANUAL' && !licencia.avisoViaje
+                  "
+                  class="badge bg-secondary"
+                >
+                  No
+                </span>
+
+                <span
+                  *ngIf="licencia.tipoLicencia === 'INVIERNO'"
+                  class="text-muted"
+                >
                   -
                 </span>
               </td>

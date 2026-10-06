@@ -10,7 +10,7 @@ export class Licencias {
 
   diasUtilizados: number = 0;
   diasDisponibles: number = 0;
-
+  avisoViaje: boolean = false;
   // Datos del personal
   nombrePersonal: string | null = null;
   apellidoPersonal: string | null = null;
