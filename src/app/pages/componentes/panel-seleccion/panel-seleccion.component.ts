@@ -69,4 +69,8 @@ export class PanelSeleccionComponent implements OnInit {
     this.navbarService.setModo('reportes');
     this.router.navigate(['/pages/panel_reportes']);
   }
+
+  irARepositorioPolicial(): void {
+    window.open('http://10.125.31.3:3000/user/login', '_blank');
+  }
 }

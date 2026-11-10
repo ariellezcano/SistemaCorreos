@@ -1,52 +1,102 @@
+
+/* ==========================================
+   TARJETAS GENERALES DEL PANEL
+========================================== */
+
 .dashboard-card {
   background: #ffffff;
   border: 1px solid #dee2e6;
   border-radius: 1.2rem;
   padding: 2rem 1.8rem;
   height: 100%;
+  width: 100%;
   text-align: center;
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
-}
 
-.dashboard-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
-}
-
-.dashboard-card .icon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  margin: 0 auto 1.2rem auto;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  font-size: 1.9rem;
-  color: #fff;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin: 0 auto 1.2rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.9rem;
+    color: #ffffff;
+    transition: transform 0.25s ease;
+  }
+
+  h5 {
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #0b1a33;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #6c757d;
+    line-height: 1.4;
+    margin: 0;
+  }
 }
 
-.dashboard-card h5 {
-  font-weight: 600;
-  margin-bottom: 0.6rem;
-  color: #0b1a33;
-}
-
-.dashboard-card p {
-  font-size: 0.95rem;
-  color: #6c757d;
-  line-height: 1.4;
-  margin: 0;
-}
+/* ==========================================
+   DISTRIBUCIÓN DE TARJETAS
+========================================== */
 
 .row > div {
   display: flex;
 }
 
-.dashboard-card {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* ==========================================
+   REPOSITORIO POLICIAL
+========================================== */
+
+.repositorio-card {
+  background: #e8f2fa;
+  border: 2px solid #2d6089;
+  box-shadow: 0 6px 18px rgba(45, 96, 137, 0.15);
+
+  .repositorio-icon {
+    background: #326d9c;
+    color: #ffffff;
+  }
+
+  h5 {
+    color: #173d5e;
+  }
+
+  p {
+    color: #4a6174;
+  }
+
+  .repositorio-etiqueta {
+    color: #8a5a00;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    margin-top: 1.2rem;
+  }
+
+  &:hover {
+    background: #d5e9f8;
+    border-color: #1c527c;
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(45, 96, 137, 0.25);
+
+    .repositorio-icon {
+      transform: scale(1.08);
+    }
+  }
 }
